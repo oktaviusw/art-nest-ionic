@@ -15,7 +15,7 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.background-intro{
+.background-intro {
     background-image: url("../assets/imgs/main_background.jpg");
     background-size: cover;
     background-position: center;
@@ -23,16 +23,15 @@
     color: #f0f0f0;
 }
 
-.backgroud-default-light{
+.backgroud-default-light {
     background-color: #F4F4F4;
 }
 
-.backgroud-default-dark{
+.backgroud-default-dark {
     background-color: #D9A069;
     color: #fff;
 }
 
-/*Middle title buat android*/
 ion-title {
     position: absolute;
     top: 0;
@@ -43,11 +42,11 @@ ion-title {
     text-align: center;
 }
 
-ion-header ion-item{
+ion-header ion-item {
     margin: 10em;
 }
 
-.menu-toolbar{
+.menu-toolbar {
     margin: 0px;
     padding: 0px;
 }
@@ -56,3 +55,34 @@ ion-header button, .back-button {
     z-index: 5;
 }
 
+.overlay-text-12 {
+    width: 94%;
+    height: 20%;
+    bottom: 3%;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.7;
+    background: #000;
+    color: #fff;
+}
+
+.overlay-text-6 {
+    width: 81%;
+    height: 20%;
+    bottom: 9.1%;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.7;
+    background: #000;
+    color: #fff;
+}
+
+/* IMAGES */
+.profile-picture {
+    border-radius: 100%; 
+    display: block; 
+    max-width:85px; 
+    max-height:85px; 
+    width: auto; 
+    height: auto;
+}
