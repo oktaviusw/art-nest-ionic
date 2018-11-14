@@ -1,0 +1,38 @@
+<!--
+  Generated template for the IntroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding class="background-intro">
+  <ion-slides pager #slides style="height: 95%;">
+    <ion-slide>
+      <img style="width: 40%; height: 40%; margin-bottom: 5%;" src="../../assets/imgs/upload_icon.png">
+      <h1 style="margin-bottom: 5%;">Upload</h1>
+      <p>Create and show your creation to the world!</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width: 40%; height: 40%; margin-bottom: 5%;" src="../../assets/imgs/share_icon.png">
+      <h1 style="margin-bottom: 5%;">Share</h1>
+      <p>Share with your client or your friends!</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width: 40%; height: 40%; margin-bottom: 5%;" src="../../assets/imgs/money_icon.png">
+      <h1 style="margin-bottom: 5%;">Profit</h1>
+      <p>Get profit from your creation</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width: 40%; height: 40%; margin-bottom: 5%;" src="../../assets/imgs/artist_icon.png">
+      <h1 style="margin-bottom: 5%;">Become Artist</h1>
+      <p>Start your career to amuse the world</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width: 40%; height: 40%; margin-bottom: 5%;" src="../../assets/imgs/world_icon.png">
+      <h1 style="margin-bottom: 5%;">Show The World</h1>
+      <p>Show what have you done and express it to your hearts</p>
+    </ion-slide>
+  </ion-slides>
+
+  <button type="submit" float-left class="btnPrev" (click)="prev()">{{btnPrevText}}</button>
+  <button type="submit" float-right class="btnNext" (click)="next()">{{btnNextText}}</button>
+</ion-content>

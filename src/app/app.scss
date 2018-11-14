@@ -14,3 +14,45 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.background-intro{
+    background-image: url("../assets/imgs/main_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f0f0f0;
+}
+
+.backgroud-default-light{
+    background-color: #F4F4F4;
+}
+
+.backgroud-default-dark{
+    background-color: #D9A069;
+    color: #fff;
+}
+
+/*Middle title buat android*/
+ion-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 90px 1px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+ion-header ion-item{
+    margin: 10em;
+}
+
+.menu-toolbar{
+    margin: 0px;
+    padding: 0px;
+}
+
+ion-header button, .back-button {
+    z-index: 5;
+}
+
