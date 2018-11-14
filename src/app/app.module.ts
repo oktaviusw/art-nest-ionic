@@ -12,6 +12,10 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { SettingPage } from '../pages/setting/setting';
 import { IntroPage } from '../pages/intro/intro';
+import { RequestPage } from '../pages/request/request';
+import { ProjectPage } from '../pages/project/project';
+import { MessagePage } from '../pages/message/message';
+import { BeArtistPage } from '../pages/be-artist/be-artist';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { IntroPage } from '../pages/intro/intro';
     LoginPage,
     RegisterPage,
     SettingPage,
-    HomePage
+    HomePage,
+    RequestPage,
+    ProjectPage,
+    MessagePage,
+    BeArtistPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,11 @@ import { IntroPage } from '../pages/intro/intro';
     LoginPage,
     RegisterPage,
     SettingPage,
-    HomePage
+    HomePage,
+    RequestPage,
+    ProjectPage,
+    MessagePage,
+    BeArtistPage
   ],
   providers: [
     StatusBar,

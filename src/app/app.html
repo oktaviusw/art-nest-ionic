@@ -1,1 +1,63 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="sideMenuContent">
+	<ion-header>
+		<ion-toolbar>
+			<ion-grid>
+				<ion-row align-items-center>
+					<ion-col col-4>
+							<img style="border-radius: 100%; display: block; max-width:85px; max-height:85px; width: auto; height: auto;" src='../assets/imgs/application_logo.png'>
+					</ion-col>
+					<ion-col col-8>
+							<b style="font-size: 18px;">Username</b><br>
+							Email
+					</ion-col>
+				</ion-row>
+			</ion-grid>	
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<ion-list>
+			<button ion-item (click)="onLoad(homePage)">
+				<ion-icon name="home" item-left></ion-icon>
+				Home
+			</button>
+			<button ion-item (click)="onLoad(requestPage)">
+				<ion-icon name="clipboard" item-left></ion-icon>
+				Requests
+			</button>
+			<button ion-item (click)="onLoad(messagePage)">
+				<ion-icon name="mail" item-left></ion-icon>
+				Messages
+			</button>
+			<ion-item-divider>
+				Artist
+			</ion-item-divider>
+			<!-- IF ARTIST -->
+			<button ion-item (click)="onLoad(artistPage)">
+				<ion-icon name="person" item-left></ion-icon>
+				Portfolio
+			</button>
+			<button ion-item (click)="onLoad(projectPage)">
+				<ion-icon name="brush" item-left></ion-icon>
+				Projects
+			</button>
+			<!-- IF NOT ARTIST -->
+			<button ion-item (click)="onLoad(beArtistPage)">
+				<ion-icon name="person-add" item-left></ion-icon>
+				Become an Artist
+			</button>
+			<ion-item-divider>
+				Account
+			</ion-item-divider>
+			<button ion-item (click)="onLoad(settingPage)">
+				<ion-icon name="settings" item-left></ion-icon>
+				Settings
+			</button>
+			<button ion-item (click)="onLoad(settingsPage)">
+				<ion-icon name="exit" item-left></ion-icon>
+				Log Out
+			</button>
+		</ion-list>
+	</ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #sideMenuContent></ion-nav>
