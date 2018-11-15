@@ -8,8 +8,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { APIService } from '../service/webAPI';
 
 import { Firebase } from '@ionic-native/firebase';
+import { FCM } from '@ionic-native/fcm';
+import { FirebaseProvider } from '../providers/firebase';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -50,9 +51,9 @@ const firebase = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebase), 
-    AngularFirestoreModule
+    IonicModule.forRoot(MyApp)
+    ,
+    AngularFireModule.initializeApp(firebase)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -73,6 +74,8 @@ const firebase = {
     StatusBar,
     SplashScreen,
     Firebase,
+    FCM,
+    FirebaseProvider,
     HttpClient,
     HttpClientModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

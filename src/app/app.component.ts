@@ -3,7 +3,8 @@ import { Platform, MenuController, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { Firebase }  from '@ionic-native/firebase';
+import { Firebase } from '@ionic-native/firebase';
+import { FirebaseProvider } from '../providers/firebase';
 
 import { ToastController } from 'ionic-angular';
 
@@ -34,7 +35,7 @@ export class MyApp {
 
   @ViewChild('sideMenuContent') nav: NavController;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private firebase: Firebase, private menuCtrl: MenuController, toastCtrl: ToastController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController, toastCtrl: ToastController, private firebaseProvider: FirebaseProvider, private firebase: Firebase) {
 
     // firebase.initializeApp(config);
 
@@ -60,8 +61,11 @@ export class MyApp {
       console.log('platform ready');
       
       this.firebase.getToken()
-      .then(token => {alert(`The token is ${token}`)}) // save the token server-side and use it to push notifications to this device
-      .catch(error => console.error('Error getting token', error));
+      .then(token => {
+        firebaseProvider.registerToken(token);
+          
+      }) // save the token server-side and use it to push notifications to this device
+      .catch(error => console.error('Error getting token: ', error));
 
       statusBar.styleDefault();
       splashScreen.hide();
