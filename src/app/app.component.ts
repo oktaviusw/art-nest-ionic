@@ -18,7 +18,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 })
 
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = ArtistPage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;
