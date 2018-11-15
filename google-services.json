@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1082674931088",
+    "firebase_url": "https://artnest-ca0ef.firebaseio.com",
+    "project_id": "artnest-ca0ef",
+    "storage_bucket": "artnest-ca0ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082674931088:android:be6c0cde4f943d08",
+        "android_client_info": {
+          "package_name": "com.ionic.artnest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082674931088-a711ace44oq8h5spr47d59ub0bj99mrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4G86UuGBRf23n11kQ1sPrzGTSOAYpwts"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

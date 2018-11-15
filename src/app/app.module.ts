@@ -4,6 +4,10 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { Firebase } from '@ionic-native/firebase';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ArtistPage } from '../pages/artist/artist';
@@ -16,6 +20,15 @@ import { RequestPage } from '../pages/request/request';
 import { ProjectPage } from '../pages/project/project';
 import { MessagePage } from '../pages/message/message';
 import { BeArtistPage } from '../pages/be-artist/be-artist';
+
+const firebase = {
+  apiKey: "AIzaSyCtnhjQCrEh8yeXjrZXpZhPjNLH7XeAuPA",
+  authDomain: "artnest-ca0ef.firebaseapp.com",
+  databaseURL: "https://artnest-ca0ef.firebaseio.com",
+  projectId: "artnest-ca0ef",
+  storageBucket: "artnest-ca0ef.appspot.com",
+  messagingSenderId: "1082674931088"
+ };
 
 @NgModule({
   declarations: [
@@ -34,7 +47,9 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebase), 
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,6 +69,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
   providers: [
     StatusBar,
     SplashScreen,
+    Firebase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
