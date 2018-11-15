@@ -3,6 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+import { APIService } from '../service/webAPI';
 
 import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
@@ -70,7 +73,10 @@ const firebase = {
     StatusBar,
     SplashScreen,
     Firebase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    HttpClient,
+    HttpClientModule,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    APIService
   ]
 })
 export class AppModule {}
