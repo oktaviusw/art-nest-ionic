@@ -13,113 +13,152 @@
 
 <ion-content padding>
   <div>
-    <h5>Featured Artworks</h5>
-    <ion-slides>
+    <h5 class="title">Featured Artworks</h5>
+    <ion-slides autoplay="3000" loop="true" speed="1000">
       <!-- NGFOR 10 TOP ARTWORKS -->
       <ion-slide>
-        <ion-card>
-          <div>
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-12">
-              <div class="card-title">San Francisco</div>
-              <div class="card-subtitle">72 Listings</div>
-            </div>
+        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
+          <div class="overlay-text" style="margin-top: 250px;">
+            <ion-grid>
+              <ion-row align-items-center>
+                <ion-col col-3 class="title">
+                  <img class="profile-picture" style="max-width: 50px; max-height: 50px;" src='../assets/imgs/artist.jpg'>
+                </ion-col>
+                <ion-col col-9 >
+                  <div style="text-align: left">
+                    <span class="title">Title</span>
+                    <br>
+                    <span>by Artist</span>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </div>
         </ion-card>
       </ion-slide>
-      <!-- NGFOR 10 TOP ARTWORKS -->
+      <!-- NGFOR 10 TOP ARTWORKS = ARTWORK, TITLE, ARTIST NAME -->
       <ion-slide>
-        <ion-card>
-          <div style="width:100%;">
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-12">
-              <ion-grid>
-                <ion-row align-items-center>
-                    <ion-col col-4 class="card-title">
-                      <img style="width: 60%" src='../assets/imgs/application_logo.png'>
-                    </ion-col>
-                    <ion-col col-8 class="card-title">
-                      San Francisco
-                    </ion-col>
-                  </ion-row>
-              </ion-grid>
-            </div>
+        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
+          <div class="overlay-text" style="margin-top: 250px;">
+            <ion-grid>
+              <ion-row align-items-center>
+                  <ion-col col-3 class="title">
+                    <img class="profile-picture" style="max-width: 50px; max-height: 50px;" src='../assets/imgs/artist.jpg'>
+                  </ion-col>
+                  <ion-col col-9 >
+                    <div style="text-align: left">
+                      <span class="title">Title</span>
+                      <br>
+                      <span>by Artist</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
           </div>
         </ion-card>
       </ion-slide>
-      <!-- NGFOR 10 TOP ARTWORKS -->
+      <!-- NGFOR 10 TOP ARTWORKS = ARTWORK, TITLE, ARTIST NAME -->
       <ion-slide>
-        <ion-card>
-          <img src='../assets/imgs/application_logo.png'>
-          <div class="overlay-text-12">
-            <div class="card-title">San Francisco</div>
-            <div class="card-subtitle">72 Listings</div>
+        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
+          <div class="overlay-text" style="margin-top: 250px;">
+            <ion-grid>
+              <ion-row align-items-center>
+                  <ion-col col-3 class="title">
+                    <img class="profile-picture" style="max-width: 50px; max-height: 50px;" src='../assets/imgs/artist.jpg'>
+                  </ion-col>
+                  <ion-col col-9 >
+                    <div style="text-align: left">
+                      <span class="title">Title</span>
+                      <br>
+                      <span>by Artist</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <!-- NGFOR 10 TOP ARTWORKS = ARTWORK, TITLE, ARTIST NAME -->
+      <ion-slide>
+        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
+          <div class="overlay-text" style="margin-top: 250px;">
+            <ion-grid>
+              <ion-row align-items-center>
+                  <ion-col col-3 class="title">
+                    <img class="profile-picture" style="max-width: 50px; max-height: 50px;" src='../assets/imgs/artist.jpg'>
+                  </ion-col>
+                  <ion-col col-9 >
+                    <div style="text-align: left">
+                      <span class="title">Title</span>
+                      <br>
+                      <span>by Artist</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
           </div>
         </ion-card>
       </ion-slide>
     </ion-slides>
   </div>
+  <div class="separator"></div>
   <div>
-    <h5>Featured Artists</h5>
+    <h5 class="title">Featured Artists</h5>
     <ion-grid>
-      <ion-row>
+      <ion-row align-items-center>
         <!-- NGFOR 10 TOP ARTIST -->
         <ion-col col-6>
-          <ion-card>
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-6">
-              <div class="card-title">San Francisco</div>
-              <div class="card-subtitle">72 Listings</div>
-            </div>
-          </ion-card>
-        </ion-col>
-        <!-- NGFOR 10 TOP ARTIST -->
-        <ion-col col-6>
-          <ion-card>
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-6">
-              <div class="card-title">San Francisco</div>
-              <div class="card-subtitle">72 Listings</div>
-            </div>
-          </ion-card>
-        </ion-col>
-        <!-- NGFOR 10 TOP ARTIST -->
-        <ion-col col-6>
-            <ion-card>
-              <img src='../assets/imgs/application_logo.png'>
-              <div class="overlay-text-6">
-                <div class="card-title">San Francisco</div>
-                <div class="card-subtitle">72 Listings</div>
+          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
+            <div class="container">
+              <img src="../assets/imgs/application_logo.png">
+              <div class="overlay">
+                <img src="../assets/imgs/artist_icon.png" class="inlay">
               </div>
-            </ion-card>
-          </ion-col>
-        <!-- NGFOR 10 TOP ARTIST -->
-        <ion-col col-6>
-          <ion-card>
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-6">
-              <div class="card-title">San Francisco</div>
-              <div class="card-subtitle">72 Listings</div>
+            </div>
+            <div class="overlay-text" style="text-align: center; padding: 6px; opacity: 1;">
+              <span class="title">Artist</span>
             </div>
           </ion-card>
         </ion-col>
         <!-- NGFOR 10 TOP ARTIST -->
         <ion-col col-6>
-          <ion-card>
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-6">
-              <div class="card-title">San Francisco</div>
-              <div class="card-subtitle">72 Listings</div>
+          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
+            <div class="container">
+              <img src="../assets/imgs/application_logo.png">
+              <div class="overlay">
+                <img src="../assets/imgs/artist_icon.png" class="inlay">
+              </div>
+            </div>
+            <div class="overlay-text" style="text-align: center; padding: 6px; opacity: 1;">
+              <span class="title">Artist</span>
             </div>
           </ion-card>
         </ion-col>
         <!-- NGFOR 10 TOP ARTIST -->
         <ion-col col-6>
-          <ion-card>
-            <img src='../assets/imgs/application_logo.png'>
-            <div class="overlay-text-6">
-              <div class="card-title">San Francisco</div>
-              <div class="card-subtitle">72 Listings</div>
+          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
+            <div class="container">
+              <img src="../assets/imgs/application_logo.png">
+              <div class="overlay">
+                <img src="../assets/imgs/artist_icon.png" class="inlay">
+              </div>
+            </div>
+            <div class="overlay-text" style="text-align: center; padding: 6px; opacity: 1;">
+              <span class="title">Artist</span>
+            </div>
+          </ion-card>
+        </ion-col>
+        <!-- NGFOR 10 TOP ARTIST -->
+        <ion-col col-6>
+          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
+            <div class="container">
+              <img src="../assets/imgs/application_logo.png">
+              <div class="overlay">
+                <img src="../assets/imgs/artist_icon.png" class="inlay">
+              </div>
+            </div>
+            <div class="overlay-text" style="text-align: center; padding: 6px; opacity: 1;">
+              <span class="title">Artist</span>
             </div>
           </ion-card>
         </ion-col>
