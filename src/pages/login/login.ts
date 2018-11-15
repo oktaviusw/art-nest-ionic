@@ -1,5 +1,7 @@
+import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the LoginPage page.
@@ -14,12 +16,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  private loginForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: [''],
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  loginAttempt(){
+    console.log(this.loginForm.value);
+    this.navCtrl.push(HomePage);
+  }
 }

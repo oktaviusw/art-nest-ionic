@@ -14,5 +14,15 @@
 
 
 <ion-content padding>
-
+  <form [formGroup]="loginForm" (ngSubmit)="loginAttempt()">
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!loginForm.valid">Submit</button>
+  </form>
 </ion-content>
