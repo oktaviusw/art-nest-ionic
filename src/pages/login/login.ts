@@ -30,6 +30,7 @@ export class LoginPage {
   }
 
   loginAttempt(){
+    console.log("dipencet");
     console.log(this.loginForm.value);
     this.navCtrl.push(HomePage);
   }
