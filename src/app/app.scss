@@ -85,6 +85,7 @@ ion-header button, .back-button {
 .background {
     background-size: cover; 
     background-position: center center; 
+    background-repeat: no-repeat;
 }
 
 .separator {
@@ -98,14 +99,14 @@ ion-header button, .back-button {
   }
   
 .inlay {
-    width: 65%;
+    width: 70%;
     border-radius: 100%;
     height: auto;
     max-width: 200px;
     max-height: 200px;
     text-align: center;
     position: absolute;
-    top: 53%;
+    top: 54%;
     left: 49%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
