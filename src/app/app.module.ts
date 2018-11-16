@@ -51,8 +51,7 @@ const firebase = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
-    ,
+    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebase)
   ],
   bootstrap: [IonicApp],
