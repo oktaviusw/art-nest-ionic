@@ -57,16 +57,12 @@ ion-header button, .back-button {
 
 .overlay-text {
     z-index: 1;
-    opacity: 0;
     background: rgba(0,0,0,0.5);
     color: #fff;
     bottom:0px; 
     height: 30%;
-    transition: .3s ease; 
-}
-
-.background:hover .overlay-text{
-    opacity: 1;
+    transition: .3s ease;
+    text-align: center;
 }
 
 .title {
@@ -83,9 +79,8 @@ ion-header button, .back-button {
 }
 
 .background {
-    background-size: cover; 
-    background-position: center center; 
     background-repeat: no-repeat;
+    padding:0px;
 }
 
 .separator-5 {
@@ -115,6 +110,7 @@ ion-header button, .back-button {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
+
 .overlay {
     position: absolute;
     text-align: center;
@@ -128,5 +124,13 @@ ion-header button, .back-button {
     opacity: 1;
     transition: .3s ease;
     background-color:none;
+}
+
+.card-shadow {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+ion-col {
+    padding: 0px !important;
 }
 

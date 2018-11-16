@@ -11,10 +11,9 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-  <div class="background" style="height: 200px; background-position: initial; background-image:url('../assets/imgs/artist.jpg');">
-    <div style="text-align: center; padding-left: 110px; padding-top: 110px;padding-right: 110px">
+  <div class="background" style="background-image:url('../assets/imgs/artist.jpg');">
+    <div style="padding-left: 110px; padding-top: 110px; padding-right: 110px">
       <div class="container">
         <img src="../assets/imgs/application_logo.png">
         <div class="overlay">
@@ -22,39 +21,151 @@
         </div>
       </div>
     </div>
-    <div style="margin:auto; text-align: center">
-      <span class="title">Christopher Reinaldo</span>
-      <br>
-      <span>5 Completed Work(s)</span>
-    </div>
+  </div>
+  <div>
+    <h3>Christopher Reinaldo</h3>
+    <div>5 Completed Work(s)</div>
     <div class="separator-5"></div>
-    <div style="margin:auto; text-align: center; padding-left: 40px; padding-right: 40px;">
-      <span class="title">About Me</span>
-      <br>
+    <div style="padding-left: 40px; padding-right: 40px;">
       <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
     </div>
-    <div class="separator-5"></div> 
-    <div style="margin:auto; text-align: center">
-      <!-- FOR GENRE -->
-      <button ion-button class="card-md-box-shadow" style ="box-shadow: 	0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)"> a
-      </button>
-      <button ion-button> a
-      </button>
-      <button ion-button> a
-      </button>
-      <button ion-button> aaaaaaaaaaaaaaaaaa
-      </button>
-      <button ion-button> a
-      </button>
-      <button ion-button> a
-      </button>
-
-    </div>
-    <div class="separator-5"></div> 
-    <div style="margin:auto; text-align: center">
-      <span class="title">Contact Info</span>
-      <br>
-      <span>kynearth@gmail.com</span>
-    </div>
+  </div> 
+  <div class="separator-5"></div>
+  <!-- IF NOT YOUR OWN PROFILE -->
+  <!--
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button class="button-circle">
+            <div>
+              <div class="card-shadow icon-border">
+                <ion-icon name="brush" class="icon-middle"></ion-icon>
+              </div>
+              <p>Ask<br>Commision</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button class="button-circle">
+            <div>
+              <div class="card-shadow icon-border">
+                <ion-icon name="chatbubbles" class="icon-middle"></ion-icon>
+              </div>
+              <p>Message</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button class="button-circle">
+            <div>
+              <div class="card-shadow icon-border">
+                <ion-icon name="person" class="icon-middle"></ion-icon>
+              </div>
+              <p>Contact</p>
+            </div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  -->
+  <!-- IF YOUR OWN PROFILE -->
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button class="button-circle">
+            <div>
+              <div class="card-shadow icon-border">
+                <ion-icon name="add-circle" class="icon-middle"></ion-icon>
+              </div>
+              <p>Create<br>Commision</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button class="button-circle">
+            <div>
+              <div class="card-shadow icon-border">
+                <ion-icon name="image" class="icon-middle"></ion-icon>
+              </div>
+              <p>Add Artwork</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button class="button-circle">
+            <div>
+              <div class="card-shadow icon-border">
+                <ion-icon name="create" class="icon-middle"></ion-icon>
+              </div>
+              <p>Edit Profile</p>
+            </div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <!-- NGFOR GENRE -->
+    <button ion-button class="card-shadow">
+      Fantasy
+    </button>
+    <!-- NGFOR GENRE -->
+    <button ion-button class="card-shadow">
+      Shonen
+    </button>
+    <!-- NGFOR GENRE -->
+    <button ion-button class="card-shadow">
+      School Life
+    </button>
+    <!-- NGFOR GENRE -->
+    <button ion-button class="card-shadow">
+      Magic
+    </button>
+    <!-- NGFOR GENRE -->
+    <button ion-button class="card-shadow">
+      History
+    </button>
+  </div>
+  <div>
+    <h5 style="padding-left: 10px;">Artworks Showcase</h5>
+    <ion-grid>
+      <ion-row align-items-center>
+        <!-- NGFOR 10 TOP ARTIST -->
+        <ion-col col-6>
+          <ion-card>
+            <div class="container">
+              <img src="../assets/imgs/artist.jpg">
+            </div>
+          </ion-card>
+        </ion-col>
+        <!-- NGFOR 10 TOP ARTIST -->
+        <ion-col col-6>
+          <ion-card>
+            <div class="container">
+              <img src="../assets/imgs/artist.jpg">
+            </div>
+          </ion-card>
+        </ion-col>
+        <!-- NGFOR 10 TOP ARTIST -->
+        <ion-col col-6>
+          <ion-card>
+            <div class="container">
+              <img src="../assets/imgs/artist.jpg">
+            </div>
+          </ion-card>
+        </ion-col>
+        <!-- NGFOR 10 TOP ARTIST -->
+        <ion-col col-6>
+          <ion-card>
+            <div class="container">
+              <img src="../assets/imgs/artist.jpg">
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

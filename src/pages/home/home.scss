@@ -1,3 +1,20 @@
 page-home {
+    .profile-picture {
+        max-width: 50px; 
+        max-height: 50px;
+    }
 
+    .background {
+        background-size: cover; 
+        background-position: center center; 
+    }
+
+    .hover-show {
+        margin-top: 250px;
+        opacity: 0;
+    }
+
+    .background:hover .hover-show {
+        opacity: 1;
+    }
 }
