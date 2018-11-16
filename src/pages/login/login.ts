@@ -28,7 +28,7 @@ export class LoginPage {
 
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: [''],
+      password: ['', Validators.required]
     });
   }
 
@@ -50,13 +50,14 @@ export class LoginPage {
 
       loadingLogin.dismiss();
       if(response.status == "OK"){
+        //Login Firebase
         this.navCtrl.push(HomePage);
       }
       else{
         let alert = this.alertCtrl.create({
 					title: 'Login Failed',
 					subTitle: 'Invalid username or password.',
-					buttons: ['Dismiss']
+					buttons: ['OK']
 				});
 				alert.present();
       }

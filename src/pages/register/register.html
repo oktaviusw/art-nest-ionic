@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
-
+  <form [formGroup]="registerForm" (ngSubmit)="registerAttempt()">
+    <ion-item>
+      <ion-label>Username</ion-label>
+      <ion-input type="text" formControlName="fullname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!registerForm.valid">Submit</button>
+  </form>
 </ion-content>

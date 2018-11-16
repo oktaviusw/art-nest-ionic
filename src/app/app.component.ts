@@ -17,6 +17,7 @@ import { RequestPage } from '../pages/request/request';
 import { ProjectPage } from '../pages/project/project';
 import { MessagePage } from '../pages/message/message';
 import { BeArtistPage } from '../pages/be-artist/be-artist';
+import { RegisterPage } from '../pages/register/register';
 
 @Component({
   templateUrl: 'app.html'
