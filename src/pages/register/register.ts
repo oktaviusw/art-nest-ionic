@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { APIService } from '../../service/webAPI';
 import { HomePage } from './../home/home';
+import { FirebaseProvider } from '../../providers/firebase';
+import { LoginPage } from '../../pages/login/login';
 
 /**
  * Generated class for the RegisterPage page.
@@ -24,7 +26,8 @@ export class RegisterPage {
               private formBuilder: FormBuilder, 
               private loadCtrl: LoadingController,
               private alertCtrl: AlertController,
-              private api: APIService) {
+              private api: APIService,
+              private firebadeProvider: FirebaseProvider) {
 
     this.registerForm = this.formBuilder.group({
       fullname: ['', Validators.required],
@@ -54,7 +57,28 @@ export class RegisterPage {
       loadingLogin.dismiss();
       if(response.status == "OK"){
         //Register Firebase
-        this.navCtrl.push(HomePage);
+        this.firebadeProvider.signupUser(this.registerForm.value.fullname, this.registerForm.value.email, this.registerForm.value.password)
+          .then( authData => {
+            loadingLogin.dismiss().then( () => {
+              this.navCtrl.setRoot(LoginPage);
+            });
+          }, error => {
+            loadingLogin.dismiss().then( () => {
+              let alert = this.alertCtrl.create({
+                title: 'Register Failed',
+                subTitle: error.message,
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert.present();
+            });
+          }).catch( error => {
+            console.log(error);
+          })
       }
       else{
         let alert = this.alertCtrl.create({
