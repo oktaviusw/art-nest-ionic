@@ -5,13 +5,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+/* SERVICE */
 import { APIService } from '../service/webAPI';
 
+/* FIREBASE */
 import { Firebase } from '@ionic-native/firebase';
 import { FCM } from '@ionic-native/fcm';
 import { FirebaseProvider } from '../providers/firebase';
 import { AngularFireModule } from 'angularfire2';
 
+/* PAGE */
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ArtistPage } from '../pages/artist/artist';
@@ -24,6 +27,9 @@ import { RequestPage } from '../pages/request/request';
 import { ProjectPage } from '../pages/project/project';
 import { MessagePage } from '../pages/message/message';
 import { BeArtistPage } from '../pages/be-artist/be-artist';
+
+/* MODAL */
+import { ModalOrderPage } from '../pages/modal-order/modal-order';
 
 const firebase = {
   apiKey: "AIzaSyCtnhjQCrEh8yeXjrZXpZhPjNLH7XeAuPA",
@@ -47,7 +53,8 @@ const firebase = {
     RequestPage,
     ProjectPage,
     MessagePage,
-    BeArtistPage
+    BeArtistPage,
+    ModalOrderPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +75,8 @@ const firebase = {
     RequestPage,
     ProjectPage,
     MessagePage,
-    BeArtistPage
+    BeArtistPage,
+    ModalOrderPage
   ],
   providers: [
     StatusBar,
