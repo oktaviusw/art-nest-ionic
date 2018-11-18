@@ -146,3 +146,18 @@ ion-col {
   .disabledfeature{
     color: #8f8f8f;
   }
+
+  .completed {
+      color: green;
+      text-transform: uppercase;
+  }
+
+  .rejected {
+      color: red;
+      text-transform: uppercase;
+  }
+
+  .waiting {
+      color: darkorange;
+      text-transform: uppercase;
+  }

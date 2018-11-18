@@ -30,6 +30,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 
 /* MODAL */
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
+import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
 
 const firebase = {
   apiKey: "AIzaSyCtnhjQCrEh8yeXjrZXpZhPjNLH7XeAuPA",
@@ -54,7 +55,8 @@ const firebase = {
     ProjectPage,
     MessagePage,
     BeArtistPage,
-    ModalOrderPage
+    ModalOrderPage,
+    ModalDetailPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ const firebase = {
     ProjectPage,
     MessagePage,
     BeArtistPage,
-    ModalOrderPage
+    ModalOrderPage,
+    ModalDetailPage
   ],
   providers: [
     StatusBar,

@@ -27,7 +27,7 @@ import { LoginPage } from '../pages/login/login';
 })
 
 export class MyApp {
-  rootPage:any;
+  rootPage:any = RequestPage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;
@@ -94,7 +94,7 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot(this.rootPage);
         unsubscribe();
       } else {
         this.nav.setRoot(HomePage);

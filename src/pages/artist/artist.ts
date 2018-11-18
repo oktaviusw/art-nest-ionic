@@ -24,8 +24,8 @@ export class ArtistPage {
     console.log('ionViewDidLoad ArtistPage');
   }
 
-  createCommision() {
-    let modal = this.modalCtrl.create(ModalOrderPage, {cssClass: 'select-modal' });
+  createCommission() {
+    let modal = this.modalCtrl.create(ModalOrderPage, {cssClass: 'select-modal'});
 		modal.present();
   }
 
