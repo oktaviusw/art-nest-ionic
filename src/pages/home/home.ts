@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getAPI("https://artnest-umn.000webhostapp.com/API/ShowAllArtworks")
+    this.api.getAPI(this.api.ARTWORK_DATA_ALL)
       .map(response =>{
         console.log(response);
         this.artworks = response.result;
