@@ -14,10 +14,13 @@
 <ion-content padding>
   <div>
     <h5 class="title">Featured Artworks</h5>
-    <ion-slides autoplay="3000" loop="true" speed="1000">
-      <!-- NGFOR 10 TOP ARTWORKS -->
-      <ion-slide>
-        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
+    <ion-slides autoplay="3000" loop="false" speed="1000">
+      <!-- your mom hella gay -->
+      <ion-slide *ngFor="let artwork of artworks">
+        <!-- http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}} -->
+        <!-- <ion-card class="background" style="background-image: url('http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}}');"> -->
+        <ion-card class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artwork.EMail + '/artwork/' + artwork.DirectoryData + ')'">
+        <!-- <ion-card class="background" style="background-image: url('');"> -->
           <div class="overlay-text hover-show">
             <ion-grid>
               <ion-row align-items-center>
@@ -37,64 +40,23 @@
         </ion-card>
       </ion-slide>
       <!-- NGFOR 10 TOP ARTWORKS -->
+      <!-- <ion-slide *ngIf="checkArtworks()"> -->
       <ion-slide>
         <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
           <div class="overlay-text hover-show">
             <ion-grid>
               <ion-row align-items-center>
-                  <ion-col col-3 class="title">
-                    <img class="profile-picture" src='../assets/imgs/artist.jpg'>
-                  </ion-col>
-                  <ion-col col-9 >
-                    <div style="text-align: left">
-                      <span class="title">Title</span>
-                      <br>
-                      <span>by Artist</span>
-                    </div>
-                  </ion-col>
-                </ion-row>
-            </ion-grid>
-          </div>
-        </ion-card>
-      </ion-slide>
-      <!-- NGFOR 10 TOP ARTWORKS -->
-      <ion-slide>
-        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
-          <div class="overlay-text hover-show">
-            <ion-grid>
-              <ion-row align-items-center>
-                  <ion-col col-3 class="title">
-                    <img class="profile-picture" src='../assets/imgs/artist.jpg'>
-                  </ion-col>
-                  <ion-col col-9 >
-                    <div style="text-align: left">
-                      <span class="title">Title</span>
-                      <br>
-                      <span>by Artist</span>
-                    </div>
-                  </ion-col>
-                </ion-row>
-            </ion-grid>
-          </div>
-        </ion-card>
-      </ion-slide>
-      <!-- NGFOR 10 TOP ARTWORKS -->
-      <ion-slide>
-        <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
-          <div class="overlay-text hover-show">
-            <ion-grid>
-              <ion-row align-items-center>
-                  <ion-col col-3 class="title">
-                    <img class="profile-picture" src='../assets/imgs/artist.jpg'>
-                  </ion-col>
-                  <ion-col col-9 >
-                    <div style="text-align: left">
-                      <span class="title">Title</span>
-                      <br>
-                      <span>by Artist</span>
-                    </div>
-                  </ion-col>
-                </ion-row>
+                <ion-col col-3 class="title">
+                  <img class="profile-picture" src='../assets/imgs/artist.jpg'>
+                </ion-col>
+                <ion-col col-9 >
+                  <div style="text-align: left">
+                    <span class="title">Title</span>
+                    <br>
+                    <span>by Artistaaaaaaaaaaaaaaaaaaaaa</span>
+                  </div>
+                </ion-col>
+              </ion-row>
             </ion-grid>
           </div>
         </ion-card>
