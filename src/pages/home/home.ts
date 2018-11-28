@@ -9,18 +9,25 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 export class HomePage implements OnInit {
 
   artworks =[];
+  artists = [];
 
   constructor(public navCtrl: NavController, private api: APIService, public sanitizer: DomSanitizer) {
 
   }
 
   ngOnInit() {
-    this.api.getAPI("https://artnest-umn.000webhostapp.com/API/ShowAllArtworks")
+    this.api.getAPI(this.api.ARTWORK_DATA_ALL)
       .map(response =>{
-        console.log(response);
         this.artworks = response.result;
         console.log(this.artworks);
       }).subscribe();
+
+    this.api.getAPI(this.api.ARTIST_DATA_ALL)
+      .map(response =>{
+        this.artists = response.result;
+        console.log(this.artists);
+      }).subscribe();
+
   }
 
   checkArtworks() {

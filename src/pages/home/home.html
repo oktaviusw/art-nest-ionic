@@ -15,23 +15,22 @@
   <div>
     <h5 class="title">Featured Artworks</h5>
     <ion-slides autoplay="3000" loop="false" speed="1000">
-      <!-- your mom hella gay -->
+      <!-- ngfor -->
       <ion-slide *ngFor="let artwork of artworks">
         <!-- http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}} -->
         <!-- <ion-card class="background" style="background-image: url('http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}}');"> -->
         <ion-card class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artwork.EMail + '/artwork/' + artwork.DirectoryData + ')'">
-        <!-- <ion-card class="background" style="background-image: url('');"> -->
           <div class="overlay-text hover-show">
             <ion-grid>
               <ion-row align-items-center>
                 <ion-col col-3 class="title">
-                  <img class="profile-picture" src='../assets/imgs/artist.jpg'>
+                  <img class="profile-picture" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/ProfilePicture.png">
                 </ion-col>
                 <ion-col col-9 >
                   <div style="text-align: left">
-                    <span class="title">Title</span>
+                    <span class="title">{{artwork.Title}}</span>
                     <br>
-                    <span>by Artist</span>
+                    <span>by {{artwork.DisplayName}}</span>
                   </div>
                 </ion-col>
               </ion-row>
@@ -39,8 +38,7 @@
           </div>
         </ion-card>
       </ion-slide>
-      <!-- NGFOR 10 TOP ARTWORKS -->
-      <!-- <ion-slide *ngIf="checkArtworks()"> -->
+      <!-- placeholder -->
       <ion-slide>
         <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
           <div class="overlay-text hover-show">
@@ -51,9 +49,9 @@
                 </ion-col>
                 <ion-col col-9 >
                   <div style="text-align: left">
-                    <span class="title">Title</span>
+                    <span class="title">LOREM IPSUM</span>
                     <br>
-                    <span>by Artistaaaaaaaaaaaaaaaaaaaaa</span>
+                    <span>by LOREM IPSUM</span>
                   </div>
                 </ion-col>
               </ion-row>
@@ -68,49 +66,21 @@
     <h5 class="title">Featured Artists</h5>
     <ion-grid>
       <ion-row align-items-center>
-        <!-- NGFOR 10 TOP ARTIST -->
-        <ion-col col-6>
-          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
+        <!-- ngfor -->
+        <ion-col col-6 *ngFor="let artist of artists">
+          <ion-card class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
             <div class="container">
               <img src="../assets/imgs/application_logo.png">
               <div class="overlay">
-                <img src="../assets/imgs/artist_icon.png" class="inlay">
+                <img src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay">
               </div>
             </div>
             <div class="overlay-text" style="padding: 6px;">
-              <span class="title">Artist</span>
+              <span class="title">{{artist.DisplayName}}</span>
             </div>
           </ion-card>
-        </ion-col>
-        <!-- NGFOR 10 TOP ARTIST -->
-        <ion-col col-6>
-          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
-            <div class="container">
-              <img src="../assets/imgs/application_logo.png">
-              <div class="overlay">
-                <img src="../assets/imgs/artist_icon.png" class="inlay">
-              </div>
-            </div>
-            <div class="overlay-text" style="padding: 6px;">
-              <span class="title">Artist</span>
-            </div>
-          </ion-card>
-        </ion-col>
-        <!-- NGFOR 10 TOP ARTIST -->
-        <ion-col col-6>
-          <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
-            <div class="container">
-              <img src="../assets/imgs/application_logo.png">
-              <div class="overlay">
-                <img src="../assets/imgs/artist_icon.png" class="inlay">
-              </div>
-            </div>
-            <div class="overlay-text" style="padding: 6px;">
-              <span class="title">Artist</span>
-            </div>
-          </ion-card>
-        </ion-col>
-        <!-- NGFOR 10 TOP ARTIST -->
+        </ion-col>        
+        <!-- placeholder -->
         <ion-col col-6>
           <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
             <div class="container">
