@@ -26,7 +26,7 @@ export class APIService
     public readonly CATEGORY_ADD        = this.API_SERVER + 'UpdateAddCategory/';
     public readonly CATEGORY_DELETE     = this.API_SERVER + 'UpdateDeleteCategory/';
 
-    public readonly ARTWORK_DATA_ALL    = this.API_SERVER + 'ShowAllArtowrks/';
+    public readonly ARTWORK_DATA_ALL    = this.API_SERVER + 'ShowAllArtworks/';
     public readonly ARTWORK_DATA_SINGLE = this.API_SERVER + 'LoadArtworkData/';
     public readonly ARTWORK_ADD         = this.API_IONIC_SERVER + 'AddNewArtwork/';
     public readonly ARTWORK_DELETE      = this.API_SERVER + 'DeleteArtwork/';
