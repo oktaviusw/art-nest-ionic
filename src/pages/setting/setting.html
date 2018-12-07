@@ -12,5 +12,100 @@
 </ion-header>
 
 <ion-content padding>
+    <!--User Settings-->
+    <ion-card>
+      <ion-card-header>
+        User Settings
+      </ion-card-header>
+    
+      <ion-card-content>
+          <!--Profile Picture-->
+          <img style="width: 30vw; height: 30vw; object-fit: contain; border-radius:100%; margin-left:auto; margin-right:auto;" [src]="sanitizer.bypassSecurityTrustUrl(imageProfilePicture)" (click)="chooseImagePickerProfilePicture()">
+          <!--Form Data-->
+          <form [formGroup]="formUserSettings" (ngSubmit)="validateUserValueForm()">
+              <ion-item>
+                <ion-label stacked>
+                  Display Name
+                </ion-label>
+                <ion-input type="text" formControlName="displayName"></ion-input>
+              </ion-item>
 
+              <ion-item>
+                <ion-label stacked>
+                  New Password
+                </ion-label>
+                <ion-input type="password" formControlName="newPassword"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Retype Password
+                </ion-label>
+                <ion-input type="password" formControlName="retypePassword"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label stacked>
+                  Current Password
+                </ion-label>
+                <ion-input type="password" formControlName="currentPass"></ion-input>
+              </ion-item>
+
+        
+              <button ion-button style="width:100%;" type="submit" [disabled]="!this.formUserSettings.valid">Update</button>
+          </form>
+      </ion-card-content>
+    
+    </ion-card>
+
+    <!--Artist Settings-->
+    <ion-card *ngIf="isArtist">
+      <ion-card-header>
+        Artist Settings
+      </ion-card-header>
+    
+      <ion-card-content>
+          <!--Form Data-->
+          <form [formGroup]="formArtistSettings" (ngSubmit)="validateArtistValueForm()">
+              <ion-item>
+                <ion-label stacked>
+                  About Me
+                </ion-label>
+                <ion-input type="text" formControlName="aboutMe"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Background Profile
+                </ion-label>
+                <img item-start style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageProfileBackground)" (click)="chooseImagePickerBackgroundProfile()">
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Facebook Link
+                </ion-label>
+                <ion-input type="text" formControlName="fbLink"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Twitter Link
+                </ion-label>
+                <ion-input type="text" formControlName="twLink"></ion-input>
+              </ion-item>
+        
+              <ion-item>
+                <ion-label stacked>
+                  Current Password
+                </ion-label>
+                <ion-input type="password" formControlName="currentPass"></ion-input>
+              </ion-item>
+
+        
+              <button ion-button style="width:100%;" type="submit" [disabled]="!this.formArtistSettings.valid">Update</button>
+          </form>
+      </ion-card-content>
+    
+    </ion-card>
 </ion-content>

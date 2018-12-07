@@ -31,6 +31,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 /* MODAL */
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
+import { Camera } from '@ionic-native/camera';
 
 const firebase = {
   apiKey: "AIzaSyCtnhjQCrEh8yeXjrZXpZhPjNLH7XeAuPA",
@@ -87,6 +88,7 @@ const firebase = {
     Firebase,
     FCM,
     FirebaseProvider,
+    Camera,
     HttpClient,
     HttpClientModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
