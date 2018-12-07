@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { FirebaseProvider } from '../../providers/firebase';
-import {RegisterPage} from '../../pages/register/register'
+import {RegisterPage} from '../../pages/register/register';
+import { Storage } from "@ionic/storage";
 
 /**
  * Generated class for the LoginPage page.
@@ -28,7 +29,8 @@ export class LoginPage {
               private loadCtrl: LoadingController,
               private alertCtrl: AlertController,
               private api: APIService,
-              private firebadeProvider: FirebaseProvider) {
+              private firebaseProvider: FirebaseProvider,
+              private storage: Storage) {
 
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -56,8 +58,11 @@ export class LoginPage {
       
       if(response.status == "OK"){
         //Login Firebase
-        this.firebadeProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-        .then( authData => {
+        this.firebaseProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+        .then( loginUser => {
+            this.storage.set('loginUser', loginUser);
+            var x = this.storage.get('loginUser');
+            console.log(JSON.stringify(x));
             loadingLogin.dismiss().then( () => {
               this.navCtrl.setRoot(HomePage);
             });

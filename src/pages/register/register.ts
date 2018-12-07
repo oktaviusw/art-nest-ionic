@@ -27,7 +27,7 @@ export class RegisterPage {
               private loadCtrl: LoadingController,
               private alertCtrl: AlertController,
               private api: APIService,
-              private firebadeProvider: FirebaseProvider) {
+              private firebaseProvider: FirebaseProvider,) {
 
     this.registerForm = this.formBuilder.group({
       fullname: ['', Validators.required],
@@ -57,15 +57,24 @@ export class RegisterPage {
       loadingLogin.dismiss();
       if(response.status == "OK"){
         //Register Firebase
-        this.firebadeProvider.signupUser(this.registerForm.value.fullname, this.registerForm.value.email, this.registerForm.value.password)
+        this.firebaseProvider.signupUser(this.registerForm.value.email, this.registerForm.value.fullname, this.registerForm.value.password)
           .then( authData => {
             loadingLogin.dismiss().then( () => {
+              let alert = this.alertCtrl.create({
+                title: 'Register Success',
+                buttons: [
+                  {
+                    text: "OK"
+                  }
+                ]
+              });
+              alert.present();
               this.navCtrl.setRoot(LoginPage);
             });
           }, error => {
             loadingLogin.dismiss().then( () => {
               let alert = this.alertCtrl.create({
-                title: 'Register Failed',
+                title: 'Register Failed 1',
                 subTitle: error.message,
                 buttons: [
                   {
@@ -78,12 +87,23 @@ export class RegisterPage {
             });
           }).catch( error => {
             console.log(error);
+            let alert = this.alertCtrl.create({
+              title: 'Register Failed 2',
+              subTitle: error.message,
+              buttons: [
+                {
+                  text: "OK",
+                  role: 'cancel'
+                }
+              ]
+            });
+            alert.present();
           })
       }
       else{
         let alert = this.alertCtrl.create({
-					title: 'Register Failed',
-					subTitle: response.status,
+					title: 'Register Failed 3',
+					subTitle: response.result,
 					buttons: ['OK']
 				});
 				alert.present();

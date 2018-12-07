@@ -7,6 +7,8 @@ import { Firebase } from '@ionic-native/firebase';
 import firebase2 from 'firebase';
 import { FirebaseProvider } from '../providers/firebase';
 
+import { Storage } from '@ionic/storage';
+
 import { ToastController } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
@@ -27,7 +29,7 @@ import { LoginPage } from '../pages/login/login';
 })
 
 export class MyApp {
-  rootPage:any = RequestPage;
+  rootPage:any = LoginPage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;
@@ -40,38 +42,7 @@ export class MyApp {
 
   @ViewChild('sideMenuContent') nav: NavController;
   
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController, toastCtrl: ToastController, private firebaseProvider: FirebaseProvider, private firebase: Firebase) {
-
-    
-    // const firebaseConfig = {
-    //   apiKey: "AIzaSyCtnhjQCrEh8yeXjrZXpZhPjNLH7XeAuPA",
-    //   authDomain: "artnest-ca0ef.firebaseapp.com",
-    //   databaseURL: "https://artnest-ca0ef.firebaseio.com",
-    //   projectId: "artnest-ca0ef",
-    //   storageBucket: "artnest-ca0ef.appspot.com",
-    //   messagingSenderId: "1082674931088"
-    //   };
-    // firebase2.initializeApp(firebaseConfig);
-    // firebase.initializeApp(config);
-
-    // const unsubscribe = firebase.auth().onAuthStateChanged(
-    //   user => {
-    //     if(!user){
-    //       this.rootPage = LoginPage;
-    //       unsubscribe();
-    //     } else [
-    //       this.rootPage = HomePage;
-    //       unsubscribe();
-    //     ]
-    //   }
-    // )
-
-    
-    // this.rootPage = ArtistPage;
-
-    // this.nav.setRoot(ArtistPage);
-
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController, toastCtrl: ToastController, private firebaseProvider: FirebaseProvider, private firebase: Firebase, private storage: Storage) {
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -81,15 +52,13 @@ export class MyApp {
 
       this.firebase.getToken()
       .then(token => {
-        firebaseProvider.registerToken(token);
+        this.storage.set("deviceID", token);
+        firebaseProvider.updateToken(token);
       }) // save the token server-side and use it to push notifications to this device
       .catch(error => console.error('Error getting token: ', error));
 
       statusBar.styleDefault();
       splashScreen.hide();
-
-
-      // firebaseProvider.redirectFunction(this.nav);
     });
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
@@ -107,6 +76,11 @@ export class MyApp {
   onLoad(page: any) {
     this.nav.push(page);
     this.menuCtrl.close();
+  }
+
+  logOut(){
+    this.firebaseProvider.logoutUser();
+    this.nav.setRoot(this.rootPage);
   }
 }
 

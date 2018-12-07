@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { IonicStorageModule } from "@ionic/storage";
 
 /* SERVICE */
 import { APIService } from '../service/webAPI';
@@ -13,6 +14,8 @@ import { Firebase } from '@ionic-native/firebase';
 import { FCM } from '@ionic-native/fcm';
 import { FirebaseProvider } from '../providers/firebase';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { appconfig } from "./app.config";
 
 /* PAGE */
 import { MyApp } from './app.component';
@@ -31,15 +34,6 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 /* MODAL */
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
-
-const firebase = {
-  apiKey: "AIzaSyCtnhjQCrEh8yeXjrZXpZhPjNLH7XeAuPA",
-  authDomain: "artnest-ca0ef.firebaseapp.com",
-  databaseURL: "https://artnest-ca0ef.firebaseio.com",
-  projectId: "artnest-ca0ef",
-  storageBucket: "artnest-ca0ef.appspot.com",
-  messagingSenderId: "1082674931088"
- };
 
 @NgModule({
   declarations: [
@@ -61,8 +55,10 @@ const firebase = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpClientModule,
-    AngularFireModule.initializeApp(firebase)
+    AngularFireModule.initializeApp(appconfig.firebase),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
