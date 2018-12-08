@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { DatePicker } from '@ionic-native/date-picker'
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from "@ionic/storage";
 
@@ -35,6 +36,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
 import { Camera } from '@ionic-native/camera';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { Camera } from '@ionic-native/camera';
     Camera,
     HttpClient,
     HttpClientModule,
+    DatePicker,
+    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     APIService
   ]

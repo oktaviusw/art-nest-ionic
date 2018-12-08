@@ -89,5 +89,6 @@
         <variable name="FIREBASE_AUTH_VERSION" value="version" />
     </plugin>
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="cordova-plugin-datepicker" spec="0.9.3" />
     <engine name="android" spec="7.0.0" />
 </widget>
