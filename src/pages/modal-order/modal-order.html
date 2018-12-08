@@ -11,7 +11,8 @@
 </ion-header>
 
 <ion-content  class="myModal" padding text-center>
-  <form #f="ngForm" (ngSubmit)="onAddUser(f)">
+  <!-- 
+    <form #f="ngForm" (ngSubmit)="onAddUser(f)">
       <ion-item>
         <ion-label stacked>Title</ion-label>
         <ion-input ngModel type="text" name="title" required></ion-input>
@@ -48,5 +49,57 @@
       </ion-grid>
  
     <button ion-button type="submit" block>Create Order</button>
+  </form> -->
+
+  <form [formGroup]="formCommission" (ngSubmit)="submitCommission()">
+      <ion-item>
+          <ion-label stacked>
+              Title
+          </ion-label>
+          <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label stacked>
+              Customer
+          </ion-label>
+          <ion-input type="text" formControlName="customer"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label stacked>
+              Price
+          </ion-label>
+          <ion-input type="number" formControlName="price"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label item-start stacked>
+              Start Date
+          </ion-label>
+          <span item-start *ngIf="startDateSelected" >{{startDate | date}}</span>
+          <ion-icon item-end name="calendar" (click)="pickStartDate()"></ion-icon>
+          
+      </ion-item>
+
+      <ion-item>
+          <ion-label item-start stacked>
+              End Date
+          </ion-label>
+          <span item-start *ngIf="endDateSelected" item-start>{{endDate | date}}</span>
+          <ion-icon item-end name="calendar" (click)="pickEndDate()"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+          <ion-label stacked>
+              Description
+          </ion-label>
+          <ion-textarea type="text" formControlName="description"></ion-textarea>
+      </ion-item>
+
+      <button ion-button type="button" (click)="chooseImagePicker()">Add Sketch</button>
+      <img style="width: 100%; object-fit: contain;" *ngIf="imageSketchSelected" [src]="sanitizer.bypassSecurityTrustUrl(imageSketch)">
+
+      <button ion-button style="width:100%;" type="submit" [disabled]="validateCommissionValueForm()">Submit Commission</button>
   </form>
 </ion-content>
