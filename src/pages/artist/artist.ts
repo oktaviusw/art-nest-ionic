@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 
 import { ModalOrderPage } from '../modal-order/modal-order';
+import { APIService } from '../../service/webAPI';
 
 /**
  * Generated class for the ArtistPage page.
@@ -15,9 +16,32 @@ import { ModalOrderPage } from '../modal-order/modal-order';
   selector: 'page-artist',
   templateUrl: 'artist.html',
 })
-export class ArtistPage {
+export class ArtistPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController) {
+  artist = [];
+  artist_id = 1;
+  loading:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController) {
+  }
+
+  ngOnInit() {
+
+    //Loading anim to wait for data
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+
+    //Get single data from artist
+    this.api.getAPI(this.api.ARTIST_DATA_SINGLE + this.artist_id)
+      .map(response =>{
+        this.artist = response.result;
+        console.log(this.artist);
+        //Data is now loaded; dismiss load anim
+        this.loading.dismiss();
+      }).subscribe();
   }
 
   ionViewDidLoad() {

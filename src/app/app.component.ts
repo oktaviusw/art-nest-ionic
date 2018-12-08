@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, NavController } from 'ionic-angular';
+import { Platform, MenuController, NavController, ToastController, AlertController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -8,8 +8,6 @@ import firebase2 from 'firebase';
 import { FirebaseProvider } from '../providers/firebase';
 
 import { Storage } from '@ionic/storage';
-
-import { ToastController } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
@@ -22,7 +20,7 @@ import { MessagePage } from '../pages/message/message';
 import { BeArtistPage } from '../pages/be-artist/be-artist';
 import { RegisterPage } from '../pages/register/register';
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
-import { LoginPage } from '../pages/login/login'; 
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -40,9 +38,22 @@ export class MyApp {
   beArtistPage:any = BeArtistPage;
   loginPage:any = LoginPage;
 
+  displayName: string;
+  email: string;
+
   @ViewChild('sideMenuContent') nav: NavController;
   
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl: MenuController, toastCtrl: ToastController, private firebaseProvider: FirebaseProvider, private firebase: Firebase, private storage: Storage) {
+  constructor(
+    platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen, 
+    private menuCtrl: MenuController, 
+    private toastCtrl: ToastController, 
+    private alertCtrl: AlertController,
+    private firebaseProvider: FirebaseProvider, 
+    private firebase: Firebase, 
+    private storage: Storage,
+    public events: Events) {
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -50,13 +61,14 @@ export class MyApp {
 
       console.log('platform ready');
 
-      this.firebase.getToken()
-      .then(token => {
-        this.storage.set("deviceID", token);
-        firebaseProvider.updateToken(token);
-      }) // save the token server-side and use it to push notifications to this device
-      .catch(error => console.error('Error getting token: ', error));
-
+      //Ambil data firebase user yang tersimpan di storage saat login 
+      this.storage.get('currentUser')
+      .then(currentUser => {
+        let userCredential:firebase.auth.UserCredential = JSON.parse(currentUser);
+        if(userCredential != null){
+          this.changeDisplayName(userCredential.user.displayName, userCredential.user.email);
+        }
+      })
       statusBar.styleDefault();
       splashScreen.hide();
     });
@@ -66,9 +78,14 @@ export class MyApp {
         this.nav.setRoot(this.rootPage);
         unsubscribe();
       } else {
+
         this.nav.setRoot(HomePage);
         unsubscribe();
       }
+    });
+
+    events.subscribe('user:changeDisplayName', (displayName, email) => {
+      this.changeDisplayName(displayName, email);
     });
 
   }
@@ -76,6 +93,11 @@ export class MyApp {
   onLoad(page: any) {
     this.nav.push(page);
     this.menuCtrl.close();
+  }
+
+  changeDisplayName(displayName: string, email: string) {
+    this.displayName = displayName;
+    this.email = email;
   }
 
   logOut(){

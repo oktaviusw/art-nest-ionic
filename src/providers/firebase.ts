@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import firebase from 'firebase';
+
 import {
   AngularFirestore,
   AngularFirestoreCollection
-} from "angularfire2/firestore";
+} from "@angular/fire/firestore";
 
 import { appconfig } from "../app/app.config";
 import { Chat } from "../models/chat";
@@ -12,7 +13,9 @@ import { User } from "../models/user";
 
 import { Storage } from "@ionic/storage";
 
-import { AlertController } from "ionic-angular";
+import { AlertController, Events } from "ionic-angular";
+import { Firebase } from '@ionic-native/firebase';
+import { query } from '@angular/core/src/render3/instructions';
 
 
  
@@ -29,31 +32,119 @@ export class FirebaseProvider {
   currentChatPairId;
   currentChatPartner;
 
-  constructor(private db: AngularFirestore, private storage: Storage, private alertCtrl: AlertController) {
+  constructor(
+    public db: AngularFirestore, 
+    public storage: Storage,
+    public alertCtrl: AlertController,
+    public events: Events) 
+    {
     this.users = db.collection<User>(appconfig.users_endpoint);
     this.chats = db.collection<Chat>(appconfig.chats_endpoint);
+
+    this.storage.get('currentUser')
+    .then(currentUser => {
+      let userCredential:firebase.auth.UserCredential = JSON.parse(currentUser);
+      if(userCredential != null){
+        this.currentUser = userCredential;
+        this.alertSuccess();
+      }
+    });
   }
 
-  updateToken(token){
+  //MASIH ERROR KARENA GAK MAU TERIMA
+  updateToken(){
+    let alert = this.alertCtrl.create({
+      title: 'Masuk Update Token',
+      buttons: [
+        {
+          text: "OK"
+        }
+      ]
+    });
+    alert.present();
+    firebase.auth().currentUser.getIdToken()
+      .then(token => {
+        let alert = this.alertCtrl.create({
+          title: 'Token Get',
+          subTitle: token,
+          buttons: [
+            {
+              text: "OK"
+            }
+          ]
+        });
+        alert.present();
 
-    this.db.collection('users', ref => ref.where("uID", "==", "xx"))
-      .ref
-      .get()
-      .then(function(querySnapshot){
-        querySnapshot.forEach(function(doc){
-          this.db.collection(appconfig.users_endpoint)
-            .doc(doc.id)
-            .update({
-              deviceID: token
-            })
+        firebase.firestore().collection(appconfig.users_endpoint)
+        .where("uID", "==", this.currentUser.user.uid)
+        .get()
+        .then(function(querySnapshot){
+          querySnapshot.forEach(function(doc){
+              let alert = this.alertCtrl.create({
+                  title: 'Update Token Firebase',
+                  subTitle: doc.id,
+                  buttons: [
+                    {
+                      text: "OK"
+                    }
+                  ]
+                });
+              alert.present();
+          //   this.db.collection(appconfig.users_endpoint)
+          //     .doc(doc.id)
+          //     .update({
+          //       deviceID: token
+          //     }).then(() => {
+          //       let alert = this.alertCtrl.create({
+          //         title: 'Update Token Firebase',
+          //         subTitle: token,
+          //         buttons: [
+          //           {
+          //             text: "OK"
+          //           }
+          //         ]
+          //       });
+          //       alert.present();
+          //     })
+          //     .catch(error => {
+          //       let alert = this.alertCtrl.create({
+          //         title: 'Error Update Token',
+          //         subTitle: error.message,
+          //         buttons: [
+          //           {
+          //             text: "OK"
+          //           }
+          //         ]
+          //       });
+          //       alert.present();
+          //     });
+          });
+        })
+        .catch(error => {
+          let alert = this.alertCtrl.create({
+            title: 'Error Get',
+            subTitle: error.message,
+            buttons: [
+              {
+                text: "OK"
+              }
+            ]
+          });
+          alert.present();
         });
       })
+    
+
   }
 
   loginUser(email: string, password: string): Promise<any> {
     return firebase.auth().signInWithEmailAndPassword(email, password)
       .then(loginUser => {
+        this.events.publish('user:changeDisplayName', loginUser.user.displayName, loginUser.user.email);
         this.currentUser = loginUser;
+        this.storage.set('currentUser', JSON.stringify(loginUser));
+
+        this.alertSuccess();
       });
   }
 
@@ -62,6 +153,10 @@ export class FirebaseProvider {
           .auth()
           .createUserWithEmailAndPassword(email, password)
           .then( newUser => {
+            newUser.user.updateProfile({
+              displayName: username,
+              photoURL: 'test'
+            });
             newUser.user.getIdToken()
               .then( deviceID => {
                 this.db.collection(appconfig.users_endpoint).add({
@@ -77,8 +172,7 @@ export class FirebaseProvider {
                   subTitle: error.message,
                   buttons: [
                     {
-                      text: "OK",
-                      role: 'cancel'
+                      text: "OK"
                     }
                   ]
                 });
@@ -92,8 +186,7 @@ export class FirebaseProvider {
               subTitle: error.message,
               buttons: [
                 {
-                  text: "OK",
-                  role: 'cancel'
+                  text: "OK"
                 }
               ]
             });
@@ -101,6 +194,10 @@ export class FirebaseProvider {
           }
           )
         });
+  }
+
+  setUser(currentUser: firebase.auth.UserCredential){
+    this.currentUser = currentUser;
   }
 
   logoutUser(){
@@ -122,4 +219,68 @@ export class FirebaseProvider {
     return pairId;
   } //createPairString
 
+  alertSuccess(){
+    firebase.auth().currentUser.getIdToken()
+      .then(token => { 
+      firebase.firestore().collection(appconfig.users_endpoint)
+      .where("uID", "==", this.currentUser.user.uid)
+      .get()
+      .then((querySnapshot) => {
+          querySnapshot.forEach(doc => {
+            this.db.collection(appconfig.users_endpoint)
+            .doc(doc.id)
+            .update({
+              deviceID: token
+            }).then(() => {
+              let alert = this.alertCtrl.create({
+                title: 'Update Token Firebase',
+                subTitle: token,
+                buttons: [
+                  {
+                    text: "OK"
+                  }
+                ]
+              });
+              alert.present();
+            })
+            .catch(error => {
+              let alert = this.alertCtrl.create({
+                title: 'Error Message 1',
+                subTitle: error.message,
+                buttons: [
+                  {
+                    text: "OK"
+                  }
+                ]
+              });
+              alert.present();
+            })
+          })
+        })
+        .catch(error => {
+          let alert = this.alertCtrl.create({
+            title: 'Error Message 2',
+            subTitle: error.message,
+            buttons: [
+              {
+                text: "OK"
+              }
+            ]
+          });
+          alert.present();
+        })
+      })
+      .catch(error => {
+        let alert = this.alertCtrl.create({
+          title: 'Error Message 3',
+          subTitle: error.message,
+          buttons: [
+            {
+              text: "OK"
+            }
+          ]
+        });
+        alert.present();
+      })
+  }
 }

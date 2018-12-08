@@ -13,8 +13,8 @@ import { APIService } from '../service/webAPI';
 import { Firebase } from '@ionic-native/firebase';
 import { FCM } from '@ionic-native/fcm';
 import { FirebaseProvider } from '../providers/firebase';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { appconfig } from "./app.config";
 
 /* PAGE */
@@ -34,6 +34,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 /* MODAL */
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
     Firebase,
     FCM,
     FirebaseProvider,
+    Camera,
     HttpClient,
     HttpClientModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
