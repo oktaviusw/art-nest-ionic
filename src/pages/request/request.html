@@ -13,7 +13,7 @@
 <ion-content>
   <ion-list>
     <!-- NGFOR SETIAP REQUEST -->
-    <ion-card>
+    <ion-card *ngFor="let comission of comissions">
       <ion-grid style="padding: 0px;">
         <ion-row style="padding: 0px;" (click)="detailRequest()">
           <ion-col style="padding: 0px;" col-4>
@@ -21,21 +21,24 @@
           </ion-col>
           <ion-col col-8 style="text-align:left">
             <div style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px;">
-                <span class="title">Gleipnir</span>
+                <span class="title">{{comission.TitleProject}}</span>
                 <br>
                 <span>Drawn by </span>
-                <span><i>Ivy Marcia</i></span>
+                <span><i>{{comission.ArtistName}}</i></span>
                 <br>
-                <span>11/21/2018 - 11/22/2018</span>
+                <span>{{comission.DateStart}} - {{comission.DateEnd}}</span>
             </div>
             <div style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; bottom:0px; right:0px; position: absolute">
-                <span class="title completed">completed</span>
+                <span class="title" 
+                [ngClass]="{'accepted': comission.RequestStatus == 'ACCEPTED',
+                            'pending': comission.RequestStatus == 'PENDING',
+                            'rejected': comission.RequestStatus == 'REJECTED'}">{{comission.RequestStatus}}</span>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
-    <!-- NGFOR SETIAP REQUEST -->
+    <!-- PLACEHOLDER -->
     <ion-card>
       <ion-grid style="padding: 0px;">
         <ion-row style="padding: 0px;" (click)="detailRequest()">
@@ -53,29 +56,6 @@
             </div>
             <div style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; bottom:0px; right:0px; position: absolute">
                 <span class="title waiting">waiting</span>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    <!-- NGFOR SETIAP REQUEST -->
-    <ion-card>
-      <ion-grid style="padding: 0px;">
-        <ion-row style="padding: 0px;" (click)="detailRequest()">
-          <ion-col style="padding: 0px;" col-4>
-            <img style="max-width: 100px; max-height: 100px;" src="../assets/imgs/artist.jpg">
-          </ion-col>
-          <ion-col col-8 style="text-align:left">
-            <div style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px;">
-              <span class="title">Gleipnir</span>
-              <br>
-              <span>Drawn by </span>
-              <span><i>Ivy Marcia</i></span>
-              <br>
-              <span>11/21/2018 - 11/22/2018</span>
-            </div>
-            <div style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; bottom:0px; right:0px; position: absolute">
-              <span class="title rejected">rejected</span>
             </div>
           </ion-col>
         </ion-row>

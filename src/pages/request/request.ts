@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 
 import { ModalDetailPage } from '../modal-detail/modal-detail';
+import { APIService } from '../../service/webAPI';
 
 /**
  * Generated class for the RequestPage page.
@@ -15,9 +16,33 @@ import { ModalDetailPage } from '../modal-detail/modal-detail';
   selector: 'page-request',
   templateUrl: 'request.html',
 })
-export class RequestPage {
+export class RequestPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController) {
+  comissions = [];
+  customer_id = 1;
+
+  loading:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController,
+    public loadingCtrl: LoadingController, public api: APIService) {
+  }
+
+  ngOnInit() {
+    //Loading anim to wait for data
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+
+    this.api.getAPI(this.api.REQUEST_DATA_ALL + this.customer_id + '/CUSTOMER')
+      .map(response =>{
+        this.comissions = response.result;
+        console.log(this.comissions);
+
+        //dismiss anim
+        this.loading.dismiss();
+      }).subscribe();
+
   }
 
   ionViewDidLoad() {
