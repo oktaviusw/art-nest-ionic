@@ -14,5 +14,46 @@
 
 
 <ion-content padding>
+  <ion-card>
+      <ion-card-header>
+        Artist Settings
+      </ion-card-header>
+    
+      <ion-card-content>
+          <!--Form Data-->
+          <form [formGroup]="formArtist" (ngSubmit)="becomeArtist()">
+              <ion-item>
+                <ion-label stacked>
+                  About Me
+                </ion-label>
+                <ion-input type="text" formControlName="aboutMe"></ion-input>
+              </ion-item>
 
+              <ion-item>
+                <ion-label stacked (click)="chooseImagePickerBackgroundProfile()">
+                  Background Profile
+                </ion-label>
+                <!-- <button type="button" ion-button item-start (click)="chooseImagePickerBackgroundProfile()">Pick Image</button> -->
+                <img item-start *ngIf="backgroundProfileSelected" style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageBackgroundProfile)" (click)="chooseImagePickerBackgroundProfile()">
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Facebook Link
+                </ion-label>
+                <ion-input type="text" formControlName="fbLink"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Twitter Link
+                </ion-label>
+                <ion-input type="text" formControlName="twLink"></ion-input>
+              </ion-item>
+               
+              <button ion-button style="width:100%;" type="submit" [disabled]="!this.formArtist.valid">Become Artist</button>
+          </form>
+      </ion-card-content>
+    
+  </ion-card>
 </ion-content>
