@@ -1,5 +1,6 @@
 import { APIService } from '../../service/webAPI';
 import { HomePage } from './../home/home';
+import { ListUserPage } from './../list-user/list-user'
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -65,7 +66,7 @@ export class LoginPage {
             var x = this.storage.get('loginUser');
             console.log(JSON.stringify(x));
             loadingLogin.dismiss().then( () => {
-              this.navCtrl.setRoot(HomePage);
+              this.navCtrl.setRoot(ListUserPage);
             });
           }, error => {
             loadingLogin.dismiss().then( () => {

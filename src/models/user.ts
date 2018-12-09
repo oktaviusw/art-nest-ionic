@@ -3,5 +3,5 @@ export interface User {
     uID: string;
     username: string;
     deviceID: string;
-    time: string;
+    time: number;
   }

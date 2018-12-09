@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Firebase } from '@ionic-native/firebase';
 import firebase2 from 'firebase';
 import { FirebaseProvider } from '../providers/firebase';
+import { FCM } from '@ionic-native/fcm'
 
 import { Storage } from '@ionic/storage';
 
@@ -21,6 +22,7 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 import { RegisterPage } from '../pages/register/register';
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { LoginPage } from '../pages/login/login';
+import { ListUserPage } from '../pages/list-user/list-user';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +39,7 @@ export class MyApp {
   messagePage:any = MessagePage;
   beArtistPage:any = BeArtistPage;
   loginPage:any = LoginPage;
+  listUserPage:any = ListUserPage;
 
   displayName: string;
   email: string;
@@ -53,7 +56,8 @@ export class MyApp {
     private firebaseProvider: FirebaseProvider, 
     private firebase: Firebase, 
     private storage: Storage,
-    public events: Events) {
+    public events: Events,
+    public fcm: FCM) {
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -69,17 +73,20 @@ export class MyApp {
           this.changeDisplayName(userCredential.user.displayName, userCredential.user.email);
         }
       })
+
+      
+
       statusBar.styleDefault();
       splashScreen.hide();
     });
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(this.rootPage);
+        this.nav.setRoot(LoginPage);
         unsubscribe();
       } else {
-
-        this.nav.setRoot(HomePage);
+        this.firebaseProvider.updateToken();
+        this.nav.setRoot(ListUserPage);
         unsubscribe();
       }
     });
@@ -87,6 +94,36 @@ export class MyApp {
     events.subscribe('user:changeDisplayName', (displayName, email) => {
       this.changeDisplayName(displayName, email);
     });
+
+    this.fcm.onNotification()
+      .subscribe((data) => {
+        // if(data.wasTapped){
+        //   let alert = this.alertCtrl.create({
+        //     title: 'Notification received background',
+        //     buttons: [
+        //       {
+        //         text: "OK"
+        //       }
+        //     ]
+        //   });
+        //   alert.present();
+        // } else {
+        //   let alert = this.alertCtrl.create({
+        //     title: 'Notification received foreground',
+        //     buttons: [
+        //       {
+        //         text: "OK"
+        //       }
+        //     ]
+        //   });
+        //   alert.present();
+        // }
+      });
+
+      this.fcm.onTokenRefresh()
+        .subscribe(()=>{
+          this.firebaseProvider.updateToken();
+        })
 
   }
 
