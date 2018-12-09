@@ -31,6 +31,8 @@ import { RequestPage } from '../pages/request/request';
 import { ProjectPage } from '../pages/project/project';
 import { MessagePage } from '../pages/message/message';
 import { BeArtistPage } from '../pages/be-artist/be-artist';
+import { ListUserPage } from '../pages/list-user/list-user';
+import { ChatRoomPage } from '../pages/chat-room/chat-room';
 
 /* MODAL */
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
@@ -53,7 +55,9 @@ import { DatePipe } from '@angular/common';
     MessagePage,
     BeArtistPage,
     ModalOrderPage,
-    ModalDetailPage
+    ModalDetailPage,
+    ListUserPage,
+    ChatRoomPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,9 @@ import { DatePipe } from '@angular/common';
     MessagePage,
     BeArtistPage,
     ModalOrderPage,
-    ModalDetailPage
+    ModalDetailPage,
+    ListUserPage,
+    ChatRoomPage
   ],
   providers: [
     StatusBar,
