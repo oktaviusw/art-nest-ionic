@@ -20,6 +20,7 @@ import { LoginPage } from '../../pages/login/login';
 })
 export class RegisterPage {
   private registerForm: FormGroup;
+  private loginPage: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -32,8 +33,11 @@ export class RegisterPage {
     this.registerForm = this.formBuilder.group({
       fullname: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      cpassword: ['', Validators.required]
     });
+
+    this.loginPage = LoginPage;
   }
 
   ionViewDidLoad() {
@@ -41,7 +45,7 @@ export class RegisterPage {
   }
 
   registerAttempt(){
-    let loadingLogin = this.loadCtrl.create({content: "Attempt to joining the nest.."});
+    let loadingLogin = this.loadCtrl.create({content: "Attempting to join the nest..."});
     loadingLogin.present();
 
     let dataToAPI = {

@@ -45,7 +45,7 @@ export class LoginPage {
   }
 
   loginAttempt(){
-    let loadingLogin = this.loadCtrl.create({content: "Loging in..."});
+    let loadingLogin = this.loadCtrl.create({content: "Logging in..."});
     loadingLogin.present();
 
     let dataToAPI = {
