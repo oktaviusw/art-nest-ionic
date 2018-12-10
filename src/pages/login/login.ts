@@ -62,7 +62,7 @@ export class LoginPage {
       console.log(response);
       
       if(response.status == "OK"){
-        this.storage.set('idUserSQL',response.result);
+        this.storage.set('idUserSQL', response.result);
         //Login Firebase
         this.firebaseProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then( loginUser => {

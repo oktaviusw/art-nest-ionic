@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ArtistPage page.
@@ -20,11 +21,12 @@ import { EditProfilePage } from '../edit-profile/edit-profile';
 export class ArtistPage implements OnInit {
 
   artist = [];
-  artist_id = 1;
+  artist_id:any;
   loading:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController) {
+    private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController,
+    public storage: Storage) {
   }
 
   ngOnInit() {
@@ -35,16 +37,21 @@ export class ArtistPage implements OnInit {
     });
     this.loading.present();
 
-    //Get single data from artist
-    this.api.getAPI(this.api.ARTIST_DATA_SINGLE + this.artist_id)
-      .map(response =>{
-        this.artist = response.result;
-        console.log(this.artist);
-        //Data is now loaded; dismiss load anim
-        this.loading.dismiss();
-      }).subscribe();
-  }
+    this.storage.get('idUserSQL').then((val) => {
 
+      this.artist_id = val;
+      //Get single data from artist
+      this.api.getAPI(this.api.ARTIST_DATA_SINGLE + this.artist_id)
+        .map(response =>{
+          this.artist = response.result;
+          //console.log(this.artist);
+          //Data is now loaded; dismiss load anim
+          this.loading.dismiss();
+        }).subscribe();
+
+    });
+
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArtistPage');
   }

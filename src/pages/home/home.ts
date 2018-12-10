@@ -10,6 +10,7 @@ import { SearchPage } from '../search/search';
 export class HomePage implements OnInit {
 
   artworks =[];
+  artists = [];
 
   loading : any;
 
@@ -33,6 +34,12 @@ export class HomePage implements OnInit {
 
         //yes, the loading anim dismisses when only one is finished. good enough.
         this.loading.dismiss();
+      }).subscribe();
+
+      this.api.getAPI(this.api.ARTIST_DATA_ALL)
+      .map(response =>{
+        this.artists = response.result;
+        console.log(this.artists);
       }).subscribe();
   }
 
