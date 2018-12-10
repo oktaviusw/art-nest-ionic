@@ -45,6 +45,10 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  registerPageGo(){
+    this.navCtrl.setRoot(RegisterPage);
+  }
+
   loginAttempt(){
     let loadingLogin = this.loadCtrl.create({content: "Logging in..."});
     loadingLogin.present();
@@ -66,7 +70,7 @@ export class LoginPage {
             var x = this.storage.get('loginUser');
             console.log(JSON.stringify(x));
             loadingLogin.dismiss().then( () => {
-              this.navCtrl.setRoot(ListUserPage);
+              this.navCtrl.setRoot(HomePage);
             });
           }, error => {
             loadingLogin.dismiss().then( () => {

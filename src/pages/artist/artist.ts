@@ -49,7 +49,11 @@ export class ArtistPage implements OnInit {
   }
 
   createCommission() {
-    let modal = this.modalCtrl.create(ModalOrderPage, {cssClass: 'select-modal'});
+    let modal = this.modalCtrl.create(
+      ModalOrderPage,
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
 		modal.present();
   }
 

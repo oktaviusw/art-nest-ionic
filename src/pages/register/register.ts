@@ -44,6 +44,10 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  loginPageGo(){
+    this.navCtrl.setRoot(LoginPage);
+  }
+
   registerAttempt(){
     let loadingLogin = this.loadCtrl.create({content: "Attempting to join the nest..."});
     loadingLogin.present();
