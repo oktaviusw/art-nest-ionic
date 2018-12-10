@@ -1,15 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Artwork
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <ion-title>
+        <div>
+            <img style="height: 100%; width: 100%; object-fit: contain; padding-top: 8px" src="../assets/imgs/application_logo_header.png">
+        </div>
+      </ion-title>
+      <ion-buttons left>
+        <button ion-button menuToggle>
+          <ion-icon style="color:white; font-size: 25px" name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+          <button ion-button (click)="openSearch()">
+            <ion-icon style="color:white; font-size: 25px" name="search"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
 
 <ion-content padding>

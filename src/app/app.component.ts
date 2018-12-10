@@ -23,13 +23,15 @@ import { RegisterPage } from '../pages/register/register';
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { LoginPage } from '../pages/login/login';
 import { ListUserPage } from '../pages/list-user/list-user';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { SearchPage } from '../pages/search/search';
 
 @Component({
   templateUrl: 'app.html'
 })
 
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = SettingPage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;
@@ -40,6 +42,8 @@ export class MyApp {
   beArtistPage:any = BeArtistPage;
   loginPage:any = LoginPage;
   listUserPage:any = ListUserPage;
+  editProfilePage:any = EditProfilePage;
+  searchPage:any = SearchPage;
 
   displayName: string;
   email: string;
@@ -82,7 +86,7 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot(SettingPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
@@ -128,7 +132,7 @@ export class MyApp {
   }
 
   onLoad(page: any) {
-    this.nav.push(page);
+    this.nav.setRoot(page);
     this.menuCtrl.close();
   }
 

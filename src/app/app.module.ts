@@ -39,6 +39,8 @@ import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
 import { Camera } from '@ionic-native/camera';
 import { DatePipe } from '@angular/common';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { SearchPage } from '../pages/search/search';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { DatePipe } from '@angular/common';
     ModalOrderPage,
     ModalDetailPage,
     ListUserPage,
-    ChatRoomPage
+    ChatRoomPage,
+    EditProfilePage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,9 @@ import { DatePipe } from '@angular/common';
     ModalOrderPage,
     ModalDetailPage,
     ListUserPage,
-    ChatRoomPage
+    ChatRoomPage,
+    EditProfilePage,
+    SearchPage
   ],
   providers: [
     StatusBar,

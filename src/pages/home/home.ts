@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import { SearchPage } from '../search/search';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,7 +14,7 @@ export class HomePage implements OnInit {
   loading : any;
 
   constructor(public navCtrl: NavController, private api: APIService, public sanitizer: DomSanitizer,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
 
   }
 
@@ -39,6 +40,15 @@ export class HomePage implements OnInit {
     if(this.artworks.length > 0){
       return true;
     }
+  }
+
+  openSearch(){
+    let modal = this.modalCtrl.create(
+      SearchPage,
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
   }
 
 }

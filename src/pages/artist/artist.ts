@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 
 import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 /**
  * Generated class for the ArtistPage page.
@@ -46,6 +47,10 @@ export class ArtistPage implements OnInit {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArtistPage');
+  }
+
+  editProfile(){
+    this.navCtrl.setRoot(EditProfilePage);
   }
 
   createCommission() {
