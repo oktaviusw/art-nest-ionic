@@ -1,3 +1,4 @@
+import { CategoryPage } from './../pages/category/category';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -61,7 +62,8 @@ import { SearchPage } from '../pages/search/search';
     ListUserPage,
     ChatRoomPage,
     EditProfilePage,
-    SearchPage
+    SearchPage,
+    CategoryPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { SearchPage } from '../pages/search/search';
     ListUserPage,
     ChatRoomPage,
     EditProfilePage,
-    SearchPage
+    SearchPage,
+    CategoryPage
   ],
   providers: [
     StatusBar,
