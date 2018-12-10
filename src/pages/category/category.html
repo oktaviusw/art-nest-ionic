@@ -14,5 +14,68 @@
 
 
 <ion-content padding>
+  <ion-card *ngIf="isDeleteCategory">
+      <ion-card-header>
+        Delete Category
+      </ion-card-header>
+    
+      <ion-card-content>
+          <!--Form Data-->
+          <form [formGroup]="formDeleteCategory" (ngSubmit)="deleteCategory()">
+              <ion-item>
+                <button ion-button *ngFor="let item of currentCategory" type="button" (click)="empty()">
+                    {{item}}
+                </button>
+              </ion-item>
 
+              <ion-item>
+                <ion-label stacked>Current Category</ion-label>
+                <ion-select formControlName="category">
+                  <ion-option *ngFor="let item of currentCategory" value="{{item}}">{{item}}</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Current Password
+                </ion-label>
+                <ion-input type="password" formControlName="passwordAuth"></ion-input>
+              </ion-item>
+               
+              <button ion-button style="width:100%;" type="submit" [disabled]="!this.formDeleteCategory.valid">Delete Category</button>
+          </form>
+      </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="isAddCategory">
+      <ion-card-header>
+        Add Category
+      </ion-card-header>
+    
+      <ion-card-content>
+          <!--Form Data-->
+          <form [formGroup]="formAddCategory" (ngSubmit)="addCategory()">
+              <ion-item>
+                <button ion-button *ngFor="let item of currentCategory" type="button" (click)="empty()">
+                  {{item}}
+                </button>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>Available Category</ion-label>
+                <ion-select formControlName="category">
+                  <ion-option *ngFor="let item of availableCategory" value="{{item}}">{{item}}</ion-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label stacked>
+                  Current Password
+                </ion-label>
+                <ion-input type="password" formControlName="passwordAuth"></ion-input>
+              </ion-item>
+               
+              <button ion-button style="width:100%;" type="submit" [disabled]="!this.formAddCategory.valid">Add Category</button>
+          </form>
+      </ion-card-content>
+  </ion-card>
 </ion-content>

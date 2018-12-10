@@ -1,3 +1,4 @@
+import { CategoryPage } from './../pages/category/category';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -57,7 +58,8 @@ import { DatePipe } from '@angular/common';
     ModalOrderPage,
     ModalDetailPage,
     ListUserPage,
-    ChatRoomPage
+    ChatRoomPage,
+    CategoryPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { DatePipe } from '@angular/common';
     ModalOrderPage,
     ModalDetailPage,
     ListUserPage,
-    ChatRoomPage
+    ChatRoomPage,
+    CategoryPage
   ],
   providers: [
     StatusBar,
