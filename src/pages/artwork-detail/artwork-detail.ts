@@ -1,5 +1,6 @@
+import { ArtworkEditPage } from './../artwork-edit/artwork-edit';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events, ModalController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIService } from '../../service/webAPI';
 
@@ -21,6 +22,7 @@ export class ArtworkDetailPage {
   titleArtwork : string;
   descArtwork : string;
   imageArtwork : string;
+  ownArtwork : boolean;
 
   idArtist: any;
   displaynameArtist: string;
@@ -32,6 +34,7 @@ export class ArtworkDetailPage {
     public toastCtrl: ToastController, 
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
+    public modalCtrl: ModalController,
     public events: Events,
     public api: APIService) {
   }
@@ -41,6 +44,7 @@ export class ArtworkDetailPage {
   }
 
   ngOnInit() {
+    this.ownArtwork = false;
     this.idArtwork = this.navParams.get('IDArtwork');
 
     this.getArtworkData();
@@ -64,11 +68,72 @@ export class ArtworkDetailPage {
         
         this.displaynameArtist = response.result.DisplayName;
         this.imageArtist = 'https://artnest-umn.000webhostapp.com/assets/userdata/'+response.result.EMail+'/ProfilePicture.png?math='+Math.random();
+
+        if(response.result.IDArtist == this.api.loggedInUser){
+          this.ownArtwork = true;
+        }
       }
       else{
 
       }
     }).subscribe();
+  }
+
+  editArtwork(){
+    let modal = this.modalCtrl.create(ArtworkEditPage,{idArtwork : this.idArtwork});
+    modal.present();
+
+    modal.onDidDismiss(data=>{
+      this.getArtworkData();
+    });
+
+  }
+
+  deleteArtwork(){
+    let alert = this.alertCtrl.create({
+      title: 'Confirmation',
+      subTitle: 'Are you sure you want to delete '+this.titleArtwork+'?',
+      buttons: [{
+        text: 'OK',
+        role: 'OK',
+        handler: () => {
+          let loadingUpdate = this.loadingCtrl.create({content: "Cleaning your masterpiece.."});
+          loadingUpdate.present();
+
+          this.api.getAPI(this.api.ARTWORK_DELETE+this.idArtwork)
+          .map(response=>{
+            console.log(response);
+            loadingUpdate.dismiss();
+
+            if(response.status == "OK"){
+              let alertSuccess = this.alertCtrl.create({
+                title: 'Confirmation',
+                subTitle: 'Masterpiece has been cleaned!',
+                buttons: [{
+                  text: 'OK',
+                  role: 'OK',
+                  handler: () => {
+                    this.navCtrl.pop();
+                  }
+                }]
+              });
+
+              alertSuccess.present();
+            }
+            else{
+              let alertFailed = this.alertCtrl.create({
+                title: 'ERROR',
+                subTitle : 'Something went wrong',
+                buttons : ['OK']
+              })
+
+              alertFailed.present();
+            }
+          }).subscribe();
+        }
+      }]
+    });
+    alert.present();
   }
 
 }
