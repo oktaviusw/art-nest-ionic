@@ -12,7 +12,7 @@
       </ion-buttons>
       <ion-buttons right>
           <button ion-button (click)="openSearch()">
-            <ion-icon style="color:white; font-size: 25px" name="search"></ion-icon>
+            <ion-icon style="color:white; font-size: 25px" name="checkmark"></ion-icon>
           </button>
         </ion-buttons>
     </ion-navbar>
@@ -29,12 +29,15 @@
         </div>
       </div>
     </div>
-    <div>
-      <h3>{{artist.DisplayName}}</h3>
+    <div padding>
+        <ion-item style="text-align: center">
+
+            <ion-input type="text" placeholder="{{artist.displayName}}"></ion-input>
+        </ion-item>
       <div>{{artist.CompletedWorks}} Completed Work(s)</div>
       <div class="separator-5"></div>
       <div style="padding-left: 40px; padding-right: 40px;">
-        <ion-input type="text" formControlName="title">{{artist.AboutMe}}</ion-input>
+        <ion-input type="text">{{artist.AboutMe}}</ion-input>
       </div>
     </div> 
     <div class="separator-5"></div>
@@ -77,51 +80,17 @@
       </ion-grid>
     </div>
     -->
-    <!-- IF YOUR OWN PROFILE -->
-    <div>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>
-            <button class="button-circle" (click)="createCommission()">
-              <div>
-                <div class="card-shadow icon-border">
-                  <ion-icon name="add-circle" class="icon-middle"></ion-icon>
-                </div>
-                <p>Create<br>Commission</p>
-              </div>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button class="button-circle">
-              <div>
-                <div class="card-shadow icon-border">
-                  <ion-icon name="image" class="icon-middle"></ion-icon>
-                </div>
-                <p>Add Artwork</p>
-              </div>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button class="button-circle" (click)="editProfile()">
-              <div>
-                <div class="card-shadow icon-border">
-                  <ion-icon name="create" class="icon-middle"></ion-icon>
-                </div>
-                <p>Edit Profile</p>
-              </div>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
     <div> 
       <!-- NGFOR GENRE -->
       <button ion-button class="card-shadow" *ngFor= "let category of artist.Categories">
         {{category}}
       </button>
-      <button ion-button class="card-shadow" *ngFor= "let category of artist.Categories">
+      <button ion-button class="card-shadow" (click)="addCategory()">
           <ion-icon name="add" class="icon-middle"></ion-icon>
         </button>
+        <button ion-button class="card-shadow" (click)="deleteCategory()">
+            <ion-icon name="remove" class="icon-middle"></ion-icon>
+          </button>
     </div>
   </ion-content>
   

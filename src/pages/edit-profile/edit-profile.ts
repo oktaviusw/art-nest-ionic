@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 
 import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
+import { CategoryPage } from '../category/category';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -47,4 +48,25 @@ export class EditProfilePage {
         this.loading.dismiss();
       }).subscribe();
   }
+
+  addCategory(){
+    let modal = this.modalCtrl.create(
+      CategoryPage,
+      {isAddCategory:true, isDeleteCategory:false},
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
+  }
+
+  deleteCategory(){
+    let modal = this.modalCtrl.create(
+      CategoryPage,
+      {isAddCategory:false, isDeleteCategory:true},
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
+  }
+
 }

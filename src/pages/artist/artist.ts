@@ -5,6 +5,8 @@ import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { Storage } from '@ionic/storage';
+import {  ArtworkPage } from '../artwork/artwork';
+import { SearchPage } from '../search/search';
 
 /**
  * Generated class for the ArtistPage page.
@@ -63,6 +65,24 @@ export class ArtistPage implements OnInit {
   createCommission() {
     let modal = this.modalCtrl.create(
       ModalOrderPage,
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
+  }
+
+  addArtwork(){
+    let modal = this.modalCtrl.create(
+      ArtworkPage,
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
+  }
+
+  openSearch(){
+    let modal = this.modalCtrl.create(
+      SearchPage,
       {showBackdrop: false, enableBackdropDismiss:true}
     );
     

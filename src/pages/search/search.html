@@ -3,16 +3,45 @@
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
+
+  MODAL
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>SearchPage</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
+<ion-content (click)="close()">
+    <ion-card class="modalSquare myModal" text-center (click)="none()">
+            <ion-card-content style="padding-top:20px;">
+                <form>
+                    <ion-item>
+                        <ion-label stacked>
+                            Keywords
+                        </ion-label>
+                        <ion-input type="text"></ion-input>
+                    </ion-item>
+                
+                    <ion-item>
+                        <ion-label stacked>Category</ion-label>
+                        <ion-select>
+                          <ion-option>Tes1</ion-option>
+                          <ion-option>Tes2</ion-option>
+                          <ion-option>Tes3</ion-option>
+                        </ion-select>
+                      </ion-item>
+        
+                      <ion-item>
+                          <ion-label stacked>Artist Type</ion-label>
+                          <ion-select>
+                            <ion-option>Tes1</ion-option>
+                            <ion-option>Tes2</ion-option>
+                            <ion-option>Tes3</ion-option>
+                          </ion-select>
+                        </ion-item>
 
+                    <div padding>
+                        <button ion-button style="width:100%;" type="submit">Search</button>
+                    </div>
+                </form>
+            </ion-card-content>
+         
+</ion-card>
 </ion-content>

@@ -22,4 +22,11 @@ export class ArtworkPage {
     console.log('ionViewDidLoad ArtworkPage');
   }
 
+  close(){
+    this.navCtrl.pop();
+  }
+
+  none(){
+    event.stopPropagation();
+  }
 }

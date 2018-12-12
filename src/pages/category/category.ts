@@ -53,8 +53,11 @@ export class CategoryPage {
   ngOnInit() {
     this.idUser = 1;
 
-    this.isAddCategory = true;
-    this.isDeleteCategory = true;
+    this.isAddCategory = this.navParams.get('isAddCategory');
+    this.isDeleteCategory =  this.navParams.get('isDeleteCategory');
+
+    console.log(this.isAddCategory);
+    console.log(this.isDeleteCategory);
 
     this.getDataCategories();
   }
@@ -137,6 +140,14 @@ export class CategoryPage {
 				alert.present();
       }
     }).subscribe();
+  }
+
+  close(){
+    this.navCtrl.pop();
+  }
+
+  none(){
+    event.stopPropagation();
   }
 
   deleteCategory(){

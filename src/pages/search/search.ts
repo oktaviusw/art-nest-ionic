@@ -21,5 +21,11 @@ export class SearchPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
+  close(){
+    this.navCtrl.pop();
+  }
 
+  none(){
+    event.stopPropagation();
+  }
 }
