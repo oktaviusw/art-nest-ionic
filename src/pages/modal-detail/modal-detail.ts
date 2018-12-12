@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
+import { FirebaseProvider } from '../../providers/firebase'
 
 /**
  * Generated class for the ModalDetailPage page.
@@ -17,15 +18,16 @@ import { APIService } from '../../service/webAPI';
 export class ModalDetailPage implements OnInit {
 
   comission:any;
-  comissionDetails = [];
+  comissionDetails: any = [];
   comission_id = 0;
   loading:any;
   needCustomerResponse:boolean = false;
   needArtistResponse:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-            public loadingCtrl: LoadingController, public api: APIService, public alertCtrl : AlertController) {
-
+            public loadingCtrl: LoadingController, public api: APIService, public alertCtrl : AlertController,
+            public firebaseProvider: FirebaseProvider
+            ) {         
   }
 
   ngOnInit(){
@@ -46,6 +48,19 @@ export class ModalDetailPage implements OnInit {
       .map(response =>{
         this.comissionDetails = response.result;
         console.log(this.comissionDetails);
+        let alert = this.alertCtrl.create({
+					title: 'Result Response',
+					subTitle: JSON.stringify(response.result),
+					buttons: [{
+            text: 'OK',
+            role: 'OK',
+            handler: () => {
+              // //this.getDataCategories();
+              // this.navCtrl.pop();
+            }
+          }]
+        });
+        alert.present();
         this.loading.dismiss();
         
         if(response.result.RequestStatus == "ACCEPTED"){
@@ -128,6 +143,15 @@ export class ModalDetailPage implements OnInit {
 
       let contentMessage = "";
 
+      let alert = this.alertCtrl.create({
+        title: 'Konten Notifikasi',
+        subTitle: this.comissionDetails.TitleProject + " " + contentMessage + " " + this.comissionDetails.CustomerName + " " + this.comissionDetails.ArtistName,
+        buttons: [{
+          text: 'OK',
+        }]
+       });
+        alert.present();
+
       if(response.status == "OK"){
         if(role == 'ARTIST'){
           if(data.responseCustomer == 'ACCEPT'){
@@ -136,6 +160,7 @@ export class ModalDetailPage implements OnInit {
           else{
             contentMessage = "Project has been terminated";
           }
+          this.firebaseProvider.addNotification(this.comissionDetails.TitleProject, contentMessage + " by " + this.comissionDetails.CustomerName, this.comissionDetails.CustomerEMail)
         }
         else{
           if(data.responseCustomer == 'ACCEPT'){
@@ -144,7 +169,9 @@ export class ModalDetailPage implements OnInit {
           else{
             contentMessage = "Commission has been declined";
           }
+          this.firebaseProvider.addNotification(this.comissionDetails.TitleProject, contentMessage + " by " + this.comissionDetails.ArtistName, this.comissionDetails.ArtistEMail)
         }
+        
 
         let alert = this.alertCtrl.create({
 					title: 'SUCCESS',
