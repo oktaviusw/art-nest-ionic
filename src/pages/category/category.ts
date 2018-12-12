@@ -126,7 +126,7 @@ export class CategoryPage {
             role: 'OK',
             handler: () => {
               //this.getDataCategories();
-this.navCtrl.pop();
+              this.navCtrl.pop();
             }
           }]
 				});

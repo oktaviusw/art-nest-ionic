@@ -40,7 +40,7 @@
                 <span class="title" 
                 [ngClass]="{'accepted': comission.RequestStatus == 'ACCEPTED',
                             'pending': comission.RequestStatus == 'PENDING',
-                            'rejected': comission.RequestStatus == 'REJECTED'}">{{comission.RequestStatus}}</span>
+                            'rejected': comission.RequestStatus == 'REJECTED'}">{{comission.state}}</span>
             </div>
           </ion-col>
         </ion-row>

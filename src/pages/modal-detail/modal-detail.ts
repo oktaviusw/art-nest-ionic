@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
 
 /**
@@ -20,13 +20,17 @@ export class ModalDetailPage implements OnInit {
   comissionDetails = [];
   comission_id = 0;
   loading:any;
+  needCustomerResponse:boolean = false;
+  needArtistResponse:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-            public loadingCtrl: LoadingController, public api: APIService) {
+            public loadingCtrl: LoadingController, public api: APIService, public alertCtrl : AlertController) {
 
   }
 
   ngOnInit(){
+    this.needArtistResponse = false;
+    this.needCustomerResponse = false;
 
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -42,8 +46,27 @@ export class ModalDetailPage implements OnInit {
       .map(response =>{
         this.comissionDetails = response.result;
         console.log(this.comissionDetails);
-        //Data is now loaded; dismiss load anim
         this.loading.dismiss();
+        
+        if(response.result.RequestStatus == "ACCEPTED"){
+          if(response.result.CommissionStatus != "FINISHED"){
+            if(this.api.loggedInUser == response.result.IDArtist){
+              this.needArtistResponse = true;
+            }
+            else{
+              this.needArtistResponse = false;
+            }
+          }
+        }
+        else if(response.result.RequestStatus == "PENDING"){
+          if(this.api.loggedInUser == response.result.IDCustomer){
+            this.needCustomerResponse = true;
+          }
+          else{
+            this.needCustomerResponse = false;
+          }
+        }
+        
       }).subscribe();
   }
 
@@ -57,4 +80,95 @@ export class ModalDetailPage implements OnInit {
   none(){
     event.stopPropagation();
   }
+
+  artistAccept(){
+    let dataToAPI = {
+      projectID : this.comission_id,
+      responseCustomer : 'ACCEPT'
+    }
+
+    this.updateCommission(dataToAPI, 'ARTIST');
+  }
+
+  artistReject(){
+    let dataToAPI = {
+      projectID : this.comission_id,
+      responseCustomer : 'DECLINE'
+    }
+
+    this.updateCommission(dataToAPI, 'ARTIST');
+  }
+
+  customerAccept(){
+    let dataToAPI = {
+      projectID : this.comission_id,
+      responseCustomer : 'ACCEPT'
+    }
+
+    this.updateCommission(dataToAPI, 'CUSTOMER');
+  }
+
+  customerReject(){
+    let dataToAPI = {
+      projectID : this.comission_id,
+      responseCustomer : 'DECLINE'
+    }
+
+    this.updateCommission(dataToAPI, 'CUSTOMER');
+  }
+
+  updateCommission(data : any, role:string){
+    let loadingUpdate = this.loadingCtrl.create({content: "Updating Project Data.."});
+    loadingUpdate.present();
+
+    this.api.postAPI(this.api.REQUEST_RESPONSE ,data)
+    .map(response =>{
+      console.log(response);
+      loadingUpdate.dismiss();
+
+      let contentMessage = "";
+
+      if(response.status == "OK"){
+        if(role == 'ARTIST'){
+          if(data.responseCustomer == 'ACCEPT'){
+            contentMessage = "Project has been completed";
+          }
+          else{
+            contentMessage = "Project has been terminated";
+          }
+        }
+        else{
+          if(data.responseCustomer == 'ACCEPT'){
+            contentMessage = "Commission has been accepted";
+          }
+          else{
+            contentMessage = "Commission has been declined";
+          }
+        }
+
+        let alert = this.alertCtrl.create({
+					title: 'SUCCESS',
+					subTitle: contentMessage,
+					buttons: [{
+            text: 'OK',
+            role: 'OK',
+            handler: () => {
+              //this.getDataCategories();
+              this.navCtrl.pop();
+            }
+          }]
+				});
+				alert.present();
+      }
+      else{
+        let alert = this.alertCtrl.create({
+					title: 'ERRROR',
+					subTitle: response.result,
+					buttons: ['OK']
+				});
+				alert.present();
+      }
+    }).subscribe();
+  }
+
 }

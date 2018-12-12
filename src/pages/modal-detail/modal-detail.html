@@ -80,15 +80,28 @@
           </ion-row>
         </ion-grid>
         <ion-grid>
-          <ion-row align-items-top>
+          <ion-row align-items-top *ngIf="needArtistResponse">
             <ion-col col-6 padding>
               <div>
-                <button ion-button style="width:80%;">Accept</button>
+                <button ion-button style="width:80%;" (click)="artistAccept()">Accept</button>
               </div>
             </ion-col>
             <ion-col col-6 padding>
               <div>
-              <button ion-button style="width:80%;">Reject</button>
+              <button ion-button style="width:80%;" (click)="artistReject()">Reject</button>
+            </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row align-items-top *ngIf="needCustomerResponse">
+            <ion-col col-6 padding>
+              <div>
+                <button ion-button style="width:80%;" (click)="customerAccept()">Accept</button>
+              </div>
+            </ion-col>
+            <ion-col col-6 padding>
+              <div>
+              <button ion-button style="width:80%;" (click)="customerReject()">Reject</button>
             </div>
             </ion-col>
           </ion-row>

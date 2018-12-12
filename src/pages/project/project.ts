@@ -40,6 +40,16 @@ export class ProjectPage implements OnInit {
         this.comissions = response.result;
         console.log(this.comissions);
 
+        for (var i = 0; i < this.comissions.length; i++) {
+          this.comissions[i].state = "";
+          if(this.comissions[i].RequestStatus == "ACCEPTED"){
+            this.comissions[i].state = this.comissions[i].CommissionStatus;
+          }
+          else{
+            this.comissions[i].state = this.comissions[i].RequestStatus;
+          }
+        }
+        
         //dismiss anim
         this.loading.dismiss();
       }).subscribe();
