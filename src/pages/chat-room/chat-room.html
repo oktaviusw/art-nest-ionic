@@ -1,11 +1,21 @@
-<ion-header>
 
-  <ion-navbar>
-    <ion-title>{{chatpartner.username}}</ion-title>
+<ion-header >
+  <ion-navbar start>
+    <ion-title style="font-size:10px;">
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-2 >
+            <img class="logo-middle" style="width:10vw; height:10vw;" src="../assets/imgs/application_logo_black.png">
+          </ion-col>
+          <ion-col col-10>
+            {{chatpartner.username}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+        
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content>
 
