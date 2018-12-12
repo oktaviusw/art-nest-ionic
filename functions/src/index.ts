@@ -56,7 +56,7 @@ exports.newUserNotification = functions.firestore
     const payload = {
         notification: {
             title: 'New User',
-            body: `Hello Mr.${data.username}! Thanks for joining us (${tokenID})`,
+            body: `Hello Mr.${data.username}! Welcome the nest!`,
             icon: 'https://goo.gl/Fz9nrQ'
         }
     }
@@ -100,35 +100,35 @@ exports.notificationNotification = functions.firestore
     })
 });
 
-exports.updateToken = functions.firestore
-.document('users/{usersId}')
-.onUpdate(async event => {
-    const dataBefore = event.before.data();
-    const dataAfter = event.after.data();
+// exports.updateToken = functions.firestore
+// .document('users/{usersId}')
+// .onUpdate(async event => {
+//     const dataBefore = event.before.data();
+//     const dataAfter = event.after.data();
 
-    // Notification content
-    const payload = {
-        notification: {
-            title: 'Update Token',
-            body: `Your token has been updated to (${dataAfter.deviceID})`,
-        }
-    }
+//     // Notification content
+//     const payload = {
+//         notification: {
+//             title: 'Update Token',
+//             body: `Your token has been updated to (${dataAfter.deviceID})`,
+//         }
+//     }
 
-    // const tokens = [];
+//     // const tokens = [];
 
-    // tokens.push( dataAfter.deviceID)
+//     // tokens.push( dataAfter.deviceID)
 
-    console.log(`Device id : ${dataAfter.deviceID}`);
+//     console.log(`Device id : ${dataAfter.deviceID}`);
 
-    return admin.messaging().sendToDevice(dataAfter.deviceID, payload)
-        .then((success) => {
-            console.log("success notification" + success.results);
-        })
-        .catch((fail) => {
-            console.log("failed notification" + fail.results);
-        });
+//     return admin.messaging().sendToDevice(dataAfter.deviceID, payload)
+//         .then((success) => {
+//             console.log("success notification" + success.results);
+//         })
+//         .catch((fail) => {
+//             console.log("failed notification" + fail.results);
+//         });
 
-});
+// });
 
 exports.chatNotification = functions.firestore
     .document('chats/{chatsId}')

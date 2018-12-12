@@ -209,18 +209,6 @@ export class FirebaseProvider {
           resolve(url);
         })
       })
-      .catch(err => {
-        let alert = this.alertCtrl.create({
-          title: 'Error Upload Image Provider',
-          subTitle: err.message,
-          buttons: [
-            {
-              text: "OK"
-            }
-          ]
-        });
-        alert.present();
-      })
     })
   }
 
@@ -231,16 +219,6 @@ export class FirebaseProvider {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach(doc => {
-          let alert = this.alertCtrl.create({
-            title: 'Open Chat artist.ts',
-            subTitle: doc.data().deviceID,
-            buttons: [
-              {
-                text: "OK"
-              }
-            ]
-          });
-          alert.present();
           resolve(doc.data().deviceID);
         })
       })
@@ -261,47 +239,9 @@ export class FirebaseProvider {
                 .doc(doc.id)
                 .update({
                   deviceID: token
-                }).then(() => {
-
-                })
-                .catch(error => {
-                  let alert = this.alertCtrl.create({
-                    title: 'Error Message 1',
-                    subTitle: error.message,
-                    buttons: [
-                      {
-                        text: "OK"
-                      }
-                    ]
-                  });
-                  alert.present();
                 })
               })
             })
-            .catch(error => {
-              let alert = this.alertCtrl.create({
-                title: 'Error Message 2',
-                subTitle: error.message,
-                buttons: [
-                  {
-                    text: "OK"
-                  }
-                ]
-              });
-              alert.present();
-            })
-      })
-      .catch(error => {
-        let alert = this.alertCtrl.create({
-          title: 'Error Message 3',
-          subTitle: error.message,
-          buttons: [
-            {
-              text: "OK"
-            }
-          ]
-        });
-        alert.present();
       })
   }
 }
