@@ -67,6 +67,9 @@
         </ion-card>
       </ion-slide>
     </ion-slides>
+    <div style="float:right; padding-left: 16px; padding-right: 16px;padding-bottom: 16px;">
+      <a style="font-weight:bold">Show All >></a>
+    </div>
   </div>
   <div class="separator-20"></div>
   <div>
@@ -75,17 +78,19 @@
       <ion-row align-items-center>
         <!-- ngfor -->
         <ion-col col-6 *ngFor="let artist of artists" (click)="detailArtist(artist.IDArtist)">
-          <ion-card class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
-            <div class="container">
+          <div class="background">
+            <div class="container" style="padding:5px">
               <img src="../assets/imgs/application_logo_black.png">
-              <div class="overlay">
-                <img style="width: 25vw; height: 25vw;" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay">
+              <div class="overlay" >
+                <img style="width: 28vw; height: 28vw; top:53% !important" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay">
               </div>
             </div>
-            <div class="overlay-text" style="padding: 6px;">
+            <div style=" text-align: center">
               <span style="font-weight:bold">{{artist.DisplayName}}</span>
             </div>
-          </ion-card>
+            <div class="separator-5"></div> <div class="separator-5"></div>
+          </div>
+         
         </ion-col>        
         <!-- placeholder -->
         <!-- <ion-col col-6>
@@ -103,5 +108,8 @@
         </ion-col> -->
       </ion-row>
     </ion-grid>
+    <div style="float:right; padding-left: 16px; padding-right: 16px;padding-bottom: 16px;">
+      <a style="font-weight:bold">Show All >></a>
+    </div>
   </div>
 </ion-content>

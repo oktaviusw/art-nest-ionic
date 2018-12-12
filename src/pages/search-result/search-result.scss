@@ -14,6 +14,15 @@ page-search-result {
         margin-top: 250px;
         opacity: 0;
     }
+    .toolbar-title{
+        text-align: left;
+        overflow: visible !important;
+
+    }
+
+    .toolbar-background{
+        background-color: white !important;
+    }
 
     .background:hover .hover-show {
         opacity: 1;
