@@ -131,17 +131,6 @@ export class MyApp {
     this.displayName = displayName;
     this.email = email;
     this.photoURL = photoURL;
-
-    let alert = this.alertCtrl.create({
-      title: 'Change Display Name',
-      subTitle: photoURL,
-      buttons: [
-        {
-          text: "OK"
-        }
-      ]
-    });
-    alert.present();
     
   }
 

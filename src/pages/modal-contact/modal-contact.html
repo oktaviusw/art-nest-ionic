@@ -1,0 +1,39 @@
+<!--
+  Generated template for the ModalContactPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+
+  MODAL
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>modal-contact</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding (click) = "close()">
+  <ion-card class="modalSquare myModal" text-center (click)="none()"> 
+      <ion-card-content style="padding-top:20px;">
+          <ion-grid>
+            <ion-row align-items-center>
+              <ion-col col-2>
+                <ion-icon name="logo-facebook"></ion-icon>
+              </ion-col>
+              <ion-col col-10>
+                  {{linkFacebook}}
+              </ion-col>
+              <ion-col col-2>
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </ion-col>
+                <ion-col col-10>
+                  {{linkTwitter}}
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

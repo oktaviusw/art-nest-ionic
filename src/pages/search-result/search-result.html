@@ -18,7 +18,7 @@
       <ion-grid>
           <ion-row align-items-center>
             <!-- ngfor -->
-            <ion-col col-6 *ngFor="let artist of dataArtist">
+            <ion-col col-6 *ngFor="let artist of dataArtist"  (click)="detailArtist(artist.IDArtist)">
               <ion-card class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
                 <div class="container">
                   <img src="../assets/imgs/application_logo_black.png">
