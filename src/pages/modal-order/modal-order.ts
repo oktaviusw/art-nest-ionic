@@ -57,7 +57,7 @@ export class ModalOrderPage {
   }
 
   ngOnInit() {
-    this.idUser = 1;
+    this.idUser = this.api.loggedInUser;
     
     this.imageSketchSelected = false;
     this.imageSketch = "";
@@ -270,9 +270,9 @@ export class ModalOrderPage {
     }).subscribe(); 
   }
 
-  close(){
-    this.navCtrl.pop();
-  }
+  // close(){
+  //   this.navCtrl.pop();
+  // }
 
   none(){
     event.stopPropagation();

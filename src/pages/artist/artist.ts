@@ -59,16 +59,11 @@ export class ArtistPage implements OnInit {
   }
 
   editProfile(){
-    this.navCtrl.setRoot(EditProfilePage);
+    this.navCtrl.push(EditProfilePage);
   }
 
   createCommission() {
-    let modal = this.modalCtrl.create(
-      ModalOrderPage,
-      {showBackdrop: false, enableBackdropDismiss:true}
-    );
-    
-		modal.present();
+    this.navCtrl.push(ModalOrderPage);
   }
 
   addArtwork(){

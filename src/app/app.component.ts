@@ -88,11 +88,11 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot(ArtistPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot(ArtistPage);
         unsubscribe();
       }
     });
