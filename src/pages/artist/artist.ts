@@ -7,6 +7,7 @@ import { EditProfilePage } from '../edit-profile/edit-profile';
 import { Storage } from '@ionic/storage';
 import { SearchPage } from '../search/search';
 import { ArtworkPage } from '../artwork/artwork';
+import { ArtworkDetailPage } from '../artwork-detail/artwork-detail';
 
 /**
  * Generated class for the ArtistPage page.
@@ -76,7 +77,12 @@ export class ArtistPage implements OnInit {
       {showBackdrop: false, enableBackdropDismiss:true}
     );
     
-		modal.present();
+    modal.present();
+  }
+
+  detailArtwork(ID:any){
+    console.log(ID);
+    this.navCtrl.push(ArtworkDetailPage, {IDArtwork : ID});
   }
 
 }

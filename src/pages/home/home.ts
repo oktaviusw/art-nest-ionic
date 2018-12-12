@@ -1,3 +1,4 @@
+import { ArtworkDetailPage } from './../artwork-detail/artwork-detail';
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController, ModalController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
@@ -56,6 +57,11 @@ export class HomePage implements OnInit {
     );
     
 		modal.present();
+  }
+
+  detailArtwork(ID:any){
+    console.log(ID);
+    this.navCtrl.push(ArtworkDetailPage, {IDArtwork : ID});
   }
 
 }

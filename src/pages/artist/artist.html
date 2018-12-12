@@ -125,7 +125,7 @@
     <ion-grid>
       <ion-row align-items-center>
         <!-- NGFOR ART SHOWCASE -->
-        <ion-col col-6 *ngFor="let artwork of artist.Artworks">
+        <ion-col col-6 *ngFor="let artwork of artist.Artworks" (click)="detailArtwork(artwork.IDArtWork)">
           <ion-card>
             <div class="container">
               <img src="http://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/artwork/{{artwork.DirectoryData}}">

@@ -14,5 +14,13 @@
 
 
 <ion-content padding>
-
+  <img style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtwork)">
+  <h2>{{titleArtwork}}</h2>
+  <ion-item>
+      <img item-start style="width: 15vw; height: 15vw; object-fit: cover; border-radius: 100%;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtist)">
+      <h2 item-start>{{displaynameArtist}}</h2>
+  </ion-item>
+  <p style='width: 100%;'>
+    {{descArtwork}}
+  </p>
 </ion-content>
