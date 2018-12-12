@@ -88,7 +88,7 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot(IntroPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
@@ -123,7 +123,10 @@ export class MyApp {
     this.nav.setRoot(page);
     this.menuCtrl.close();
   }
-
+  onPush(page: any) {
+    this.nav.push(page);
+    this.menuCtrl.close();
+  }
   changeDisplayName(displayName: string, email: string, photoURL: string) {
     this.displayName = displayName;
     this.email = email;

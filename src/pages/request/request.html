@@ -21,9 +21,9 @@
 <ion-content>
   <ion-list>
     <!-- NGFOR SETIAP REQUEST -->
-    <ion-card *ngFor="let comission of comissions">
+    <ion-card *ngFor="let comission of comissions; let i = index">
       <ion-grid style="padding: 0px;">
-        <ion-row style="padding: 0px;" (click)="detailRequest()">
+        <ion-row style="padding: 0px;" (click)="detailRequest(i)">
           <ion-col style="padding: 0px;" col-4>
             <img style="max-width: 100px; max-height: 100px;" src="../assets/imgs/artist.jpg">
           </ion-col>

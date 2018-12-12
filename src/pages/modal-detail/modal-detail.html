@@ -1,27 +1,16 @@
-<!--
-  Generated template for the ModalDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
-
-  MODAL
--->
-
-
-
 <ion-content (click)="close()">
   <ion-card class="modalSquare myModal" text-center (click)="none()">   
     <ion-card-content style="padding-top:20px;">  
       <div>
-        <p class="title" style="font-weight:bold; font-size: 20px">Gleipnir</p>
-        <span>21 November 2018 - 22 November 2018</span>
-        <span style="font-weight: bold;" class="accepted">ACCEPTED</span>
+        <p class="title" style="font-weight:bold; font-size: 20px">{{comissionDetails.TitleProject}}</p>
+        <span>{{comissionDetails.DateStart}} - {{comissionDetails.DateEnd}}</span>
+        <span style="font-weight: bold;" class="accepted">{{comissionDetails.RequestStatus}}</span>
       </div>
       <div padding>
-        <ion-grid>
+        <ion-grid *ngIf="comissionDetails.anySketchBase">
           <ion-row align-items-top>
             <ion-col col-12>
-              <img src="../assets/imgs/artist.jpg">
+              <img src="https://artnest-umn.000webhostapp.com/assets/projectdata/{{comissionDetails.IDProject}}/SketchBase.jpg">
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -34,11 +23,11 @@
               </div>
             </ion-col>
             <ion-col col-2 style="margin-left:5px;">
-              <img class="profile-picture" src="../assets/imgs/application_logo.png">
+              <img class="profile-picture" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{comissionDetails.ArtistEMail}}/ProfilePicture.png">
             </ion-col>
             <ion-col col-5 style="margin-left:5px;">
               <div style="text-align: left">
-                <span>Oktavius Wiguna</span>
+                <span>{{comissionDetails.ArtistName}}</span>
               </div>
             </ion-col>
           </ion-row>
@@ -51,11 +40,11 @@
               </div>
             </ion-col>
             <ion-col col-2 style="margin-left:5px;">
-              <img class="profile-picture" src="../assets/imgs/application_logo.png">
+              <img class="profile-picture" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{comissionDetails.CustomerEMail}}/ProfilePicture.png">
             </ion-col>
             <ion-col col-5 style="margin-left:5px;">
               <div style="text-align: left">
-                <span>Oktavius Wiguna</span>
+                <span>{{comissionDetails.CustomerName}}</span>
               </div>
             </ion-col>
           </ion-row>
@@ -70,7 +59,7 @@
             </ion-col>
             <ion-col col-7 style="margin-left:5px;">
               <div style="text-align: left">
-                <span>2000000000</span>
+                <span>{{comissionDetails.TokenValue}}</span>
               </div>
             </ion-col>
           </ion-row>
@@ -85,7 +74,7 @@
             </ion-col>
             <ion-col col-7 style="margin-left:5px;">
               <div style="text-align: left">
-                <span>Description</span>
+                <span>{{comissionDetails.Description}}</span>
               </div>
             </ion-col>
           </ion-row>

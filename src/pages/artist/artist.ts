@@ -84,12 +84,7 @@ export class ArtistPage implements OnInit {
   }
 
   addArtwork(){
-    let modal = this.modalCtrl.create(
-      ArtworkPage,
-      {showBackdrop: false, enableBackdropDismiss:true}
-    );
-    
-		modal.present();
+    this.navCtrl.push(ArtworkPage);
   }
 
   openSearch(){

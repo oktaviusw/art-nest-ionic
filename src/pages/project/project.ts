@@ -50,8 +50,8 @@ export class ProjectPage implements OnInit {
     console.log('ionViewDidLoad ProjectPage');
   }
 
-  detailRequest() {
-    let modal = this.modalCtrl.create(ModalDetailPage, {cssClass: 'select-modal'});
-		modal.present();
+  detailRequest(i) {
+    let modal = this.modalCtrl.create(ModalDetailPage, {comission: this.comissions[i]});
+    modal.present();
   }
 }
