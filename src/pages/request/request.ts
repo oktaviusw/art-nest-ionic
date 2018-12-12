@@ -34,6 +34,8 @@ export class RequestPage implements OnInit {
     });
     this.loading.present();
 
+    this.customer_id = this.api.loggedInUser;
+
     this.api.getAPI(this.api.REQUEST_DATA_ALL + this.customer_id + '/CUSTOMER')
       .map(response =>{
         this.comissions = response.result;

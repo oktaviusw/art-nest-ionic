@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIService } from '../../service/webAPI';
 import { Storage } from '@ionic/storage';
+import { ArtistPage } from '../artist/artist';
 
 /**
  * Generated class for the BeArtistPage page.
@@ -147,29 +148,32 @@ export class BeArtistPage {
     }
 
     this.api.postAPI(this.api.ARTIST_REGISTER ,dataToAPI)
-    .map(response =>{
-      console.log(response);
-      loadingUpdate.dismiss();
-      
-      if(response.status == "OK"){
-        this.events.publish('userLoggedIn', this.idUser);
+      .map(response =>{
+        console.log(response);
+        loadingUpdate.dismiss();
+        
+        if(response.status == "OK"){
+          this.events.publish('userLoggedIn', this.idUser);
 
-        let alert = this.alertCtrl.create({
-					title: 'SUCCESS',
-					subTitle: 'Welcome to the Artist Nest!',
-					buttons: ['OK']
-				});
-				alert.present();
-      }
-      else{
-        let alert = this.alertCtrl.create({
-					title: 'ERRROR',
-					subTitle: response.result,
-					buttons: ['OK']
-				});
-				alert.present();
-      }
-    }).subscribe();
+          let alert = this.alertCtrl.create({
+            title: 'SUCCESS',
+            subTitle: 'Welcome to the Artist Nest!',
+            buttons: ['OK']
+          });
+          alert.present();
+          this.navCtrl.setRoot(ArtistPage);
+        }
+        else{
+          let alert = this.alertCtrl.create({
+            title: 'ERRROR',
+            subTitle: response.result,
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      }).subscribe();
+
+    
   }
 
 }
