@@ -29,21 +29,21 @@
             <div style="padding-top:10px;">
                     <form [formGroup]="formCommission" (ngSubmit)="submitCommission()">
                             <ion-item>
-                                <ion-label stacked>
+                                <ion-label  style="color:black"  stacked>
                                     Title
                                 </ion-label>
                                 <ion-input type="text" formControlName="title"></ion-input>
                             </ion-item>
                         
                             <ion-item>
-                                <ion-label stacked>
+                                <ion-label style="color:black" stacked>
                                     Customer
                                 </ion-label>
                                 <ion-input type="text" formControlName="customer"></ion-input>
                             </ion-item>
                         
                             <ion-item>
-                                <ion-label stacked>
+                                <ion-label  style="color:black" stacked>
                                     Price
                                 </ion-label>
                                 <ion-input type="number" formControlName="price"></ion-input>
@@ -67,7 +67,7 @@
                             </ion-item>
                         
                             <ion-item>
-                                <ion-label stacked>
+                                <ion-label  style="color:black" stacked>
                                     Description
                                 </ion-label>
                                 <ion-textarea type="text" formControlName="description"></ion-textarea>
@@ -76,20 +76,21 @@
                             <ion-grid>
                             <ion-row>
                                 <ion-col col-6>
-                                    <ion-item>
+                                    <ion-item no-lines>
                                         <ion-label stacked>
                                             Sketch
                                         </ion-label>
                                     </ion-item>
                                 </ion-col>
                                 <ion-col col-6>
-                                    <button padding style="width:91%;"  ion-button type="button" (click)="chooseImagePicker()">Select</button>
+                                    <button padding style="width:100%;"  ion-button type="button" (click)="chooseImagePicker()">Select</button>
                                 </ion-col>
                             </ion-row>
                                     
                                   </ion-grid>
                             <img style="width: 100%; object-fit: contain;" *ngIf="imageSketchSelected" [src]="sanitizer.bypassSecurityTrustUrl(imageSketch)">
-                            <div padding>
+                            <div class="separator-5"></div>
+                            <div>
                                 <button ion-button style="width:100%;" type="submit" [disabled]="validateCommissionValueForm()">Submit Commission</button>
                             </div>
                         </form>
