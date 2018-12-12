@@ -27,7 +27,6 @@ export class ArtworkPage {
     public navParams: NavParams, 
     private formBuilder: FormBuilder, 
     public camera: Camera, 
-    public file: File, 
     public sanitizer:DomSanitizer,
     public actionSheetCtrl: ActionSheetController, 
     public toastCtrl: ToastController, 
