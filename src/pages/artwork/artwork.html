@@ -14,7 +14,7 @@
             <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">Add Artwork</h3>
         </ion-card-header>
             <ion-card-content style="padding-top:10px;">
-                <form>
+                <!-- <form>
                     <ion-item>
                         <ion-label stacked>
                             Title
@@ -48,8 +48,33 @@
                     <div padding>
                         <button ion-button style="width:100%;" type="submit">Submit Artwork</button>
                     </div>
+                </form> -->
+                <form [formGroup]="formAddArtwork" (ngSubmit)="submitArtwork()">
+                    <ion-item>
+                      <ion-label stacked>
+                        Artwork Title
+                      </ion-label>
+                      <ion-input type="text" formControlName="title"></ion-input>
+                    </ion-item>
+              
+                    <ion-item>
+                      <ion-label stacked>
+                        Artwork Description
+                      </ion-label>
+                      <ion-input type="text" formControlName="description"></ion-input>
+                    </ion-item>
+              
+                    <ion-item>
+                      <ion-label stacked>
+                        Artwork
+                      </ion-label>
+                    </ion-item>
+              
+                    <button ion-button type="button" (click)="chooseImagePicker()">Add Artwork</button>
+                    <img style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtwork)">
+              
+                    <button ion-button type="submit" [disabled]="checkValidationForm()">Submit</button>
                 </form>
             </ion-card-content>
-         
 </ion-card>
 </ion-content>

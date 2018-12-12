@@ -39,7 +39,7 @@ export class APIService
     public readonly REQUEST_ADD         = this.API_IONIC_SERVER + 'AddNewCommission/';
     public readonly REQUEST_RESPONSE    = this.API_SERVER + 'RespondToCommission/';
 
-    public readonly UTIL_SEARCH         = this.API_SERVER + 'SeachData/';
+    public readonly UTIL_SEARCH         = this.API_SERVER + 'SearchData/';
 
     constructor(private _sanitizer: DomSanitizer, private http: HttpClient, private alertCtrl: AlertController){
 
