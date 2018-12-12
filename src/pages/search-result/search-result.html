@@ -39,24 +39,19 @@
   </div>
 
   <div *ngIf="isArtworkSearch">
-      <ion-card  *ngFor="let artwork of dataArtwork" class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artwork.EMail + '/artwork/' + artwork.DirectoryData + ')'" (click)="detailArtwork(artwork.IDArtWork)">
-        <div class="overlay-text hover-show">
+     
           <ion-grid>
             <ion-row align-items-center>
-              <ion-col col-3 class="title">
-                <img class="profile-picture" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/ProfilePicture.png">
-              </ion-col>
-              <ion-col col-9 >
-                <div style="text-align: left">
-                  <span class="title">{{artwork.Title}}</span>
-                  <br>
-                  <span>by {{artwork.DisplayName}}</span>
-                </div>
+              <ion-col style="display:flex" col-6 *ngFor="let artwork of dataArtwork; let i = index" (click)="detailArtwork(artwork)">
+                <ion-card>
+                  <div class="container">
+                    <img src="http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}}">
+                  </div>
+                </ion-card>
+
               </ion-col>
             </ion-row>
           </ion-grid>
-        </div>
-      </ion-card>
   </div>
   
 </ion-content>
