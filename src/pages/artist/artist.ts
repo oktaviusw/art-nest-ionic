@@ -97,6 +97,7 @@ export class ArtistPage implements OnInit {
   }
 
   detailArtwork(artwork:any){
+    
     this.navCtrl.push(ArtworkDetailPage, {IDArtwork : artwork.IDArtwork});
   }
 
