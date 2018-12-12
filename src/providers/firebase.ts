@@ -22,6 +22,7 @@ import { AlertController, Events, ToastController } from "ionic-angular";
 import { Firebase } from '@ionic-native/firebase';
 import { finalize } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { query } from '@angular/core/src/animation/dsl';
  
 @Injectable()
 export class FirebaseProvider {
@@ -219,6 +220,29 @@ export class FirebaseProvider {
           ]
         });
         alert.present();
+      })
+    })
+  }
+
+  getDeviceId(email: string){
+    return new Promise<any>((resolve) => {
+      firebase.firestore().collection(appconfig.users_endpoint)
+      .where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(doc => {
+          let alert = this.alertCtrl.create({
+            title: 'Open Chat artist.ts',
+            subTitle: doc.data().deviceID,
+            buttons: [
+              {
+                text: "OK"
+              }
+            ]
+          });
+          alert.present();
+          resolve(doc.data().deviceID);
+        })
       })
     })
   }
