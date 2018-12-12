@@ -5,8 +5,8 @@ import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { Storage } from '@ionic/storage';
-import {  ArtworkPage } from '../artwork/artwork';
 import { SearchPage } from '../search/search';
+import { ArtworkPage } from '../artwork/artwork';
 
 /**
  * Generated class for the ArtistPage page.
