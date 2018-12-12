@@ -31,7 +31,7 @@ import { APIService } from '../service/webAPI';
 })
 
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;
@@ -88,7 +88,7 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot(this.rootPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();

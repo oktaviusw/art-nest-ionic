@@ -1,3 +1,4 @@
+import { SearchResultPage } from './../pages/search-result/search-result';
 import { CategoryPage } from './../pages/category/category';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -48,12 +49,14 @@ import { SearchPage } from '../pages/search/search';
 
 /* PIPE */
 import { PipesModule } from "../pipes/pipes.module";
+import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
 
 @NgModule({
   declarations: [
     MyApp,
     ArtistPage,
     ArtworkPage,
+    ArtworkDetailPage,
     IntroPage,
     LoginPage,
     RegisterPage,
@@ -69,6 +72,7 @@ import { PipesModule } from "../pipes/pipes.module";
     ChatRoomPage,
     EditProfilePage,
     SearchPage,
+    SearchResultPage,
     CategoryPage
   ],
   imports: [
@@ -86,6 +90,7 @@ import { PipesModule } from "../pipes/pipes.module";
     MyApp,
     ArtistPage,
     ArtworkPage,
+    ArtworkDetailPage,
     IntroPage,
     LoginPage,
     RegisterPage,
@@ -101,6 +106,7 @@ import { PipesModule } from "../pipes/pipes.module";
     ChatRoomPage,
     EditProfilePage,
     SearchPage,
+    SearchResultPage,
     CategoryPage
   ],
   providers: [

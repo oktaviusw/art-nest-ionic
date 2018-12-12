@@ -1,0 +1,21 @@
+page-search-result {
+    .profile-picture {
+        max-width: 50px; 
+        max-height: 50px;
+        border-radius: 100%;
+    }
+
+    .background {
+        background-size: cover; 
+        background-position: center center; 
+    }
+
+    .hover-show {
+        margin-top: 250px;
+        opacity: 0;
+    }
+
+    .background:hover .hover-show {
+        opacity: 1;
+    }
+}
