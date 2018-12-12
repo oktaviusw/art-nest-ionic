@@ -7,12 +7,12 @@
     </ion-title>
     <ion-buttons left>
       <button ion-button menuToggle>
-        <ion-icon style="color:white; font-size: 25px" name="menu"></ion-icon>
+        <ion-icon style=" font-size: 25px" name="menu"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons right>
         <button ion-button (click)="openSearch()">
-          <ion-icon style="color:white; font-size: 25px" name="search"></ion-icon>
+          <ion-icon style=" font-size: 25px" name="search"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
@@ -34,8 +34,8 @@
                   <img class="profile-picture" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/ProfilePicture.png">
                 </ion-col>
                 <ion-col col-9 >
-                  <div style="text-align: left">
-                    <span class="title">{{artwork.Title}}</span>
+                  <div style="text-align: left; ;">
+                    <span class="title-wrap" style="font-weight:bold">{{artwork.Title}}</span>
                     <br>
                     <span>by {{artwork.DisplayName}}</span>
                   </div>
@@ -79,16 +79,16 @@
             <div class="container">
               <img src="../assets/imgs/application_logo_black.png">
               <div class="overlay">
-                <img style="width: 20vw; height: 20vw;" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay">
+                <img style="width: 25vw; height: 25vw;" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay">
               </div>
             </div>
             <div class="overlay-text" style="padding: 6px;">
-              <span class="title">{{artist.DisplayName}}</span>
+              <span style="font-weight:bold">{{artist.DisplayName}}</span>
             </div>
           </ion-card>
         </ion-col>        
         <!-- placeholder -->
-        <ion-col col-6>
+        <!-- <ion-col col-6>
           <ion-card class="background" style="background-image:url('../assets/imgs/artist.jpg');">
             <div class="container">
               <img src="../assets/imgs/application_logo.png">
@@ -100,7 +100,7 @@
               <span class="title">Artist</span>
             </div>
           </ion-card>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
   </div>

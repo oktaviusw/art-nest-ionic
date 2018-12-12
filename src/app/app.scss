@@ -23,6 +23,10 @@
     color: #f0f0f0;
 }
 
+ion-title{
+    text-align: center !important;
+}
+
 ion-label{
     color:black !important; 
 }
@@ -40,13 +44,9 @@ ion-header ion-item {
     margin: 10em;
 }
 
-ion-title{
-    text-align: center;
-}
-
 .logo-middle{
     vertical-align: middle; 
-    width: 50%;
+    width: 60%;
 }
 
 .menu-toolbar {
@@ -63,7 +63,7 @@ ion-header button, .back-button {
     background: rgba(0,0,0,0.5);
     color: #fff;
     bottom:0px; 
-    height: 30%;
+
     transition: .3s ease;
     text-align: center;
 }
@@ -115,7 +115,7 @@ ion-header button, .back-button {
 }
 
 .toolbar-title-md{
-    padding: 10px;
+    padding: 0 !important;
 }
 
 .toolbar-background {

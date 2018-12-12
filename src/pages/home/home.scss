@@ -11,10 +11,19 @@ page-home {
 
     .hover-show {
         margin-top: 250px;
-        opacity: 0;
+        opacity: 1;
     }
 
     .background:hover .hover-show {
         opacity: 1;
     }
+
+    .title-wrap{
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+
+
 }
