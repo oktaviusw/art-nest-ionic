@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="isThisUser()">
     <ion-navbar>
       <ion-title>
         <div>
@@ -18,6 +18,14 @@
     </ion-navbar>
   </ion-header>
 
+  <ion-header class="not-user" *ngIf="!isThisUser()">
+      <ion-navbar start>
+        <ion-title style="font-size:10px;">
+          Artist
+        </ion-title>
+      </ion-navbar>
+    </ion-header>
+  
 <ion-content>
   <div class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
     <div style="padding-left: 110px; padding-top: 110px; padding-right: 110px">
@@ -37,13 +45,23 @@
       <span>{{artist.AboutMe}}</span>
     </div>
   </div> 
-  <div class="separator-5"></div>
+  <div class="separator-20"></div>
   <!-- IF NOT YOUR OWN PROFILE -->
   
   <div *ngIf="!isThisUser()">
     <ion-grid>
       <ion-row>
-        <ion-col col-4>
+          <ion-col col-3>
+              <button class="button-circle" (click)="openChat(artist)">
+                <div>
+                  <div class="card-shadow icon-border">
+                    <ion-icon name="chatbubbles" class="icon-middle"></ion-icon>
+                  </div>
+                  <p>Chat</p>
+                </div>
+              </button>
+            </ion-col>
+        <ion-col col-3>
           <button class="button-circle" (click)="sendEmail(artist.EMail)"> 
             <div>
               <div class="card-shadow icon-border">
@@ -53,26 +71,27 @@
             </div>
           </button>
         </ion-col>
-        <ion-col col-4>
-          <button class="button-circle" (click)="openChat(artist)">
-            <div>
-              <div class="card-shadow icon-border">
-                <ion-icon name="chatbubbles" class="icon-middle"></ion-icon>
-              </div>
-              <p>Message</p>
-            </div>
-          </button>
-        </ion-col>
-        <ion-col col-4>
+
+        <ion-col col-3>
           <button class="button-circle">
             <div>
               <div class="card-shadow icon-border" (click) = "openModalContact(artist)">
-                <ion-icon name="person" class="icon-middle"></ion-icon>
+                <ion-icon name="logo-facebook" class="icon-middle"></ion-icon>
               </div>
-              <p>Contact</p>
+              <p>Facebook</p>
             </div>
           </button>
         </ion-col>
+        <ion-col col-3>
+            <button class="button-circle">
+              <div>
+                <div class="card-shadow icon-border" (click) = "openModalContact(artist)">
+                  <ion-icon name="logo-twitter" class="icon-middle"></ion-icon>
+                </div>
+                <p>Twitter</p>
+              </div>
+            </button>
+          </ion-col>
       </ion-row>
     </ion-grid>
   </div>

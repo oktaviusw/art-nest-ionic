@@ -44,7 +44,7 @@
                 <form [formGroup]="formSearch" (ngSubmit)="startSearch()">
                     <ion-item>
                       <ion-label stacked>
-                        Key Words
+                        Keyword(s)
                       </ion-label>
                       <ion-input type="text" formControlName="keyword"></ion-input>
                     </ion-item>
@@ -52,7 +52,7 @@
                     <ion-item>
                       <ion-label stacked>Category</ion-label>
                       <ion-select formControlName="category">
-                        <ion-option *ngFor="let item of category" value="{{item.CategoryName}}">{{item.CategoryName}}</ion-option>
+                        <ion-radio *ngFor="let item of category" value="{{item.CategoryName}}">{{item.CategoryName}}</ion-radio>
                       </ion-select>
                     </ion-item>
       

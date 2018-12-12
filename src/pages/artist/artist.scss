@@ -21,6 +21,18 @@ page-artist {
         }
     }
 
+    .not-user{
+        .toolbar-title{
+            text-align: left;
+            overflow: visible !important;
+    
+        }
+    
+        .toolbar-background{
+            background-color: white !important;
+        }
+    }
+
     .background {
         background-size: 100% 200px; 
         background-position: initial; 
