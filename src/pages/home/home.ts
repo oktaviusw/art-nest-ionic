@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import { SearchPage } from '../search/search';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -9,11 +10,12 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 export class HomePage implements OnInit {
 
   artworks =[];
+  artists = [];
 
   loading : any;
 
   constructor(public navCtrl: NavController, private api: APIService, public sanitizer: DomSanitizer,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
 
   }
 
@@ -33,12 +35,27 @@ export class HomePage implements OnInit {
         //yes, the loading anim dismisses when only one is finished. good enough.
         this.loading.dismiss();
       }).subscribe();
+
+      this.api.getAPI(this.api.ARTIST_DATA_ALL)
+      .map(response =>{
+        this.artists = response.result;
+        console.log(this.artists);
+      }).subscribe();
   }
 
   checkArtworks() {
     if(this.artworks.length > 0){
       return true;
     }
+  }
+
+  openSearch(){
+    let modal = this.modalCtrl.create(
+      SearchPage,
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
   }
 
 }

@@ -3,103 +3,70 @@
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
+
+  MODAL
 -->
-<ion-header>
-  <ion-navbar>
-    <ion-title>Create Commission</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content  class="myModal" padding text-center>
-  <!-- 
-    <form #f="ngForm" (ngSubmit)="onAddUser(f)">
-      <ion-item>
-        <ion-label stacked>Title</ion-label>
-        <ion-input ngModel type="text" name="title" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Customer</ion-label>
-        <ion-input ngModel type="text" name="customer" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Price</ion-label>
-        <ion-input ngModel type="number" name="Price" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Start Date</ion-label>
-        <ion-datetime name="s-date" displayFormat="MM/DD/YYYY" [(ngModel)]="startDate" [min]="minDate"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>End Date</ion-label>
-        <ion-datetime name="e-date" displayFormat="MM/DD/YYYY" [(ngModel)]="endDate" [min]="startDate"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Description</ion-label>
-        <ion-textarea rows="5" maxLength="200" ngModel type="text" name="Description" required></ion-textarea>
-      </ion-item>
-      <ion-grid item-aligns-left>
-        <ion-row style="padding-left:10px;">
-          <ion-col col-3>
-            <ion-label float-left stacked style="color:#999">Sketch Base</ion-label>
-          </ion-col>
-          <ion-col col-9 >
-              <button ion-button block>Select Reference</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
- 
-    <button ion-button type="submit" block>Create Order</button>
-  </form> -->
 
-  <form [formGroup]="formCommission" (ngSubmit)="submitCommission()">
-      <ion-item>
-          <ion-label stacked>
-              Title
-          </ion-label>
-          <ion-input type="text" formControlName="title"></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label stacked>
-              Customer
-          </ion-label>
-          <ion-input type="text" formControlName="customer"></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label stacked>
-              Price
-          </ion-label>
-          <ion-input type="number" formControlName="price"></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label item-start stacked>
-              Start Date
-          </ion-label>
-          <span item-start *ngIf="startDateSelected" >{{startDate | date}}</span>
-          <ion-icon item-end name="calendar" (click)="pickStartDate()"></ion-icon>
-          
-      </ion-item>
-
-      <ion-item>
-          <ion-label item-start stacked>
-              End Date
-          </ion-label>
-          <span item-start *ngIf="endDateSelected" item-start>{{endDate | date}}</span>
-          <ion-icon item-end name="calendar" (click)="pickEndDate()"></ion-icon>
-      </ion-item>
-
-      <ion-item>
-          <ion-label stacked>
-              Description
-          </ion-label>
-          <ion-textarea type="text" formControlName="description"></ion-textarea>
-      </ion-item>
-
-      <button ion-button type="button" (click)="chooseImagePicker()">Add Sketch</button>
-      <img style="width: 100%; object-fit: contain;" *ngIf="imageSketchSelected" [src]="sanitizer.bypassSecurityTrustUrl(imageSketch)">
-
-      <button ion-button style="width:100%;" type="submit" [disabled]="validateCommissionValueForm()">Submit Commission</button>
-  </form>
+<ion-content (click)="close()">
+    <ion-card class="modalSquare myModal" text-center (click)="none()">
+        <ion-card-header class="card-shadow">
+            <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">Create Commission</h3>
+        </ion-card-header>
+            <ion-card-content style="padding-top:10px;">
+                    <form [formGroup]="formCommission" (ngSubmit)="submitCommission()">
+                            <ion-item>
+                                <ion-label stacked>
+                                    Title
+                                </ion-label>
+                                <ion-input type="text" formControlName="title"></ion-input>
+                            </ion-item>
+                        
+                            <ion-item>
+                                <ion-label stacked>
+                                    Customer
+                                </ion-label>
+                                <ion-input type="text" formControlName="customer"></ion-input>
+                            </ion-item>
+                        
+                            <ion-item>
+                                <ion-label stacked>
+                                    Price
+                                </ion-label>
+                                <ion-input type="number" formControlName="price"></ion-input>
+                            </ion-item>
+                        
+                            <ion-item>
+                                <ion-label item-start stacked>
+                                    Start Date
+                                </ion-label>
+                                <span item-start *ngIf="startDateSelected" >{{startDate | date}}</span>
+                                <ion-icon item-end name="calendar" (click)="pickStartDate()"></ion-icon>
+                                
+                            </ion-item>
+                        
+                            <ion-item>
+                                <ion-label item-start stacked>
+                                    End Date
+                                </ion-label>
+                                <span item-start *ngIf="endDateSelected" item-start>{{endDate | date}}</span>
+                                <ion-icon item-end name="calendar" (click)="pickEndDate()"></ion-icon>
+                            </ion-item>
+                        
+                            <ion-item>
+                                <ion-label stacked>
+                                    Description
+                                </ion-label>
+                                <ion-textarea type="text" formControlName="description"></ion-textarea>
+                            </ion-item>
+                            <div class="separator-5"></div>
+                            <button ion-button type="button" (click)="chooseImagePicker()">Add Sketch</button>
+                            <img style="width: 100%; object-fit: contain;" *ngIf="imageSketchSelected" [src]="sanitizer.bypassSecurityTrustUrl(imageSketch)">
+                            <div padding>
+                                <button ion-button style="width:100%;" type="submit" [disabled]="validateCommissionValueForm()">Submit Commission</button>
+                            </div>
+                        </form>
+            </ion-card-content>
+         
+</ion-card>
 </ion-content>

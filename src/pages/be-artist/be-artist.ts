@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIService } from '../../service/webAPI';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the BeArtistPage page.
@@ -34,7 +35,8 @@ export class BeArtistPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public events: Events,
-    public api: APIService) {
+    public api: APIService,
+    public storage: Storage) {
 
       this.formArtist= this.formBuilder.group({
         aboutMe: [''],
@@ -120,7 +122,9 @@ export class BeArtistPage {
   }
 
   ngOnInit(){
-    this.idUser = 168;
+    this.storage.get('idUserSQL').then((val) => {
+      this.idUser = val;
+    });
     
     this.backgroundProfileSelected = false;
     this.imageBackgroundProfile = "assets/imgs/upload_icon.png";
@@ -148,6 +152,8 @@ export class BeArtistPage {
       loadingUpdate.dismiss();
       
       if(response.status == "OK"){
+        this.events.publish('userLoggedIn', this.idUser);
+
         let alert = this.alertCtrl.create({
 					title: 'SUCCESS',
 					subTitle: 'Welcome to the Artist Nest!',

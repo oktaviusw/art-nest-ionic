@@ -2,7 +2,7 @@ import { APIService } from '../../service/webAPI';
 import { HomePage } from './../home/home';
 import { ListUserPage } from './../list-user/list-user'
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, Events } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { FirebaseProvider } from '../../providers/firebase';
 import {RegisterPage} from '../../pages/register/register';
@@ -31,7 +31,8 @@ export class LoginPage {
               private alertCtrl: AlertController,
               private api: APIService,
               private firebaseProvider: FirebaseProvider,
-              private storage: Storage) {
+              private storage: Storage,
+              public events: Events) {
 
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -43,6 +44,10 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  registerPageGo(){
+    this.navCtrl.setRoot(RegisterPage);
   }
 
   loginAttempt(){
@@ -58,7 +63,11 @@ export class LoginPage {
       console.log(response);
       
       if(response.status == "OK"){
-        this.storage.set('idUserSQL',response.result);
+
+        this.storage.set('idUserSQL', response.result);
+        //this.api.loggedInUser = response.result;
+        this.events.publish('userLoggedIn', response.result);
+
         //Login Firebase
         this.firebaseProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then( loginUser => {
@@ -66,7 +75,7 @@ export class LoginPage {
             var x = this.storage.get('loginUser');
             console.log(JSON.stringify(x));
             loadingLogin.dismiss().then( () => {
-              this.navCtrl.setRoot(ListUserPage);
+              this.navCtrl.setRoot(HomePage);
             });
           }, error => {
             loadingLogin.dismiss().then( () => {

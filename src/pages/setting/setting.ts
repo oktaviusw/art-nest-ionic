@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIService } from '../../service/webAPI';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the SettingPage page.
  *
@@ -40,7 +41,8 @@ export class SettingPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public events: Events,
-    public api: APIService) {
+    public api: APIService,
+    public storage: Storage) {
 
       this.formUserSettings = this.formBuilder.group({
         displayName: ['', Validators.required],
@@ -199,17 +201,21 @@ export class SettingPage {
   }
 
   ngOnInit(){
-    this.idUser = 1;
-    this.defaultProfilePictureURL = "";
-    this.profilePictureSelected = false;
-    this.imageProfilePicture = "assets/imgs/logo.png";
+    this.storage.get('idUserSQL').then((val) => {
+      this.idUser = val;
+      this.defaultProfilePictureURL = "";
+      this.profilePictureSelected = false;
+      this.imageProfilePicture = "assets/imgs/logo.png";
 
-    this.isArtist = false;
-    this.defaultBackgroundProfileURL = "";
-    this.backgroundProfileSelected = false;
-    this.imageProfileBackground = "";
+      this.isArtist = false;
+      this.defaultBackgroundProfileURL = "";
+      this.backgroundProfileSelected = false;
+      this.imageProfileBackground = "";
 
-    this.loadUserData();
+      this.loadUserData();
+
+    });
+
   }
 
   loadUserData(){

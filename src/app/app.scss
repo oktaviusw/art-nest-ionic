@@ -111,6 +111,14 @@ ion-header button, .back-button {
     -ms-transform: translate(-50%, -50%);
 }
 
+.toolbar-title-md{
+    padding: 10px;
+}
+
+.toolbar-background {
+    background-color: #D9A069;
+  }
+
 .overlay {
     position: absolute;
     text-align: center;
@@ -128,6 +136,17 @@ ion-header button, .back-button {
 
 .card-shadow {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+ion-menu{
+    .toolbar-background-md{
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+    .menu-inner{
+        background-color: transparent !important;
+        max-width: 290px !important;
+    }
 }
 
 ion-col {
@@ -161,3 +180,61 @@ ion-col {
       color: darkorange;
       text-transform: uppercase;
   }
+
+  .modal-backdrop-bg {
+    transition: opacity 300ms ease-in-out;
+    -webkit-transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+}
+
+    .active .modal-backdrop-bg {
+        opacity: 0.5;
+    }
+
+    @media (max-width: 767px) {
+        ion-modal.show-page {
+            background-color: #0000006e;
+            text-align: -webkit-center;
+        }
+
+        ion-content{
+            background-color: #0000006e;
+        }
+    }
+
+    ion-modal{
+        .modal-backdrop-bg {
+            transition: opacity 300ms ease-in-out;
+            -webkit-transition: opacity 300ms ease-in-out;
+            background-color: #000;
+            opacity: 0;
+        }
+        
+        .active .modal-backdrop-bg {
+            opacity: 0.5;
+        }
+    
+        .content-md{
+            background-color: rgba(0,0,0,0) !important;
+        }
+
+        .card-shadow {
+            box-shadow: 0 2px 2px 0 rgba(217,160,105,.14), 0 3px 1px -2px rgba(217,160,105,.12), 0 1px 5px 0 rgba(217,160,105,.12);
+        }
+
+        .grid{
+            padding: 0 !important;
+        }
+    }
+    
+    .modalSquare{
+        background-color: white;
+        width: 90%;
+        border-radius: 5px;
+        margin-bottom: 20%;
+        height: 65%;
+        overflow: scroll;
+        margin-top: 20%;
+    }
+

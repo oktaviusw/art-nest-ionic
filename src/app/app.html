@@ -1,12 +1,12 @@
-<ion-menu [content]="sideMenuContent">
-	<ion-header>
-		<ion-toolbar>
-			<ion-grid>
-				<ion-row align-items-center>
-					<ion-col col-4>
-							<img class="profile-picture" style="max-width: 85px; max-height: 85px;" src={{photoURL}}>
+<ion-menu type="overlay" [content]="sideMenuContent">
+	<ion-header style="background-color:transparent !important">
+		<ion-toolbar style="background-color:transparent">
+			<ion-grid style="background-color:transparent">
+				<ion-row style="background-color:transparent" align-items-center>
+					<ion-col style="background-color:transparent" col-4>
+							<img class="profile-picture" style="max-width: 85px; max-height: 85px;" src="{{photoURL}}">
 					</ion-col>
-					<ion-col col-8>
+					<ion-col style="background-color:transparent" col-8>
 						<span class="title">{{displayName}}</span>
 						<br>
 						<span>{{email}}</span>
@@ -15,45 +15,45 @@
 			</ion-grid>	
 		</ion-toolbar>
 	</ion-header>
-	<ion-content>
+	<ion-content style="background-color:rgba(255,255,255,0.9)">
 		<ion-list>
-			<button ion-item (click)="onLoad(homePage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(homePage)">
 				<ion-icon name="home" item-left></ion-icon>
 				Home
 			</button>
-			<button ion-item (click)="onLoad(requestPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(requestPage)">
 				<ion-icon name="clipboard" item-left></ion-icon>
 				Requests
 			</button>
-			<button ion-item (click)="onLoad(messagePage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(messagePage)">
 				<ion-icon name="mail" item-left></ion-icon>
 				Messages
 			</button>
-			<ion-item-divider>
+			<ion-item-divider style="background-color:transparent">
 				Artist
 			</ion-item-divider>
 			<!-- IF ARTIST -->
-			<button ion-item (click)="onLoad(artistPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(artistPage)" *ngIf="artist.isArtist">
 				<ion-icon name="person" item-left></ion-icon>
-				Portfolio
+				Profile
 			</button>
-			<button ion-item (click)="onLoad(projectPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(projectPage)" *ngIf="artist.isArtist">
 				<ion-icon name="brush" item-left></ion-icon>
 				Projects
 			</button>
 			<!-- IF NOT ARTIST -->
-			<button ion-item (click)="onLoad(beArtistPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(beArtistPage)" *ngIf="!artist.isArtist">
 				<ion-icon name="person-add" item-left></ion-icon>
 				Become an Artist
 			</button>
-			<ion-item-divider>
+			<ion-item-divider style="background-color:transparent">
 				Account
 			</ion-item-divider>
-			<button ion-item (click)="onLoad(settingPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(settingPage)">
 				<ion-icon name="settings" item-left></ion-icon>
 				Settings
 			</button>
-			<button ion-item (click)="logOut()">
+			<button style="background-color:transparent" ion-item (click)="logOut()">
 				<ion-icon name="exit" item-left></ion-icon>
 				Log Out
 			</button>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, NavController, ToastController, AlertController, Events } from 'ionic-angular';
+import { Platform, MenuController, NavController, ToastController, AlertController, Events, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,6 +22,9 @@ import { RegisterPage } from '../pages/register/register';
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { LoginPage } from '../pages/login/login';
 import { ListUserPage } from '../pages/list-user/list-user';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { SearchPage } from '../pages/search/search';
+import { APIService } from '../service/webAPI';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,10 +42,14 @@ export class MyApp {
   beArtistPage:any = BeArtistPage;
   loginPage:any = LoginPage;
   listUserPage:any = ListUserPage;
+  editProfilePage:any = EditProfilePage;
+  searchPage:any = SearchPage;
 
   displayName: string;
   email: string;
   photoURL: string;
+  artist = [];
+  user_id:any;
 
   @ViewChild('sideMenuContent') nav: NavController;
   
@@ -56,7 +63,9 @@ export class MyApp {
     private firebaseProvider: FirebaseProvider, 
     private firebase: Firebase, 
     private storage: Storage,
-    public events: Events) {
+    public events: Events,
+    public loadingCtrl: LoadingController,
+    public api: APIService) {
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -73,8 +82,6 @@ export class MyApp {
         }
       })
 
-      
-
       statusBar.styleDefault();
       splashScreen.hide();
     });
@@ -85,7 +92,7 @@ export class MyApp {
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
-        this.nav.setRoot(ListUserPage);
+        this.nav.setRoot(LoginPage);
         unsubscribe();
       }
     });
@@ -94,10 +101,26 @@ export class MyApp {
       this.changeDisplayName(displayName, email, photoURL);
     });
 
+      events.subscribe('userLoggedIn', (user_id) => {
+        let loading;
+        loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+        loading.present();
+
+        this.user_id = user_id;
+        this.api.getAPI(this.api.USERS_DATA + this.user_id)
+          .map(response =>{
+            this.artist = response.result;
+            console.log(this.artist);
+            loading.dismiss();
+          }).subscribe();
+      });
+
   }
 
   onLoad(page: any) {
-    this.nav.push(page);
+    this.nav.setRoot(page);
     this.menuCtrl.close();
   }
 

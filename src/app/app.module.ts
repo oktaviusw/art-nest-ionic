@@ -1,3 +1,4 @@
+import { CategoryPage } from './../pages/category/category';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -42,6 +43,8 @@ import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
 import { Camera } from '@ionic-native/camera';
 import { DatePipe } from '@angular/common';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { SearchPage } from '../pages/search/search';
 
 /* PIPE */
 import { PipesModule } from "../pipes/pipes.module";
@@ -63,7 +66,10 @@ import { PipesModule } from "../pipes/pipes.module";
     ModalOrderPage,
     ModalDetailPage,
     ListUserPage,
-    ChatRoomPage
+    ChatRoomPage,
+    EditProfilePage,
+    SearchPage,
+    CategoryPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +98,10 @@ import { PipesModule } from "../pipes/pipes.module";
     ModalOrderPage,
     ModalDetailPage,
     ListUserPage,
-    ChatRoomPage
+    ChatRoomPage,
+    EditProfilePage,
+    SearchPage,
+    CategoryPage
   ],
   providers: [
     StatusBar,

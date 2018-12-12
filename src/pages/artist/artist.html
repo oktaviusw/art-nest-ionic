@@ -1,15 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Artist
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <ion-title>
+        <div>
+            <img style="height: 100%; width: 100%; object-fit: contain; padding-top: 8px" src="../assets/imgs/application_logo_header.png">
+        </div>
+      </ion-title>
+      <ion-buttons left>
+        <button ion-button menuToggle>
+          <ion-icon style="color:white; font-size: 25px" name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+          <button ion-button (click)="openSearch()">
+            <ion-icon style="color:white; font-size: 25px" name="search"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content>
   <div class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
@@ -95,7 +102,7 @@
           </button>
         </ion-col>
         <ion-col col-4>
-          <button class="button-circle">
+          <button class="button-circle" (click)="editProfile()">
             <div>
               <div class="card-shadow icon-border">
                 <ion-icon name="create" class="icon-middle"></ion-icon>
@@ -121,7 +128,7 @@
         <ion-col col-6 *ngFor="let artwork of artist.Artworks">
           <ion-card>
             <div class="container">
-              <img src="http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}}">
+              <img src="http://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/artwork/{{artwork.DirectoryData}}">
             </div>
           </ion-card>
         </ion-col>

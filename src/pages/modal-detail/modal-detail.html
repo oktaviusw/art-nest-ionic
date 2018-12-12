@@ -3,40 +3,96 @@
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
+
+  MODAL
 -->
 
 
-<ion-header>
-  <ion-navbar>
-    <!--NG IF REQUEST -->
-    <ion-title>Request Detail</ion-title>
-    <!--NG IF ORDER -->
-    <!--
-      <ion-title>Order Detail</ion-title>
-    -->
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  
+<ion-content (click)="close()">
+    <ion-card class="modalSquare myModal" text-center (click)="none()">
+          
+          <ion-card-content style="padding-top:20px;">  
 
-  <ion-card>
-          <div>
-            <div style="padding-left: 110px; padding-top: 110px; padding-right: 110px">
-              <div class="container">
-                <img src="../assets/imgs/application_logo.png">
-                <div class="overlay">
-                  <img src="../assets/imgs/artist_icon.png" class="inlay" style="top:53%;">
-                </div>
-              </div>
+            <div>
+                <p class="title" style="font-weight:bold; font-size: 20px">Gleipnir</p>
+                <span>21 November 2018 - 22 November 2018</span>
+                <span style="font-weight: bold;" class="accepted">ACCEPTED</span>
             </div>
-          </div>
-
-      <h3>Title</h3>
- 
-      <span class="title">21 November 2018 - 22 November 2018</span>
-
-      <span class="title completed">completed</span>
-  
+            <div padding>
+                <ion-grid>
+                    <ion-row align-items-top>
+                      <ion-col col-12>
+                          <img src="../assets/imgs/artist.jpg">
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <div class="separator-5"></div>
+            <!-- <ion-grid>
+                <ion-row align-items-center>
+                  <ion-col col-4>
+                    <div  align-items-top style="text-align: left; font-weight: bold">
+                        Drawn By
+                    </div>
+                  </ion-col>
+                  <ion-col col-2 style="margin-left:5px;">
+                    <img class="profile-picture" src="../assets/imgs/application_logo.png">
+                  </ion-col>
+                  <ion-col col-5 style="margin-left:5px;">
+                    <div style="text-align: left">
+                      <span>Oktavius Wiguna</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid> -->
+              <ion-grid>
+                  <ion-row align-items-center>
+                    <ion-col col-4>
+                      <div align-items-top style="text-align: left; font-weight: bold">
+                          Requested By
+                      </div>
+                    </ion-col>
+                    <ion-col col-2 style="margin-left:5px;">
+                      <img class="profile-picture" src="../assets/imgs/application_logo.png">
+                    </ion-col>
+                    <ion-col col-5 style="margin-left:5px;">
+                      <div style="text-align: left">
+                        <span>Oktavius Wiguna</span>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                <div class="separator-5"></div>
+              <ion-grid>
+                  <ion-row align-items-top>
+                    <ion-col col-4>
+                      <div style="text-align: left; font-weight: bold">
+                          Price
+                      </div>
+                    </ion-col>
+                    <ion-col col-7 style="margin-left:5px;">
+                      <div style="text-align: left">
+                        <span>2000000000</span>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                <div class="separator-5"></div>
+                <ion-grid>
+                    <ion-row align-items-top>
+                      <ion-col col-4>
+                        <div style="text-align: left; font-weight: bold">
+                            Description
+                        </div>
+                      </ion-col>
+                      <ion-col col-7 style="margin-left:5px;">
+                        <div style="text-align: left">
+                          <span>Oktavius Wigaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauna</span>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+            </div>
+      </ion-card-content>
   </ion-card>
 </ion-content>
