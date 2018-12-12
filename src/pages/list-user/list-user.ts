@@ -5,6 +5,9 @@ import { Storage } from "@ionic/storage";
 import { appconfig } from "../../app/app.config";
 import { User } from "../../models/user";
 
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+
 import { FirebaseProvider } from "../../providers/firebase";
 import { ChatRoomPage } from "../chat-room/chat-room";
 
@@ -18,6 +21,7 @@ import { AlertController } from "ionic-angular";
 export class ListUserPage implements OnInit{
   availableusers: any = [];
   chatuser:User;
+  emailSet:any = [];
 
   constructor(
     public navCtrl: NavController,
@@ -30,7 +34,6 @@ export class ListUserPage implements OnInit{
 
   ngOnInit() {
     //Fetch other users
-
     this.storage.get("currentUser").then(currentUser => {
       let userCredential = JSON.parse(currentUser);
       this.chatuser = {
@@ -40,18 +43,68 @@ export class ListUserPage implements OnInit{
         deviceID: '',
         time: new Date().getTime()
       }
-      this.db
-        .collection<User>(appconfig.users_endpoint)
-        .valueChanges()
-        .subscribe(users => {
-          //this.availableusers = users;
-          console.log(users);
-          this.availableusers = users.filter(user => {
-            if (user.email != this.chatuser.email) {
-              return user;
+     
+      firebase.firestore().collection(appconfig.chats_endpoint)
+      .where("sender", "==", this.chatuser.email)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          // let data = doc.data().data;
+          // dataSet.push(doc.data())
+          if(!this.emailSet.includes(doc.data().receiverEmail)){
+            this.emailSet.push(doc.data().receiverEmail);
+          }
+        })
+        firebase.firestore().collection(appconfig.chats_endpoint)
+        .where("receiverEmail", "==", this.chatuser.email)
+        .get()
+        .then((snapshot1) => {
+          snapshot1.forEach((doc) => {
+            // let data = doc.data().data;
+            // dataSet.push(doc.data())
+            if(!this.emailSet.includes(doc.data().sender)){
+              this.emailSet.push(doc.data().sender);
             }
-          });
+          })
+
+          this.db
+            .collection<User>(appconfig.users_endpoint)
+            .valueChanges()
+            .subscribe(users => {
+
+              let alert = this.alertCtrl.create({
+                title: 'Init List User',
+                subTitle: JSON.stringify(this.emailSet),
+                buttons: [
+                  {
+                    text: "OK"
+                  }
+                ]
+              });
+              alert.present();
+              
+              //this.availableusers = users;
+              console.log(users);
+              this.availableusers = users.filter(user => {
+                if(this.emailSet.includes(user.email)){
+                  return user;
+                }
+              });
+            });
+
+        })
+      }).catch((err) => {
+        let alert = this.alertCtrl.create({
+          title: 'Init List User Error',
+          subTitle: err.message,
+          buttons: [
+            {
+              text: "OK"
+            }
+          ]
         });
+        alert.present();
+      })
     });
   }
 

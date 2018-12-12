@@ -7,31 +7,70 @@
 </ion-header>
 
 
-<ion-content #content padding id="chatPage">
+<ion-content>
 
-  <ion-list>
+  <!-- <ion-list>
 
-    <ion-item *ngFor="let chat of chats" class="chat" text-wrap [ngClass]="{'chat-partner' : isChatPartner(chat.sender)}">
-      {{chat.message}}
+    <ion-item *ngFor="let chat of chats | sort:'time'" class="chat" text-wrap [ngClass]="{'chat-partner' : isChatPartner(chat.sender)}">
+      <ion-item *ngIf="chat.type == 'message'">{{chat.message}}</ion-item>
+      <img *ngIf="chat.type == 'picture'" src="{{chat.message}}">
     </ion-item>
 
+  </ion-list> -->
+  <ion-list>
+    <ion-item *ngFor="let chat of chats | sort:'time'" no-lines>
+        <div class="chat-message" [ngClass]="{'text-right' : !isChatPartner(chat.sender)}" *ngIf="!isChatPartner(chat.sender)">
+          <div class="right-bubble">
+            <span class="msg-name">Me</span>
+            <span class="msg-date">{{chat.time | date:'short'}}</span>
+            <p text-wrap *ngIf="chat.type == 'message'">{{chat.message}}</p>
+            <br *ngIf="chat.type == 'picture'">
+            <img *ngIf="chat.type == 'picture'" src="{{chat.message}}" (click)="showImage(chat.message)">
+          </div>
+        </div>
+        <div class="chat-message" [ngClass]="{'text-left' : isChatPartner(chat.sender)}" *ngIf="isChatPartner(chat.sender)">
+          <div class="left-bubble">
+            <span class="msg-name">{{chatpartner.username}}</span>
+            <span class="msg-date">{{chat.time | date:'short'}}</span>
+            <p text-wrap *ngIf="chat.type == 'message'">{{chat.message}}</p>
+            <br *ngIf="chat.type == 'picture'">
+            <img *ngIf="chat.type == 'picture'" src="{{chat.message}}" (click)="showImage(chat.message)">
+          </div>
+        </div>
+    </ion-item>
   </ion-list>
 
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-row>
-      <ion-col col-10>
+      <ion-col col-8>
         <ion-input type="text" [(ngModel)]="message" placeholder="Enter Message...."></ion-input>
       </ion-col>
-      <ion-col col-2>
-        <button ion-button block (click)="addChat()">
-          Send
-        </button>
+      <ion-col col-2 (click)="getImage()">
+        <ion-icon style="font-size: 30px" name="image" ></ion-icon>
+      </ion-col>
+      <ion-col col-2 (click)="addChat()">
+        <ion-icon style="font-size: 30px" name="paper-plane"></ion-icon>
       </ion-col>
     </ion-row>
 
 
-  </ion-toolbar>
+  </ion-toolbar> -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 justify-content-center align-items-center (click)="getImage()">
+          <ion-icon style="font-size: 30px" name="image" ></ion-icon>
+      </ion-col>
+      <ion-col col-8>
+        <ion-input justify-content-center align-items-center type="text" placeholder="Enter Message...." [(ngModel)]="message" style = "border-radius: 30px; background-color: #f0f0f0"></ion-input>
+      </ion-col>
+      <ion-col col-2 justify-content-center align-items-center (click)="addChat()">
+        <ion-icon style="font-size: 30px" name="paper-plane"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-footer>

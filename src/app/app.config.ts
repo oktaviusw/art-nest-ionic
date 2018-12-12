@@ -9,5 +9,5 @@ export const appconfig = {
     },
     users_endpoint: "users",
     chats_endpoint: "chats",
-    devices_endpoint: "devices"
+    notification_endpoint: "notifications"
   };
