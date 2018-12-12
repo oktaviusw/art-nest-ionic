@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 
@@ -21,10 +22,13 @@ export class RequestPage implements OnInit {
   comissions = [];
   customer_id = 1;
 
+  anySketch: boolean;
+  imageUrl: any;
+
   loading:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController,
-    public loadingCtrl: LoadingController, public api: APIService) {
+    public loadingCtrl: LoadingController, public api: APIService, public sanitizer:DomSanitizer) {
   }
 
   ngOnInit() {
@@ -34,6 +38,7 @@ export class RequestPage implements OnInit {
     });
     this.loading.present();
 
+    this.anySketch = false;
     
 
     this.customer_id = this.api.loggedInUser;
@@ -41,6 +46,9 @@ export class RequestPage implements OnInit {
     this.api.getAPI(this.api.REQUEST_DATA_ALL + this.customer_id + '/CUSTOMER')
       .map(response =>{
         this.comissions = response.result;
+
+        this.imageUrl = 'https://artnest-umn.000webhostapp.com/assets/projectdata/$comission.IDProject/SketchBase.jpg';
+        
         console.log(this.comissions);
 
         // for(let i in this.comissions){
@@ -54,6 +62,15 @@ export class RequestPage implements OnInit {
         // }
 
         for (var i = 0; i < this.comissions.length; i++) {
+          this.comissions[i].image = "";
+          if(this.comissions[i].anySketchBase == true){
+            this.comissions[i].image = 'https://artnest-umn.000webhostapp.com/assets/projectdata/'+this.comissions[i].IDProject+'/SketchBase.jpg';        
+          }
+          else{
+            this.comissions[i].image = 'assets/imgs/application_logo.png';
+          }
+
+
           this.comissions[i].state = "";
           if(this.comissions[i].RequestStatus == "ACCEPTED"){
             this.comissions[i].state = this.comissions[i].CommissionStatus;

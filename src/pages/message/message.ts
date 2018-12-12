@@ -88,6 +88,10 @@ export class MessagePage implements OnInit {
                   return user;
                 }
               });
+
+              this.availableusers.array.forEach(element => {
+                
+              });
             });
 
         })

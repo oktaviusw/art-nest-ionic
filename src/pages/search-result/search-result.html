@@ -42,7 +42,7 @@
      
           <ion-grid>
             <ion-row align-items-center>
-              <ion-col style="display:flex" col-6 *ngFor="let artwork of dataArtwork; let i = index" (click)="detailArtwork(artwork)">
+              <ion-col style="display:flex" col-6 *ngFor="let artwork of dataArtwork; let i = index" (click)="detailArtwork(artwork.IDArtWork)">
                 <ion-card>
                   <div class="container">
                     <img src="http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}}">

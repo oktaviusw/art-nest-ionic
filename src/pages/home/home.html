@@ -21,7 +21,7 @@
 <ion-content padding>
   <div>
     <h5 class="title">Featured Artworks</h5>
-    <ion-slides autoplay="3000" loop="false" speed="1000">
+    <ion-slides *ngIf="artworks && artworks.length>0" autoplay="3000" loop="false" speed="1000">
       <!-- ngfor -->
       <ion-slide *ngFor="let artwork of artworks" (click)="detailArtwork(artwork.IDArtWork)">
         <!-- http://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/artwork/{{artwork.DirectoryData}} -->
@@ -46,7 +46,7 @@
         </ion-card>
       </ion-slide>
       <!-- placeholder -->
-      <!-- <ion-slide>
+      <!-- <ion-slide >
         <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
           <div class="overlay-text hover-show">
             <ion-grid>
