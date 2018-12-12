@@ -201,20 +201,17 @@ export class SettingPage {
   }
 
   ngOnInit(){
-    this.storage.get('idUserSQL').then((val) => {
-      this.idUser = val;
-      this.defaultProfilePictureURL = "";
-      this.profilePictureSelected = false;
-      this.imageProfilePicture = "assets/imgs/logo.png";
+    this.idUser = this.api.loggedInUser;
+    this.defaultProfilePictureURL = "";
+    this.profilePictureSelected = false;
+    this.imageProfilePicture = "assets/imgs/logo.png";
 
-      this.isArtist = false;
-      this.defaultBackgroundProfileURL = "";
-      this.backgroundProfileSelected = false;
-      this.imageProfileBackground = "";
+    this.isArtist = false;
+    this.defaultBackgroundProfileURL = "";
+    this.backgroundProfileSelected = false;
+    this.imageProfileBackground = "";
 
-      this.loadUserData();
-
-    });
+    this.loadUserData();
 
   }
 

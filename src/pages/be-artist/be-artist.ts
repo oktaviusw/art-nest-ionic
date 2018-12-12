@@ -123,9 +123,7 @@ export class BeArtistPage {
   }
 
   ngOnInit(){
-    this.storage.get('idUserSQL').then((val) => {
-      this.idUser = val;
-    });
+    this.idUser = this.api.loggedInUser;
     
     this.backgroundProfileSelected = false;
     this.imageBackgroundProfile = "assets/imgs/upload_icon.png";
