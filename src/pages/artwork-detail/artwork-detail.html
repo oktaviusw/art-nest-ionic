@@ -23,4 +23,12 @@
   <p style='width: 100%;'>
     {{descArtwork}}
   </p>
+
+  <ion-fab bottom right *ngIf="ownArtwork">
+    <button ion-fab><ion-icon name="contact"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="editArtwork()"><ion-icon name="brush"></ion-icon></button>
+      <button ion-fab (click)="deleteArtwork()"><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

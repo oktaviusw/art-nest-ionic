@@ -1,3 +1,4 @@
+import { ArtworkEditPage } from './../pages/artwork-edit/artwork-edit';
 import { SearchResultPage } from './../pages/search-result/search-result';
 import { CategoryPage } from './../pages/category/category';
 import { BrowserModule } from '@angular/platform-browser';
@@ -58,6 +59,7 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     ArtistPage,
     ArtworkPage,
     ArtworkDetailPage,
+    ArtworkEditPage,
     IntroPage,
     LoginPage,
     RegisterPage,
@@ -93,6 +95,7 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     ArtistPage,
     ArtworkPage,
     ArtworkDetailPage,
+    ArtworkEditPage,
     IntroPage,
     LoginPage,
     RegisterPage,

@@ -63,5 +63,9 @@ export class ProjectPage implements OnInit {
   detailRequest(i) {
     let modal = this.modalCtrl.create(ModalDetailPage, {comission: this.comissions[i]});
     modal.present();
+
+    modal.onDidDismiss(data=>{
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    });
   }
 }

@@ -67,6 +67,7 @@ export class RequestPage implements OnInit {
 
   }
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad RequestPage');
   }
@@ -74,6 +75,10 @@ export class RequestPage implements OnInit {
   detailRequest(i) {
     let modal = this.modalCtrl.create(ModalDetailPage, {comission: this.comissions[i]});
     modal.present();
+
+    modal.onDidDismiss(data=>{
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    });
     // this.navCtrl.push(ModalDetailPage, {comission: this.comissions[i]});
   }
 
