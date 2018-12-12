@@ -31,7 +31,7 @@ import { APIService } from '../service/webAPI';
 })
 
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;

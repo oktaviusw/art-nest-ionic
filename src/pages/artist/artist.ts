@@ -5,8 +5,8 @@ import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { Storage } from '@ionic/storage';
-import {  ArtworkPage } from '../artwork/artwork';
 import { SearchPage } from '../search/search';
+import { ArtworkPage } from '../artwork/artwork';
 
 /**
  * Generated class for the ArtistPage page.
@@ -39,20 +39,15 @@ export class ArtistPage implements OnInit {
     });
     this.loading.present();
 
-    this.storage.get('idUserSQL').then((val) => {
-
-      this.artist_id = val;
-      //Get single data from artist
-      this.api.getAPI(this.api.ARTIST_DATA_SINGLE + this.artist_id)
-        .map(response =>{
-          this.artist = response.result;
-          //console.log(this.artist);
-          //Data is now loaded; dismiss load anim
-          this.loading.dismiss();
-        }).subscribe();
-
-    });
-
+    this.artist_id = this.api.loggedInUser;
+    //Get single data from artist
+    this.api.getAPI(this.api.ARTIST_DATA_SINGLE + this.artist_id)
+      .map(response =>{
+        this.artist = response.result;
+        //console.log(this.artist);
+        //Data is now loaded; dismiss load anim
+        this.loading.dismiss();
+      }).subscribe();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArtistPage');

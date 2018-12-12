@@ -10,120 +10,101 @@
 
 
 <ion-content (click)="close()">
-    <ion-card class="modalSquare myModal" text-center (click)="none()">
-          
-          <ion-card-content style="padding-top:20px;">  
-
-            <div>
-                <p class="title" style="font-weight:bold; font-size: 20px">Gleipnir</p>
-                <span>21 November 2018 - 22 November 2018</span>
-                <span style="font-weight: bold;" class="accepted">ACCEPTED</span>
+  <ion-card class="modalSquare myModal" text-center (click)="none()">   
+    <ion-card-content style="padding-top:20px;">  
+      <div>
+        <p class="title" style="font-weight:bold; font-size: 20px">Gleipnir</p>
+        <span>21 November 2018 - 22 November 2018</span>
+        <span style="font-weight: bold;" class="accepted">ACCEPTED</span>
+      </div>
+      <div padding>
+        <ion-grid>
+          <ion-row align-items-top>
+            <ion-col col-12>
+              <img src="../assets/imgs/artist.jpg">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="separator-5"></div>
+        <ion-grid>
+          <ion-row align-items-center>
+            <ion-col col-4>
+              <div  align-items-top style="text-align: left; font-weight: bold">
+                Drawn By
+              </div>
+            </ion-col>
+            <ion-col col-2 style="margin-left:5px;">
+              <img class="profile-picture" src="../assets/imgs/application_logo.png">
+            </ion-col>
+            <ion-col col-5 style="margin-left:5px;">
+              <div style="text-align: left">
+                <span>Oktavius Wiguna</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row align-items-center>
+            <ion-col col-4>
+              <div align-items-top style="text-align: left; font-weight: bold">
+                Requested By
+              </div>
+            </ion-col>
+            <ion-col col-2 style="margin-left:5px;">
+              <img class="profile-picture" src="../assets/imgs/application_logo.png">
+            </ion-col>
+            <ion-col col-5 style="margin-left:5px;">
+              <div style="text-align: left">
+                <span>Oktavius Wiguna</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="separator-5"></div>
+        <ion-grid>
+          <ion-row align-items-top>
+            <ion-col col-4>
+              <div style="text-align: left; font-weight: bold">
+                Price
+              </div>
+            </ion-col>
+            <ion-col col-7 style="margin-left:5px;">
+              <div style="text-align: left">
+                <span>2000000000</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="separator-5"></div>
+        <ion-grid>
+          <ion-row align-items-top>
+            <ion-col col-4>
+              <div style="text-align: left; font-weight: bold">
+                Description
+              </div>
+            </ion-col>
+            <ion-col col-7 style="margin-left:5px;">
+              <div style="text-align: left">
+                <span>Description</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row align-items-top>
+            <ion-col col-6 padding>
+              <div>
+                <button ion-button style="width:80%;">Accept</button>
+              </div>
+            </ion-col>
+            <ion-col col-6 padding>
+              <div>
+              <button ion-button style="width:80%;">Reject</button>
             </div>
-            <div padding>
-                <ion-grid>
-                    <ion-row align-items-top>
-                      <ion-col col-12>
-                          <img src="../assets/imgs/artist.jpg">
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                  <div class="separator-5"></div>
-            <!-- <ion-grid>
-                <ion-row align-items-center>
-                  <ion-col col-4>
-                    <div  align-items-top style="text-align: left; font-weight: bold">
-                        Drawn By
-                    </div>
-                  </ion-col>
-                  <ion-col col-2 style="margin-left:5px;">
-                    <img class="profile-picture" src="../assets/imgs/application_logo.png">
-                  </ion-col>
-                  <ion-col col-5 style="margin-left:5px;">
-                    <div style="text-align: left">
-                      <span>Oktavius Wiguna</span>
-                    </div>
-                  </ion-col>
-                </ion-row>
-              </ion-grid> -->
-              <ion-grid>
-                  <ion-row align-items-center>
-                    <ion-col col-4>
-                      <div align-items-top style="text-align: left; font-weight: bold">
-                          Drawn By
-                      </div>
-                    </ion-col>
-                    <ion-col col-2 style="margin-left:5px;">
-                      <img class="profile-picture" src="../assets/imgs/application_logo.png">
-                    </ion-col>
-                    <ion-col col-5 style="margin-left:5px;">
-                      <div style="text-align: left">
-                        <span>Oktavius Wiguna</span>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              <ion-grid>
-                  <ion-row align-items-center>
-                    <ion-col col-4>
-                      <div align-items-top style="text-align: left; font-weight: bold">
-                          Requested By
-                      </div>
-                    </ion-col>
-                    <ion-col col-2 style="margin-left:5px;">
-                      <img class="profile-picture" src="../assets/imgs/application_logo.png">
-                    </ion-col>
-                    <ion-col col-5 style="margin-left:5px;">
-                      <div style="text-align: left">
-                        <span>Oktavius Wiguna</span>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-                <div class="separator-5"></div>
-              <ion-grid>
-                  <ion-row align-items-top>
-                    <ion-col col-4>
-                      <div style="text-align: left; font-weight: bold">
-                          Price
-                      </div>
-                    </ion-col>
-                    <ion-col col-7 style="margin-left:5px;">
-                      <div style="text-align: left">
-                        <span>2000000000</span>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-                <div class="separator-5"></div>
-                <ion-grid>
-                    <ion-row align-items-top>
-                      <ion-col col-4>
-                        <div style="text-align: left; font-weight: bold">
-                            Description
-                        </div>
-                      </ion-col>
-                      <ion-col col-7 style="margin-left:5px;">
-                        <div style="text-align: left">
-                          <span>Oktavius Wigaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauna</span>
-                        </div>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                  <ion-grid>
-                    <ion-row align-items-top>
-                      <ion-col col-6 padding>
-                        <div>
-                            <button ion-button style="width:80%;">Accept</button>
-                        </div>
-                      </ion-col>
-                      <ion-col col-6 padding>
-                        <div>
-                          <button ion-button style="width:80%;">Reject</button>
-                      </div>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-            </div>
-      </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card-content>
   </ion-card>
 </ion-content>

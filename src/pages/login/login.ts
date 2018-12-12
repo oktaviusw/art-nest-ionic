@@ -64,7 +64,7 @@ export class LoginPage {
       
       if(response.status == "OK"){
 
-        this.storage.set('idUserSQL', response.result);
+        // this.storage.set('idUserSQL', response.result);
         this.api.loggedInUser = response.result;
         this.events.publish('userLoggedIn', response.result);
 

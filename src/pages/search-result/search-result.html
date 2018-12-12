@@ -1,0 +1,60 @@
+<!--
+  Generated template for the SearchResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>search-result</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="isArtistSearch">
+      <ion-grid>
+          <ion-row align-items-center>
+            <!-- ngfor -->
+            <ion-col col-6 *ngFor="let artist of dataArtist">
+              <ion-card class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
+                <div class="container">
+                  <img src="../assets/imgs/application_logo_black.png">
+                  <div class="overlay">
+                    <img style="width: 20vw; height: 20vw;" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay">
+                  </div>
+                </div>
+                <div class="overlay-text" style="padding: 6px;">
+                  <span class="title">{{artist.DisplayName}}</span>
+                </div>
+              </ion-card>
+            </ion-col>        
+            
+          </ion-row>
+        </ion-grid>
+  </div>
+
+  <div *ngIf="isArtworkSearch">
+      <ion-card  *ngFor="let artwork of dataArtwork" class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artwork.EMail + '/artwork/' + artwork.DirectoryData + ')'">
+        <div class="overlay-text hover-show">
+          <ion-grid>
+            <ion-row align-items-center>
+              <ion-col col-3 class="title">
+                <img class="profile-picture" src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artwork.EMail}}/ProfilePicture.png">
+              </ion-col>
+              <ion-col col-9 >
+                <div style="text-align: left">
+                  <span class="title">{{artwork.Title}}</span>
+                  <br>
+                  <span>by {{artwork.DisplayName}}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+  </div>
+  
+</ion-content>

@@ -11,7 +11,7 @@
 <ion-content (click)="close()">
     <ion-card class="modalSquare myModal" text-center (click)="none()">
             <ion-card-content style="padding-top:20px;">
-                <form>
+                <!-- <form>
                     <ion-item>
                         <ion-label stacked>
                             Keywords
@@ -40,6 +40,31 @@
                     <div padding>
                         <button ion-button style="width:100%;" type="submit">Search</button>
                     </div>
+                </form> -->
+                <form [formGroup]="formSearch" (ngSubmit)="startSearch()">
+                    <ion-item>
+                      <ion-label stacked>
+                        Key Words
+                      </ion-label>
+                      <ion-input type="text" formControlName="keyword"></ion-input>
+                    </ion-item>
+      
+                    <ion-item>
+                      <ion-label stacked>Category</ion-label>
+                      <ion-select formControlName="category">
+                        <ion-option *ngFor="let item of category" value="{{item.CategoryName}}">{{item.CategoryName}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+      
+                    <ion-item>
+                      <ion-label stacked>Type of Search</ion-label>
+                      <ion-select formControlName="type">
+                        <ion-option value="ARTIST">Artist</ion-option>
+                        <ion-option value="ARTWORK">Artwork</ion-option>
+                      </ion-select>
+                    </ion-item>
+                     
+                    <button ion-button style="width:100%;" type="submit" [disabled]="!this.formSearch.valid">Search</button>
                 </form>
             </ion-card-content>
          
