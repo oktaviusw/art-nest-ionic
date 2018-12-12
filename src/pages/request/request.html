@@ -25,7 +25,7 @@
       <ion-grid style="padding: 0px;">
         <ion-row style="padding: 0px;" (click)="detailRequest(i)">
           <ion-col style="padding: 0px;" col-4>
-            <img style="max-width: 100px; max-height: 100px;" src="../assets/imgs/artist.jpg">
+            <img style="max-width: 100px; max-height: 100px;" [src]="sanitizer.bypassSecurityTrustUrl(comission.image)">
           </ion-col>
           <ion-col col-8 style="text-align:left">
             <div style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px;">

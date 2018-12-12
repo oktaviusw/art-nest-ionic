@@ -41,6 +41,14 @@ export class ProjectPage implements OnInit {
         console.log(this.comissions);
 
         for (var i = 0; i < this.comissions.length; i++) {
+          this.comissions[i].image = "";
+          if(this.comissions[i].anySketchBase == true){
+            this.comissions[i].image = 'https://artnest-umn.000webhostapp.com/assets/projectdata/'+this.comissions[i].IDProject+'/SketchBase.jpg';        
+          }
+          else{
+            this.comissions[i].image = 'assets/imgs/application_logo.png';
+          }
+          
           this.comissions[i].state = "";
           if(this.comissions[i].RequestStatus == "ACCEPTED"){
             this.comissions[i].state = this.comissions[i].CommissionStatus;
