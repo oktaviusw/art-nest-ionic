@@ -1,6 +1,7 @@
 import { ArtworkDetailPage } from './../artwork-detail/artwork-detail';
+import { ArtistPage } from './../artist/artist';
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController, AlertController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { SearchPage } from '../search/search';
@@ -16,7 +17,7 @@ export class HomePage implements OnInit {
   loading : any;
 
   constructor(public navCtrl: NavController, private api: APIService, public sanitizer: DomSanitizer,
-    public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
+    public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
 
   }
 
@@ -57,6 +58,11 @@ export class HomePage implements OnInit {
     );
     
 		modal.present();
+  }
+
+  detailArtist(ID:any){
+    console.log(ID);
+    this.navCtrl.push(ArtistPage, {IDArtist : ID});
   }
 
   detailArtwork(ID:any){

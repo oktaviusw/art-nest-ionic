@@ -92,7 +92,7 @@ export class MyApp {
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
-        this.nav.setRoot(ArtistPage);
+        this.nav.setRoot(HomePage);
         unsubscribe();
       }
     });
@@ -128,17 +128,6 @@ export class MyApp {
     this.displayName = displayName;
     this.email = email;
     this.photoURL = photoURL;
-
-    let alert = this.alertCtrl.create({
-      title: 'Change Display Name',
-      subTitle: photoURL,
-      buttons: [
-        {
-          text: "OK"
-        }
-      ]
-    });
-    alert.present();
     
   }
 

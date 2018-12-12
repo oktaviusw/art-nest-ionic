@@ -24,7 +24,7 @@
       <div class="container">
         <img src="../assets/imgs/application_logo_black.png">
         <div class="overlay">
-          <img src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay" style="top:53%;">
+          <img src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay" style="top:53%; width:27vw; height: 27vw">
         </div>
       </div>
     </div>
@@ -39,22 +39,22 @@
   </div> 
   <div class="separator-5"></div>
   <!-- IF NOT YOUR OWN PROFILE -->
-  <!--
-  <div>
+  
+  <div *ngIf="!isThisUser()">
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <button class="button-circle">
+          <button class="button-circle" (click)="sendEmail(artist.EMail)"> 
             <div>
               <div class="card-shadow icon-border">
-                <ion-icon name="brush" class="icon-middle"></ion-icon>
+                <ion-icon name="mail" class="icon-middle"></ion-icon>
               </div>
-              <p>Ask<br>Commission</p>
+              <p>Email</p>
             </div>
           </button>
         </ion-col>
         <ion-col col-4>
-          <button class="button-circle">
+          <button class="button-circle" (click)="openChat(artist)">
             <div>
               <div class="card-shadow icon-border">
                 <ion-icon name="chatbubbles" class="icon-middle"></ion-icon>
@@ -66,7 +66,7 @@
         <ion-col col-4>
           <button class="button-circle">
             <div>
-              <div class="card-shadow icon-border">
+              <div class="card-shadow icon-border" (click) = "openModalContact(artist)">
                 <ion-icon name="person" class="icon-middle"></ion-icon>
               </div>
               <p>Contact</p>
@@ -76,9 +76,9 @@
       </ion-row>
     </ion-grid>
   </div>
-  -->
+ 
   <!-- IF YOUR OWN PROFILE -->
-  <div>
+  <div *ngIf="isThisUser()">
     <ion-grid>
       <ion-row>
         <ion-col col-4>
@@ -125,7 +125,7 @@
     <ion-grid>
       <ion-row align-items-center>
         <!-- NGFOR ART SHOWCASE -->
-        <ion-col col-6 *ngFor="let artwork of artist.Artworks" (click)="detailArtwork(artwork.IDArtWork)">
+        <ion-col col-6 *ngFor="let artwork of artist.Artworks; let i = index" (click)="detailArtwork(artwork)">
           <ion-card>
             <div class="container">
               <img src="http://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/artwork/{{artwork.DirectoryData}}">

@@ -42,6 +42,7 @@ import { ChatRoomPage } from '../pages/chat-room/chat-room';
 /* MODAL */
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
+import { ModalContactPage } from '../pages/modal-contact/modal-contact'
 import { Camera } from '@ionic-native/camera';
 import { DatePipe } from '@angular/common';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
@@ -68,6 +69,7 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     BeArtistPage,
     ModalOrderPage,
     ModalDetailPage,
+    ModalContactPage,
     ListUserPage,
     ChatRoomPage,
     EditProfilePage,
@@ -102,6 +104,7 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     BeArtistPage,
     ModalOrderPage,
     ModalDetailPage,
+    ModalContactPage,
     ListUserPage,
     ChatRoomPage,
     EditProfilePage,

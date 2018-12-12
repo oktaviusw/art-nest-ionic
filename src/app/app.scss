@@ -32,17 +32,18 @@
     color: #fff;
 }
 
-ion-header ion-item {
-    margin: 10em;
-}
-
-ion-title{
+ion-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 90px 1px;
+    width: 100%;
+    height: 100%;
     text-align: center;
 }
 
-.logo-middle{
-    vertical-align: middle; 
-    width: 50%;
+ion-header ion-item {
+    margin: 10em;
 }
 
 .menu-toolbar {
