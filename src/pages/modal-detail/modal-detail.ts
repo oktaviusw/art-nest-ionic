@@ -47,6 +47,13 @@ export class ModalDetailPage implements OnInit {
     this.api.getAPI(this.api.REQUEST_DATA_SINGLE + this.comission_id)
       .map(response =>{
         this.comissionDetails = response.result;
+
+        let alert = this.alertCtrl.create({
+          title: 'Low battery',
+          subTitle: JSON.stringify(this.comissionDetails)
+        });
+        alert.present();
+
         console.log(this.comissionDetails);
         this.loading.dismiss();
         
