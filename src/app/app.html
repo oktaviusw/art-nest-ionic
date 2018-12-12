@@ -33,16 +33,16 @@
 				Artist
 			</ion-item-divider>
 			<!-- IF ARTIST -->
-			<button style="background-color:transparent" ion-item (click)="onLoad(artistPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(artistPage)" *ngIf="artist.isArtist">
 				<ion-icon name="person" item-left></ion-icon>
 				Profile
 			</button>
-			<button style="background-color:transparent" ion-item (click)="onLoad(projectPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(projectPage)" *ngIf="artist.isArtist">
 				<ion-icon name="brush" item-left></ion-icon>
 				Projects
 			</button>
 			<!-- IF NOT ARTIST -->
-			<button style="background-color:transparent" ion-item (click)="onLoad(beArtistPage)">
+			<button style="background-color:transparent" ion-item (click)="onLoad(beArtistPage)" *ngIf="!artist.isArtist">
 				<ion-icon name="person-add" item-left></ion-icon>
 				Become an Artist
 			</button>

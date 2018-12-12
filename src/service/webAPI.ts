@@ -8,6 +8,8 @@ import { AlertController } from 'ionic-angular';
 @Injectable()
 export class APIService
 {
+    public loggedInUser:any;
+    
     public readonly API_SERVER  = 'https://artnest-umn.000webhostapp.com/API/';
     public readonly API_IONIC_SERVER  = 'https://artnest-umn.000webhostapp.com/API_IONIC/';
 

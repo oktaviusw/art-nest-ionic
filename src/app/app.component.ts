@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, NavController, ToastController, AlertController, Events } from 'ionic-angular';
+import { Platform, MenuController, NavController, ToastController, AlertController, Events, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -25,13 +25,14 @@ import { LoginPage } from '../pages/login/login';
 import { ListUserPage } from '../pages/list-user/list-user';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { SearchPage } from '../pages/search/search';
+import { APIService } from '../service/webAPI';
 
 @Component({
   templateUrl: 'app.html'
 })
 
 export class MyApp {
-  rootPage:any = SettingPage;
+  rootPage:any = LoginPage;
   artistPage:any = ArtistPage;
   artworkPage:any = ArtworkPage;
   homePage:any = HomePage;
@@ -47,6 +48,8 @@ export class MyApp {
 
   displayName: string;
   email: string;
+  artist = [];
+  user_id:any;
 
   @ViewChild('sideMenuContent') nav: NavController;
   
@@ -61,7 +64,9 @@ export class MyApp {
     private firebase: Firebase, 
     private storage: Storage,
     public events: Events,
-    public fcm: FCM) {
+    public fcm: FCM,
+    public loadingCtrl: LoadingController,
+    public api: APIService) {
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -78,19 +83,17 @@ export class MyApp {
         }
       })
 
-      
-
       statusBar.styleDefault();
       splashScreen.hide();
     });
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(SettingPage);
+        this.nav.setRoot(LoginPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
-        this.nav.setRoot(ListUserPage);
+        this.nav.setRoot(LoginPage);
         unsubscribe();
       }
     });
@@ -128,6 +131,22 @@ export class MyApp {
         .subscribe(()=>{
           this.firebaseProvider.updateToken();
         })
+
+      events.subscribe('userLoggedIn', (user_id) => {
+        let loading;
+        loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+        loading.present();
+
+        this.user_id = user_id;
+        this.api.getAPI(this.api.USERS_DATA + this.user_id)
+          .map(response =>{
+            this.artist = response.result;
+            console.log(this.artist);
+            loading.dismiss();
+          }).subscribe();
+      });
 
   }
 

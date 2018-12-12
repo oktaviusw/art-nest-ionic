@@ -152,6 +152,8 @@ export class BeArtistPage {
       loadingUpdate.dismiss();
       
       if(response.status == "OK"){
+        this.events.publish('userLoggedIn', this.idUser);
+
         let alert = this.alertCtrl.create({
 					title: 'SUCCESS',
 					subTitle: 'Welcome to the Artist Nest!',
