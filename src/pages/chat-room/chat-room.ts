@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { IonicPage, NavController, NavParams, ToastController, AlertController, Alert } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController} from "ionic-angular";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Chat } from "../../models/chat";
 import { User } from "../../models/user";
@@ -37,7 +37,6 @@ export class ChatRoomPage implements OnInit {
     private imagePicker: ImagePicker,
     private toastCtrl: ToastController,
     private base64: Base64,
-    private alertCtrl: AlertController,
     private camera: Camera,
     private photoViewer: PhotoViewer
   ) {}
@@ -129,16 +128,6 @@ export class ChatRoomPage implements OnInit {
   uploadImageToFirebase(image){
     this.firebaseProvider.uploadImage(image) 
       .then((imageUrl) => {
-        let alert = this.alertCtrl.create({
-          title: 'Success Message Upload Provider',
-          subTitle: JSON.stringify(imageUrl),
-          buttons: [
-            {
-              text: "OK"
-            }
-          ]
-        });
-        alert.present();
         this.addChatImage(imageUrl);
     })
   }
@@ -157,17 +146,6 @@ export class ChatRoomPage implements OnInit {
 
       this.uploadImageToFirebase(base64File);
 
-    }, (err) => {
-      let alert = this.alertCtrl.create({
-        title: 'Error Get Message',
-        subTitle: err.message,
-        buttons: [
-          {
-            text: "OK"
-          }
-        ]
-      });
-      alert.present();
     });
   }
 

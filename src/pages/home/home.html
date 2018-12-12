@@ -46,7 +46,7 @@
         </ion-card>
       </ion-slide>
       <!-- placeholder -->
-      <ion-slide>
+      <!-- <ion-slide>
         <ion-card class="background" style="background-image: url('../assets/imgs/artist.jpg');">
           <div class="overlay-text hover-show">
             <ion-grid>
@@ -65,10 +65,10 @@
             </ion-grid>
           </div>
         </ion-card>
-      </ion-slide>
+      </ion-slide> -->
     </ion-slides>
     <div style="float:right; padding-left: 16px; padding-right: 16px;padding-bottom: 16px;">
-      <a style="font-weight:bold">Show All >></a>
+      <a style="font-weight:bold" (click) = "showAllResultArtwork()">Show All >></a>
     </div>
   </div>
   <div class="separator-20"></div>
@@ -109,7 +109,7 @@
       </ion-row>
     </ion-grid>
     <div style="float:right; padding-left: 16px; padding-right: 16px;padding-bottom: 16px;">
-      <a style="font-weight:bold">Show All >></a>
+      <a style="font-weight:bold" (click) = "showAllResultArtist()">Show All >></a>
     </div>
   </div>
 </ion-content>

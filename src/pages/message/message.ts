@@ -80,16 +80,6 @@ export class MessagePage implements OnInit {
             .valueChanges()
             .subscribe(users => {
 
-              let alert = this.alertCtrl.create({
-                title: 'Init List User',
-                subTitle: JSON.stringify(this.emailSet),
-                buttons: [
-                  {
-                    text: "OK"
-                  }
-                ]
-              });
-              alert.present();
               
               //this.availableusers = users;
               console.log(users);
@@ -101,23 +91,12 @@ export class MessagePage implements OnInit {
             });
 
         })
-      }).catch((err) => {
-        let alert = this.alertCtrl.create({
-          title: 'Init List User Error',
-          subTitle: err.message,
-          buttons: [
-            {
-              text: "OK"
-            }
-          ]
-        });
-        alert.present();
       })
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListUserPage');
+    console.log('ionViewDidLoad MessagePage');
   }
 
   goToChat(chatpartner) {
@@ -128,18 +107,7 @@ export class MessagePage implements OnInit {
 
     this.firebaseProvider.currentChatPartner = chatpartner;
 
-    this.navCtrl.push(ChatRoomPage).catch((error) => {
-      let alert = this.alertCtrl.create({
-        title: 'Failed goToChat',
-        subTitle: error.message,
-        buttons: [
-          {
-            text: "OK"
-          }
-        ]
-      });
-      alert.present();
-    });
+    this.navCtrl.push(ChatRoomPage);
   } //goToChat
 
 }

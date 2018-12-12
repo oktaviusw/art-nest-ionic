@@ -12,6 +12,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from "@ionic/storage";
 import { Base64 } from '@ionic-native/base64';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /* SERVICE */
 import { APIService } from '../service/webAPI';
@@ -37,7 +38,6 @@ import { RequestPage } from '../pages/request/request';
 import { ProjectPage } from '../pages/project/project';
 import { MessagePage } from '../pages/message/message';
 import { BeArtistPage } from '../pages/be-artist/be-artist';
-import { ListUserPage } from '../pages/list-user/list-user';
 import { ChatRoomPage } from '../pages/chat-room/chat-room';
 
 /* MODAL */
@@ -72,7 +72,6 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     ModalOrderPage,
     ModalDetailPage,
     ModalContactPage,
-    ListUserPage,
     ChatRoomPage,
     EditProfilePage,
     SearchPage,
@@ -108,7 +107,6 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     ModalOrderPage,
     ModalDetailPage,
     ModalContactPage,
-    ListUserPage,
     ChatRoomPage,
     EditProfilePage,
     SearchPage,
@@ -129,7 +127,8 @@ import { ArtworkDetailPage } from '../pages/artwork-detail/artwork-detail';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     APIService,
     ImagePicker,
-    PhotoViewer
+    PhotoViewer,
+    InAppBrowser
   ]
 })
 export class AppModule {}

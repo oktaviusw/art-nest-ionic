@@ -1,10 +1,12 @@
 import { ArtworkDetailPage } from './../artwork-detail/artwork-detail';
 import { ArtistPage } from './../artist/artist';
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController} from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { SearchPage } from '../search/search';
+import { SearchResultPage } from '../search-result/search-result';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,7 +19,7 @@ export class HomePage implements OnInit {
   loading : any;
 
   constructor(public navCtrl: NavController, private api: APIService, public sanitizer: DomSanitizer,
-    public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+    public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
 
   }
 
@@ -58,6 +60,14 @@ export class HomePage implements OnInit {
     );
     
 		modal.present();
+  }
+
+  showAllResultArtwork(){
+    this.navCtrl.push(SearchResultPage, {keyword: '', category: '', type: 'ARTWORK'});
+  }
+
+  showAllResultArtist(){
+    this.navCtrl.push(SearchResultPage, {keyword: '', category: '', type: 'ARTIST'});
   }
 
   detailArtist(ID:any){

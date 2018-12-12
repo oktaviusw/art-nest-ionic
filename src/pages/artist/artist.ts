@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController, Alert } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 
 import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
@@ -14,6 +14,8 @@ import { ModalContactPage } from '../../pages/modal-contact/modal-contact'
 import { FirebaseProvider } from "../../providers/firebase"
 
 import { User } from '../../models/user'
+
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the ArtistPage page.
@@ -35,7 +37,8 @@ export class ArtistPage implements OnInit {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController,
-    public storage: Storage, public alertCtrl: AlertController, public firebaseProvider: FirebaseProvider) {
+    public storage: Storage, public firebaseProvider: FirebaseProvider,
+    private iab: InAppBrowser) {
   }
 
   ngOnInit() {
@@ -121,18 +124,6 @@ export class ArtistPage implements OnInit {
 
     this.firebaseProvider.getDeviceId(artist.EMail)
       .then((snapshot) => {
-
-        let alert = this.alertCtrl.create({
-          title: 'Open Chat artist.ts',
-          subTitle: JSON.stringify(snapshot),
-          buttons: [
-            {
-              text: "OK"
-            }
-          ]
-        });
-        alert.present();
-        
         this.storage.get("currentUser").then(currentUser => {
           let userCredential = JSON.parse(currentUser);
             chatuser = {
@@ -151,17 +142,6 @@ export class ArtistPage implements OnInit {
               time: new Date().getTime()
             }
 
-            // let alert = this.alertCtrl.create({
-            //   title: 'Open Chat artist.ts',
-            //   subTitle: JSON.stringify(chatuser) + JSON.stringify(chatpartner),
-            //   buttons: [
-            //     {
-            //       text: "OK"
-            //     }
-            //   ]
-            // });
-            // alert.present();
-
             this.firebaseProvider.currentChatPairId = this.firebaseProvider.createPairId(
               chatuser,
               chatpartner
@@ -171,6 +151,14 @@ export class ArtistPage implements OnInit {
             this.navCtrl.push(ChatRoomPage);
         })
       })
+  }
+
+  facebookBrowser(artist: any){
+    const browser = this.iab.create(artist.FacebookLink);
+  }
+
+  twitterBrowser(artist: any){
+    const browser = this.iab.create(artist.TwitterLink);
   }
 
 }

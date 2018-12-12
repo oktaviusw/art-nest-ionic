@@ -48,19 +48,6 @@ export class ModalDetailPage implements OnInit {
       .map(response =>{
         this.comissionDetails = response.result;
         console.log(this.comissionDetails);
-        let alert = this.alertCtrl.create({
-					title: 'Result Response',
-					subTitle: JSON.stringify(response.result),
-					buttons: [{
-            text: 'OK',
-            role: 'OK',
-            handler: () => {
-              // //this.getDataCategories();
-              // this.navCtrl.pop();
-            }
-          }]
-        });
-        alert.present();
         this.loading.dismiss();
         
         if(response.result.RequestStatus == "ACCEPTED"){
@@ -143,14 +130,6 @@ export class ModalDetailPage implements OnInit {
 
       let contentMessage = "";
 
-      let alert = this.alertCtrl.create({
-        title: 'Konten Notifikasi',
-        subTitle: this.comissionDetails.TitleProject + " " + contentMessage + " " + this.comissionDetails.CustomerName + " " + this.comissionDetails.ArtistName,
-        buttons: [{
-          text: 'OK',
-        }]
-       });
-        alert.present();
 
       if(response.status == "OK"){
         if(role == 'ARTIST'){

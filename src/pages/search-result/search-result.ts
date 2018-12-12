@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, Events } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { APIService } from '../../service/webAPI';
 import { ArtistPage } from '../../pages/artist/artist';
@@ -33,7 +33,6 @@ export class SearchResultPage {
     private formBuilder: FormBuilder, 
     public toastCtrl: ToastController, 
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
     public events: Events,
     public api: APIService) {
       

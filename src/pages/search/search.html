@@ -51,11 +51,12 @@
       
                     <ion-item>
                       <ion-label stacked>Category</ion-label>
-                      <ion-select formControlName="category">
-                        <ion-radio *ngFor="let item of category" value="{{item.CategoryName}}">{{item.CategoryName}}</ion-radio>
+                      <ion-select formControlName="category"> 
+                        <ion-option   *ngFor="let item of category" value="{{item.CategoryName}}">{{item.CategoryName}}</ion-option>
                       </ion-select>
                     </ion-item>
-      
+
+
                     <ion-item>
                       <ion-label stacked>Type of Search</ion-label>
                       <ion-select formControlName="type">

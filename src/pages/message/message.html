@@ -29,12 +29,12 @@
     <ion-list>
       <ion-item *ngFor="let user of availableusers" (click)="goToChat(user)">
         <ion-grid>
-          <ion-row>
+          <ion-row >
             <ion-col col-2 id = "photouser">
               <img src="https://artnest-umn.000webhostapp.com/assets/userdata/{{user.email}}/ProfilePicture.png">
             </ion-col>
   
-            <ion-col col-10 id = "userdetail">              
+            <ion-col col-10 push-1 id = "userdetail">              
               <h2>{{user.username || "Anonymous"}}</h2>
               <p>{{user.email}}</p>
             </ion-col>

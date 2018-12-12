@@ -1,6 +1,5 @@
 import { APIService } from '../../service/webAPI';
 import { HomePage } from './../home/home';
-import { ListUserPage } from './../list-user/list-user'
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, Events } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';

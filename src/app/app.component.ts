@@ -21,7 +21,6 @@ import { BeArtistPage } from '../pages/be-artist/be-artist';
 import { RegisterPage } from '../pages/register/register';
 import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { LoginPage } from '../pages/login/login';
-import { ListUserPage } from '../pages/list-user/list-user';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { SearchPage } from '../pages/search/search';
 import { APIService } from '../service/webAPI';
@@ -41,7 +40,6 @@ export class MyApp {
   messagePage:any = MessagePage;
   beArtistPage:any = BeArtistPage;
   loginPage:any = LoginPage;
-  listUserPage:any = ListUserPage;
   editProfilePage:any = EditProfilePage;
   searchPage:any = SearchPage;
 

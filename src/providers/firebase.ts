@@ -18,7 +18,7 @@ import { Notification } from "../models/notification";
 
 import { Storage } from "@ionic/storage";
 
-import { AlertController, Events, ToastController } from "ionic-angular";
+import {  Events, ToastController } from "ionic-angular";
 import { Firebase } from '@ionic-native/firebase';
 import { finalize } from 'rxjs/operators'
 import { Observable } from 'rxjs';
@@ -42,7 +42,6 @@ export class FirebaseProvider {
   constructor(
     public db: AngularFirestore, 
     public storage: Storage,
-    public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public events: Events,
     public firebase2: Firebase,
@@ -94,34 +93,8 @@ export class FirebaseProvider {
                   username: username,
                   deviceID: deviceID,
                   time: new Date().getTime()
-              })
-              .catch( error => {
-                let alert = this.alertCtrl.create({
-                  title: 'Register Service Failed 1',
-                  subTitle: error.message,
-                  buttons: [
-                    {
-                      text: "OK"
-                    }
-                  ]
-                });
-                alert.present();
-              })
-            
+              });
           })
-          .catch(error =>{
-            let alert = this.alertCtrl.create({
-              title: 'Register Service Failed 2',
-              subTitle: error.message,
-              buttons: [
-                {
-                  text: "OK"
-                }
-              ]
-            });
-            alert.present();
-          }
-          )
         });
   }
 

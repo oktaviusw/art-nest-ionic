@@ -68,53 +68,11 @@ export class RegisterPage {
         this.firebaseProvider.signupUser(this.registerForm.value.email, this.registerForm.value.fullname, this.registerForm.value.password)
           .then( authData => {
             loadingLogin.dismiss().then( () => {
-              let alert = this.alertCtrl.create({
-                title: 'Register Success',
-                buttons: [
-                  {
-                    text: "OK"
-                  }
-                ]
-              });
-              alert.present();
               this.navCtrl.setRoot(LoginPage);
             });
           }, error => {
-            loadingLogin.dismiss().then( () => {
-              let alert = this.alertCtrl.create({
-                title: 'Register Failed 1',
-                subTitle: error.message,
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
-              });
-              alert.present();
-            });
-          }).catch( error => {
-            console.log(error);
-            let alert = this.alertCtrl.create({
-              title: 'Register Failed 2',
-              subTitle: error.message,
-              buttons: [
-                {
-                  text: "OK",
-                  role: 'cancel'
-                }
-              ]
-            });
-            alert.present();
+            loadingLogin.dismiss();
           })
-      }
-      else{
-        let alert = this.alertCtrl.create({
-					title: 'Register Failed 3',
-					subTitle: response.result,
-					buttons: ['OK']
-				});
-				alert.present();
       }
     }).subscribe();
   }
