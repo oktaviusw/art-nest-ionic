@@ -21,5 +21,11 @@ export class ModalDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModalDetailPage');
   }
+  close(){
+    this.navCtrl.pop();
+  }
 
+  none(){
+    event.stopPropagation();
+  }
 }

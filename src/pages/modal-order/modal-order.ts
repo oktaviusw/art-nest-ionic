@@ -31,6 +31,7 @@ export class ModalOrderPage {
   public endDateSelected : boolean;
 
   constructor(public navParams: NavParams, 
+    public navCtrl: NavController,
     private formBuilder: FormBuilder, 
     public camera: Camera, 
     public sanitizer:DomSanitizer,
@@ -268,4 +269,13 @@ export class ModalOrderPage {
       }
     }).subscribe(); 
   }
+
+  close(){
+    this.navCtrl.pop();
+  }
+
+  none(){
+    event.stopPropagation();
+  }
+
 }

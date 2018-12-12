@@ -197,12 +197,44 @@ ion-col {
             background-color: #0000006e;
             text-align: -webkit-center;
         }
-        .modal-wrapper {
-            width: 90%;
-            border-radius: 5px;
-            margin-bottom: 20%;
-            height: 65%;
-            overflow: hidden;
-            margin-top: 20%;
+
+        ion-content{
+            background-color: #0000006e;
         }
     }
+
+    ion-modal{
+        .modal-backdrop-bg {
+            transition: opacity 300ms ease-in-out;
+            -webkit-transition: opacity 300ms ease-in-out;
+            background-color: #000;
+            opacity: 0;
+        }
+        
+        .active .modal-backdrop-bg {
+            opacity: 0.5;
+        }
+    
+        .content-md{
+            background-color: rgba(0,0,0,0) !important;
+        }
+
+        .card-shadow {
+            box-shadow: 0 2px 2px 0 rgba(217,160,105,.14), 0 3px 1px -2px rgba(217,160,105,.12), 0 1px 5px 0 rgba(217,160,105,.12);
+        }
+
+        .grid{
+            padding: 0 !important;
+        }
+    }
+    
+    .modalSquare{
+        background-color: white;
+        width: 90%;
+        border-radius: 5px;
+        margin-bottom: 20%;
+        height: 65%;
+        overflow: scroll;
+        margin-top: 20%;
+    }
+
