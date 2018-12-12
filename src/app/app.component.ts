@@ -88,7 +88,7 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(ArtistPage);
+        this.nav.setRoot(LoginPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
@@ -144,7 +144,7 @@ export class MyApp {
 
   logOut(){
     this.firebaseProvider.logoutUser();
-    this.nav.setRoot(this.rootPage);
+    this.nav.setRoot(LoginPage);
   }
 }
 
