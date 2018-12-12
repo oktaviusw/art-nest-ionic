@@ -148,7 +148,15 @@ export class ArtworkPage {
         let alert = this.alertCtrl.create({
 					title: 'SUCCESS',
 					subTitle: 'Your masterpiece has been added!',
-					buttons: ['OK']
+          buttons: [
+            {
+              text: 'OK',
+              role: 'OK',
+              handler: () => {
+                this.navCtrl.pop();
+              }
+            }
+          ]
 				});
 				alert.present();
       }

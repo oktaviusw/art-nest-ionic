@@ -51,9 +51,10 @@ export class RequestPage implements OnInit {
     console.log('ionViewDidLoad RequestPage');
   }
 
-  detailRequest() {
-    let modal = this.modalCtrl.create(ModalDetailPage, {cssClass: 'select-modal'});
-		modal.present();
+  detailRequest(i) {
+    let modal = this.modalCtrl.create(ModalDetailPage, {comission: this.comissions[i]});
+    modal.present();
+    // this.navCtrl.push(ModalDetailPage, {comission: this.comissions[i]});
   }
 
 }

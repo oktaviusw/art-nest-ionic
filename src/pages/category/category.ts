@@ -73,7 +73,7 @@ export class CategoryPage {
 
       if(response.status == "OK"){
         this.currentCategory = response.result.Categories;
-        this.isDeleteCategory = true;
+        // this.isDeleteCategory = true;
       }
       else{
         this.isDeleteCategory = false;
@@ -90,7 +90,7 @@ export class CategoryPage {
         for(let i in response.result){
           this.availableCategory.push(response.result[i].CategoryName);
         }
-        this.isAddCategory = true;
+    //    this.isAddCategory = true;
       }
       else{
         this.isAddCategory = false;
@@ -125,7 +125,8 @@ export class CategoryPage {
             text: 'OK',
             role: 'OK',
             handler: () => {
-              this.getDataCategories();
+              //this.getDataCategories();
+this.navCtrl.pop();
             }
           }]
 				});

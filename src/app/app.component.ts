@@ -88,11 +88,11 @@ export class MyApp {
 
     const unsubscribe = firebase2.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.nav.setRoot(ArtistPage);
+        this.nav.setRoot(IntroPage);
         unsubscribe();
       } else {
         this.firebaseProvider.updateToken();
-        this.nav.setRoot(ArtistPage);
+        this.nav.setRoot(HomePage);
         unsubscribe();
       }
     });
@@ -123,7 +123,10 @@ export class MyApp {
     this.nav.setRoot(page);
     this.menuCtrl.close();
   }
-
+  onPush(page: any) {
+    this.nav.push(page);
+    this.menuCtrl.close();
+  }
   changeDisplayName(displayName: string, email: string, photoURL: string) {
     this.displayName = displayName;
     this.email = email;
@@ -144,7 +147,7 @@ export class MyApp {
 
   logOut(){
     this.firebaseProvider.logoutUser();
-    this.nav.setRoot(this.rootPage);
+    this.nav.setRoot(LoginPage);
   }
 }
 

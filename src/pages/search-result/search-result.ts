@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { APIService } from '../../service/webAPI';
+import { ArtworkDetailPage } from '../artwork-detail/artwork-detail';
 
 /**
  * Generated class for the SearchResultPage page.
@@ -84,5 +85,10 @@ export class SearchResultPage {
       else if(response.status == "EMPTY"){
       }
     }).subscribe();
+  }
+
+  detailArtwork(ID:any){
+    console.log(ID);
+    this.navCtrl.push(ArtworkDetailPage, {IDArtwork : ID});
   }
 }

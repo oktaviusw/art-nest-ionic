@@ -1,46 +1,31 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      <div>
-          <img style="height: 100%; width: 100%; object-fit: contain; padding-top: 8px" src="../assets/imgs/application_logo_header.png">
-      </div>
+<ion-header >
+  <ion-navbar start>
+    <ion-title style="font-size:10px;">
+      Become an Artist
     </ion-title>
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon style="color:white; font-size: 25px" name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons right>
-        <button ion-button (click)="openSearch()">
-          <ion-icon style="color:white; font-size: 25px" name="search"></ion-icon>
-        </button>
-      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card>
-      <ion-card-header>
-        Artist Settings
-      </ion-card-header>
-    
-      <ion-card-content>
+<ion-content style="height: 100%" padding>
+  <div class="background">
+    <div style="padding-left: 110px; padding-top: 10px; padding-bottom: 10px; padding-right: 110px">
+      <div class="container">
+        <img src="../assets/imgs/artist_icon.png">
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; padding-bottom:10px">
+    <div style="font-size:15px;">Make your talent known to others!</div>
+  </div> 
+  <div style="padding-top:10px;">
           <!--Form Data-->
-          <form [formGroup]="formArtist" (ngSubmit)="becomeArtist()">
+          <form id="formArtist" [formGroup]="formArtist" (ngSubmit)="becomeArtist()">
               <ion-item>
                 <ion-label stacked>
                   About Me
                 </ion-label>
                 <ion-input type="text" formControlName="aboutMe"></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-label stacked (click)="chooseImagePickerBackgroundProfile()">
-                  Background Profile
-                </ion-label>
-                <!-- <button type="button" ion-button item-start (click)="chooseImagePickerBackgroundProfile()">Pick Image</button> -->
-                <img item-start *ngIf="backgroundProfileSelected" style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageBackgroundProfile)" (click)="chooseImagePickerBackgroundProfile()">
               </ion-item>
 
               <ion-item>
@@ -52,14 +37,32 @@
 
               <ion-item>
                 <ion-label stacked>
-                  Twitter Link
+                  Twitter Username
                 </ion-label>
                 <ion-input type="text" formControlName="twLink"></ion-input>
               </ion-item>
-               
-              <button ion-button style="width:100%;" type="submit" [disabled]="!this.formArtist.valid">Become Artist</button>
-          </form>
-      </ion-card-content>
-    
-  </ion-card>
+              <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-item no-lines>
+                            <ion-label stacked>
+                                Background
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-6>
+                        <button padding style="width:100%;"  ion-button type="button" (click)="chooseImagePickerBackgroundProfile()">Select</button>
+                    </ion-col>
+                </ion-row>  
+              </ion-grid>
+  
+                      <img *ngIf="backgroundProfileSelected" style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageBackgroundProfile)" (click)="chooseImagePickerBackgroundProfile()">
+  
+              </form>
+          </div>
 </ion-content>
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button form="formArtist" ion-button full type="submit" [disabled]="!this.formArtist.valid">Become Artist</button>
+	</ion-toolbar>
+</ion-footer>

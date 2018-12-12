@@ -37,7 +37,7 @@
   </div>
 
   <div *ngIf="isArtworkSearch">
-      <ion-card  *ngFor="let artwork of dataArtwork" class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artwork.EMail + '/artwork/' + artwork.DirectoryData + ')'">
+      <ion-card  *ngFor="let artwork of dataArtwork" class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artwork.EMail + '/artwork/' + artwork.DirectoryData + ')'" (click)="detailArtwork(artwork.IDArtWork)">
         <div class="overlay-text hover-show">
           <ion-grid>
             <ion-row align-items-center>

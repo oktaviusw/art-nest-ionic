@@ -255,9 +255,17 @@ export class ModalOrderPage {
         let alert = this.alertCtrl.create({
 					title: 'SUCCESS',
 					subTitle: 'Your order request has been created!',
-					buttons: ['OK']
+					buttons: [
+            {
+              text: 'OK',
+              role: 'OK',
+              handler: () => {
+                this.navCtrl.pop();
+              }
+            }
+          ]
 				});
-				alert.present();
+        alert.present();
       }
       else{
         let alert = this.alertCtrl.create({
