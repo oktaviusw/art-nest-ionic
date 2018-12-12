@@ -3,19 +3,22 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { DatePicker } from '@ionic-native/date-picker'
+import { DatePicker } from '@ionic-native/date-picker';
+import { ImagePicker } from '@ionic-native/image-picker';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from "@ionic/storage";
+import { Base64 } from '@ionic-native/base64';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 /* SERVICE */
 import { APIService } from '../service/webAPI';
 
 /* FIREBASE */
 import { Firebase } from '@ionic-native/firebase';
-import { FCM } from '@ionic-native/fcm';
 import { FirebaseProvider } from '../providers/firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { appconfig } from "./app.config";
 
 /* PAGE */
@@ -39,6 +42,9 @@ import { ModalOrderPage } from '../pages/modal-order/modal-order';
 import { ModalDetailPage } from '../pages/modal-detail/modal-detail';
 import { Camera } from '@ionic-native/camera';
 import { DatePipe } from '@angular/common';
+
+/* PIPE */
+import { PipesModule } from "../pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -65,7 +71,9 @@ import { DatePipe } from '@angular/common';
     IonicStorageModule.forRoot(),
     HttpClientModule,
     AngularFireModule.initializeApp(appconfig.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -90,15 +98,17 @@ import { DatePipe } from '@angular/common';
     StatusBar,
     SplashScreen,
     Firebase,
-    FCM,
     FirebaseProvider,
     Camera,
+    Base64,
     HttpClient,
     HttpClientModule,
     DatePicker,
     DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    APIService
+    APIService,
+    ImagePicker,
+    PhotoViewer
   ]
 })
 export class AppModule {}

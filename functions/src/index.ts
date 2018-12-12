@@ -70,6 +70,36 @@ exports.newUserNotification = functions.firestore
         });
 });
 
+exports.notificationNotification = functions.firestore
+.document('notifications/{notificationsId}')
+.onCreate(async event => {
+    const data = event.data();
+
+    const receiverEmail = data.receiverEmail;
+
+    // Notification content
+    const payload = {
+        notification: {
+            title: data.title,
+            body: data.message,
+            icon: 'https://goo.gl/Fz9nrQ'
+        }
+    }
+
+    // ref to the device collection for the user
+    const db = admin.firestore()
+    const usersRef = db.collection('users').where('email', '==', receiverEmail);
+
+
+    // get the user's tokens and send notifications
+    await usersRef.get().then((receiver) => {
+        receiver.forEach(receiverData => {
+            return admin.messaging().sendToDevice(receiverData.data().deviceID, payload)
+        })
+        
+    })
+});
+
 exports.updateToken = functions.firestore
 .document('users/{usersId}')
 .onUpdate(async event => {
@@ -99,3 +129,60 @@ exports.updateToken = functions.firestore
         });
 
 });
+
+exports.chatNotification = functions.firestore
+    .document('chats/{chatsId}')
+    .onCreate(async event => {
+        let data = event.data();
+
+        const receiverID = data.receiverID;
+        const emailSender = data.sender;
+
+        
+
+        // ref to the device collection for the user
+        const db = admin.firestore()
+        const devicesRef = db.collection('users').where('email', '==', emailSender);
+
+
+        // get the user's tokens and send notifications
+        await devicesRef.get().then((sender) => {
+            sender.forEach(senderData => {
+                // Notification content
+                let payload
+                if(data.type == "picture"){
+                    payload  = {
+                        notification: {
+                            title: senderData.data().username,
+                            body: 'Sent an image',
+                            icon: 'https://goo.gl/Fz9nrQ'
+                        }
+                    }
+                } else {
+                    payload  = {
+                        notification: {
+                            title: senderData.data().username,
+                            body: data.message,
+                            icon: 'https://goo.gl/Fz9nrQ'
+                        }
+                    }
+                }
+                return admin.messaging().sendToDevice(receiverID, payload)
+            })
+            
+        })
+
+        
+
+        // const tokens = [];
+
+        // // send a notification to each device token
+        // devices.forEach(result => {
+        //     const token = result.data().token;
+        //     tokens.push( token )
+        // })
+
+        // return admin.messaging().sendToDevice(receiverID, payload)
+
+    });
+

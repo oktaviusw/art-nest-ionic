@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController, AlertController, Alert } from "ionic-angular";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Chat } from "../../models/chat";
 import { User } from "../../models/user";
@@ -7,6 +7,12 @@ import { appconfig } from "../../app/app.config";
 import { FirebaseProvider } from "../../providers/firebase";
 import { Storage } from "@ionic/storage";
 import { Firebase } from "@ionic-native/firebase";
+import { ImagePicker } from '@ionic-native/image-picker';
+import { normalizeURL } from 'ionic-angular';
+import { Base64 } from '@ionic-native/base64';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 @IonicPage()
 @Component({
@@ -27,7 +33,13 @@ export class ChatRoomPage implements OnInit {
     public navParams: NavParams,
     private db: AngularFirestore,
     private firebaseProvider: FirebaseProvider,
-    private storage: Storage
+    private storage: Storage,
+    private imagePicker: ImagePicker,
+    private toastCtrl: ToastController,
+    private base64: Base64,
+    private alertCtrl: AlertController,
+    private camera: Camera,
+    private photoViewer: PhotoViewer
   ) {}
 
   //scrolls to bottom whenever the page has loaded
@@ -58,6 +70,7 @@ export class ChatRoomPage implements OnInit {
        
       });
     });
+
   } //ngOnInit
 
   addChat() {
@@ -66,8 +79,11 @@ export class ChatRoomPage implements OnInit {
       this.chatPayload = {
         message: this.message,
         sender: this.chatuser.email,
+        receiverID: this.chatpartner.deviceID,
+        receiverEmail: this.chatpartner.email,
         pair: this.firebaseProvider.currentChatPairId,
-        time: new Date().getTime()
+        time: new Date().getTime(),
+        type: 'message'
       };
 
       this.firebaseProvider
@@ -84,6 +100,80 @@ export class ChatRoomPage implements OnInit {
         });
     }
   } //addChat
+
+  addChatImage(imageUrl: string){
+    this.chatPayload = {
+      message: imageUrl,
+      sender: this.chatuser.email,
+      receiverID: this.chatpartner.deviceID,
+      receiverEmail: this.chatpartner.email,
+      pair: this.firebaseProvider.currentChatPairId,
+      time: new Date().getTime(),
+      type: 'picture'
+    };
+
+    this.firebaseProvider
+      .addChat(this.chatPayload)
+      .then(() => {
+        //Clear message box
+        this.message = "";
+
+        //Scroll to bottom
+        this.content.scrollToBottom(300);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  uploadImageToFirebase(image){
+    this.firebaseProvider.uploadImage(image) 
+      .then((imageUrl) => {
+        let alert = this.alertCtrl.create({
+          title: 'Success Message Upload Provider',
+          subTitle: JSON.stringify(imageUrl),
+          buttons: [
+            {
+              text: "OK"
+            }
+          ]
+        });
+        alert.present();
+        this.addChatImage(imageUrl);
+    })
+  }
+
+  getImage(){
+    let settingImage = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum:false
+    };
+
+    const options: CameraOptions = settingImage;
+
+    this.camera.getPicture(options).then((base64File) => {
+
+      this.uploadImageToFirebase(base64File);
+
+    }, (err) => {
+      let alert = this.alertCtrl.create({
+        title: 'Error Get Message',
+        subTitle: err.message,
+        buttons: [
+          {
+            text: "OK"
+          }
+        ]
+      });
+      alert.present();
+    });
+  }
+
+  showImage(url: string){
+    this.photoViewer.show(url);
+  }
 
   isChatPartner(senderEmail) {
     return senderEmail == this.chatpartner.email;

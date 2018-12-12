@@ -91,6 +91,8 @@
     <plugin name="cordova-plugin-camera" spec="~4.0.3" />
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3" />
     <plugin name="cordova-plugin-firebase" spec="~2.0.5" />
-    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="~2.3.0" />
-    <engine name="android" spec="^7.1.4" />
+    <plugin name="cordova-plugin-telerik-imagepicker" spec="2.2.2" />
+    <plugin name="com-badrit-base64" spec="0.2.0" />
+    <plugin name="com-sarriaroman-photoviewer" spec="1.1.18" />
+    <engine name="android" spec="7.1.4" />
 </widget>

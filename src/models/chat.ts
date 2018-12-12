@@ -3,4 +3,7 @@ export interface Chat {
     pair: string;
     sender: string;
     time: number;
+    type: string;
+    receiverID: string;
+    receiverEmail: string;
   }

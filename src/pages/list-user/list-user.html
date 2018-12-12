@@ -1,8 +1,5 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{chatuser?.name}}</ion-title>
-  </ion-navbar>
 
 </ion-header>
 
@@ -10,16 +7,21 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-list-header>
-      USERS
-    </ion-list-header>
     <ion-item *ngFor="let user of availableusers" (click)="goToChat(user)">
-      <ion-avatar item-start>
-        <img src="http://via.placeholder.com/16x16">
-      </ion-avatar>
-      <h2>{{user.username || "Anonymous"}}</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2 id = "photouser">
+            <img src="https://artnest-umn.000webhostapp.com/assets/userdata/{{user.email}}/ProfilePicture.png">
+          </ion-col>
 
-      <p>{{user.email}}</p>
+          <ion-col col-10 id = "userdetail">              
+            <h2>{{user.username || "Anonymous"}}</h2>
+            <p>{{user.email}}</p>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
     </ion-item>
 
   </ion-list>
