@@ -32,6 +32,7 @@ export class EditProfilePage {
   }
 
   ngOnInit() {
+    this.artist_id = this.api.loggedInUser;
 
     //Loading anim to wait for data
     this.loading = this.loadingCtrl.create({

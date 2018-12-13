@@ -51,7 +51,7 @@ export class CategoryPage {
   }
 
   ngOnInit() {
-    this.idUser = 1;
+    this.idUser = this.api.loggedInUser;
 
     this.isAddCategory = this.navParams.get('isAddCategory');
     this.isDeleteCategory =  this.navParams.get('isDeleteCategory');
