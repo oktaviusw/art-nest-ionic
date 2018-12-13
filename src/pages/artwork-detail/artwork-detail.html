@@ -13,24 +13,66 @@
     </ion-navbar>
   </ion-header>
 
-<ion-content padding>
-  <img style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtwork)">
-  <div>
+<ion-content>
+    <img style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtwork)">
+  <ion-card>
+      <ion-card-header class="card-shadow">
+          <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">Artwork Detail</h3>
+      </ion-card-header>
+      <ion-card-content padding>
+          <ion-grid>
+              <ion-row align-items-top>
+                <ion-col col-4>
+                  <div style="text-align: left; font-weight: bold">
+                    Title
+                  </div>
+                </ion-col>
+                <ion-col col-7 style="margin-left:5px;">
+                  <div style="text-align: left">
+                    <span>{{titleArtwork}}</span>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-grid>
+                <ion-row align-items-top>
+                  <ion-col col-4>
+                    <div style="text-align: left; font-weight: bold">
+                      Description
+                    </div>
+                  </ion-col>
+                  <ion-col col-7 style="margin-left:5px;">
+                    <div style="text-align: left">
+                      <span>{{descArtwork}}</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+      </ion-card-content>
+     
+  </ion-card>
+  <ion-card>
+      <ion-card-header class="card-shadow">
+          <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">Artist Detail</h3>
+      </ion-card-header>
+      <ion-card-content padding>
+            <ion-grid>
+                <ion-row align-items-center>
+                  <ion-col col-2 class="title">
+                      <img class="profile-picture" style="width: 10vw; height: 10vw; object-fit: cover; border-radius: 100%;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtist)">
+                    </ion-col>
+                  <ion-col col-5 style="margin-left:5px;">
+                    <div style="text-align: left">
+                      <span>{{displaynameArtist}}</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+           
+      </ion-card-content>
+     
+  </ion-card>
 
-    <span class="title-wrap" style="font-weight:bold">{{titleArtwork}}</span>
-  </div>
-    <ion-grid>
-      <ion-row align-items-center>
-        <ion-col col-2 class="title">
-          <img class="profile-picture" style="width: 10vw; height: 10vw; object-fit: cover; border-radius: 100%;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtist)">
-        </ion-col>
-        <ion-col col-9 >
-          <div style="text-align: left; ;">
-            <span>{{displaynameArtist}}</span>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
 
 
   
