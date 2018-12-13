@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { APIService } from '../../service/webAPI';
 import { ModalDetailPage } from '../modal-detail/modal-detail';
+import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * Generated class for the ProjectPage page.
@@ -23,7 +24,7 @@ export class ProjectPage implements OnInit {
   loading:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController,
-    public loadingCtrl: LoadingController, public api: APIService) {
+    public loadingCtrl: LoadingController, public api: APIService, public sanitizer: DomSanitizer) {
   }
 
   ngOnInit(){
@@ -48,7 +49,7 @@ export class ProjectPage implements OnInit {
           else{
             this.comissions[i].image = 'assets/imgs/application_logo.png';
           }
-          
+
           this.comissions[i].state = "";
           if(this.comissions[i].RequestStatus == "ACCEPTED"){
             this.comissions[i].state = this.comissions[i].CommissionStatus;

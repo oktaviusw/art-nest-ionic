@@ -160,5 +160,6 @@ export class ArtistPage implements OnInit {
   twitterBrowser(artist: any){
     const browser = this.iab.create(artist.TwitterLink);
   }
+  
 
 }
