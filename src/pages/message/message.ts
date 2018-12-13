@@ -1,5 +1,6 @@
+import { SearchPage } from './../search/search';
 import { Component, OnInit } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ModalController } from "ionic-angular";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Storage } from "@ionic/storage";
 import { appconfig } from "../../app/app.config";
@@ -37,7 +38,8 @@ export class MessagePage implements OnInit {
     private db: AngularFirestore,
     private storage: Storage,
     private firebaseProvider: FirebaseProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController
   ){}
 
   ngOnInit() {
@@ -113,5 +115,14 @@ export class MessagePage implements OnInit {
 
     this.navCtrl.push(ChatRoomPage);
   } //goToChat
+
+  openSearch(){
+    let modal = this.modalCtrl.create(
+      SearchPage,
+      {showBackdrop: false, enableBackdropDismiss:true}
+    );
+    
+		modal.present();
+  }
 
 }
