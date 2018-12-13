@@ -135,6 +135,7 @@ export class MyApp {
   logOut(){
     this.firebaseProvider.logoutUser();
     this.nav.setRoot(LoginPage);
+    
   }
 }
 

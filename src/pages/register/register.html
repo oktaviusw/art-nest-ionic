@@ -16,19 +16,19 @@
     <div class="separator-20"></div>
     <div padding>
       <form [formGroup]="registerForm" (ngSubmit)="registerAttempt()">
-        <ion-item>
+        <ion-item no-lines>
           <ion-input type="text" formControlName="fullname" placeholder="Username"></ion-input>
         </ion-item>
         <div class="separator-5"></div>
-        <ion-item>
+        <ion-item no-lines>
             <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
           </ion-item>
           <div class="separator-5"></div>
-        <ion-item>
+        <ion-item no-lines>
           <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
         </ion-item>
         <div class="separator-5"></div>
-        <ion-item>
+        <ion-item no-lines>
             <ion-input type="password" formControlName="cpassword" placeholder="Confirm Password"></ion-input>
           </ion-item>
           <div class="separator-5"></div>
