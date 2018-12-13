@@ -131,6 +131,10 @@ export class ArtworkDetailPage {
             }
           }).subscribe();
         }
+      },
+      {
+        text: 'Cancel',
+        role: 'Cancel',
       }]
     });
     alert.present();
