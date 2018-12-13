@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { ModalOrderPage } from '../modal-order/modal-order';
 import { APIService } from '../../service/webAPI';
 import { CategoryPage } from '../category/category';
+import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -22,8 +23,11 @@ export class EditProfilePage {
   artist_id = 1;
   loading:any;
 
+  artistDP : string;
+  artistBG : any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController) {
+    private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController, public sanitizer: DomSanitizer) {
   }
 
 
@@ -45,6 +49,10 @@ export class EditProfilePage {
       .map(response =>{
         this.artist = response.result;
         console.log(this.artist);
+
+        this.artistDP = 'http://artnest-umn.000webhostapp.com/assets/userdata/' + response.result.EMail + '/ProfilePicture.png?math='+Math.random();
+        let linkBG = 'http://artnest-umn.000webhostapp.com/assets/userdata/' + response.result.EMail + '/BackgroundProfile.jpg?math='+Math.random();
+        this.artistBG = this.sanitizer.bypassSecurityTrustStyle('url('+linkBG+')');
         //Data is now loaded; dismiss load anim
         this.loading.dismiss();
       }).subscribe();
