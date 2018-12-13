@@ -12,7 +12,7 @@
       </ion-buttons>
       <ion-buttons right>
           <button ion-button (click)="openSearch()">
-            <ion-icon style="font-size: 25px" name="search"></ion-icon>
+            <ion-icon style=" font-size: 25px; color:#D9A069" name="menu"></ion-icon>
           </button>
         </ion-buttons>
     </ion-navbar>
@@ -20,11 +20,11 @@
 <ion-content padding>
     <!--User Settings-->
     <ion-card>
-      <ion-card-header>
-        User Settings
-      </ion-card-header>
+        <ion-card-header class="card-shadow">
+            <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">User Settings</h3>
+        </ion-card-header>
     
-      <ion-card-content>
+        <ion-card-content style="padding:20px;">
           <!--Profile Picture-->
           <img style="width: 30vw; height: 30vw; object-fit: contain; border-radius:100%; margin-left:auto; margin-right:auto;" [src]="sanitizer.bypassSecurityTrustUrl(imageProfilePicture)" (click)="chooseImagePickerProfilePicture()">
           <!--Form Data-->
@@ -63,14 +63,15 @@
       </ion-card-content>
     
     </ion-card>
-
+    <div class="separator-5"></div>
+    <div class="separator-5"></div>
     <!--Artist Settings-->
     <ion-card *ngIf="isArtist">
-      <ion-card-header>
-        Artist Settings
-      </ion-card-header>
+        <ion-card-header class="card-shadow">
+            <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">Artist Setting</h3>
+        </ion-card-header>
     
-      <ion-card-content>
+      <ion-card-content style="padding:20px;">
           <!--Form Data-->
           <form [formGroup]="formArtistSettings" (ngSubmit)="validateArtistValueForm()">
               <ion-item>

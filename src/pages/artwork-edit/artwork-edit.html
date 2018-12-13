@@ -1,25 +1,12 @@
-<!--
-  Generated template for the ArtworkEditPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>artwork-edit</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
 <ion-content padding>
-  <ion-card>
-      <ion-card-header>
-        Edit Artwork
+  <ion-card class="modalSquare myModal" text-center>
+      <ion-card-header class="card-shadow">
+          <h3 text-left style="color: #D9A069; font-size: 16px; font-weight: bold;">Edit Artwork</h3>
       </ion-card-header>
     
-      <ion-card-content>
+      <ion-card-content style="padding: 20px">
           <img style="width: 100%; object-fit: contain;" [src]="sanitizer.bypassSecurityTrustUrl(imageArtwork)">
 
           <!--Form Data-->
