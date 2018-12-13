@@ -27,12 +27,12 @@
     </ion-header>
   
 <ion-content>
-  <div class="background" [style.background-image]="'url(http://artnest-umn.000webhostapp.com/assets/userdata/' + artist.EMail + '/BackgroundProfile.jpg)'">
+  <div class="background" style="background-repeat: no-repeat; background-size: 100%;" [style.background-image]="artistBG">
     <div style="padding-left: 110px; padding-top: 110px; padding-right: 110px">
       <div class="container">
         <img src="../assets/imgs/application_logo_black.png">
         <div class="overlay">
-          <img src="https://artnest-umn.000webhostapp.com/assets/userdata/{{artist.EMail}}/ProfilePicture.png" class="inlay" style="top:53%; width:27vw; height: 27vw">
+          <img [src]="sanitizer.bypassSecurityTrustUrl(artistDP)" class="inlay" style="top:53%; width:27vw; height: 27vw">
         </div>
       </div>
     </div>

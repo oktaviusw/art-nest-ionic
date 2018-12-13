@@ -66,7 +66,7 @@ export class FirebaseProvider {
 
         loginUser.user.updateProfile({
           displayName: loginUser.user.displayName,
-          photoURL: `https://artnest-umn.000webhostapp.com/assets/userdata/${email}/ProfilePicture.png`
+          photoURL: `https://artnest-umn.000webhostapp.com/assets/userdata/${email}/ProfilePicture.png?math=`+Math.random()
         }).then(() => {
           this.events.publish('user:changeDisplayName', loginUser.user.displayName, loginUser.user.email, loginUser.user.photoURL);
           this.currentUser = loginUser;

@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 
@@ -31,17 +32,23 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class ArtistPage implements OnInit {
 
-  artist = [];
+  artist:any = [];
   artist_id:any;
   loading:any;
 
+  artistDP : string;
+  artistBG : any;
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private modalCtrl: ModalController, private api: APIService, public loadingCtrl: LoadingController,
     public storage: Storage, public firebaseProvider: FirebaseProvider,
-    private iab: InAppBrowser) {
+    private iab: InAppBrowser,public sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
+
+    this.artistDP = '';
+    this.artistBG = '';
 
     //Loading anim to wait for data
     this.loading = this.loadingCtrl.create({
@@ -57,6 +64,10 @@ export class ArtistPage implements OnInit {
     this.api.getAPI(this.api.ARTIST_DATA_SINGLE + (this.navParams.get('IDArtist') == null ? this.artist_id : this.navParams.get('IDArtist')))
       .map(response =>{
         this.artist = response.result;
+
+        this.artistDP = 'http://artnest-umn.000webhostapp.com/assets/userdata/' + response.result.EMail + '/ProfilePicture.png?math='+Math.random();
+        let linkBG = 'http://artnest-umn.000webhostapp.com/assets/userdata/' + response.result.EMail + '/BackgroundProfile.jpg?math='+Math.random();
+        this.artistBG = this.sanitizer.bypassSecurityTrustStyle('url('+linkBG+')');
         //console.log(this.artist);
         //Data is now loaded; dismiss load anim
         this.loading.dismiss();

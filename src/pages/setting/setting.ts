@@ -24,6 +24,7 @@ export class SettingPage {
   public defaultProfilePictureURL : string;
   public profilePictureSelected : boolean;
   public imageProfilePicture: string;
+  public emailUser: string;
 
   public isArtist : boolean;
   private formArtistSettings : FormGroup;
@@ -202,9 +203,11 @@ export class SettingPage {
 
   ngOnInit(){
     this.idUser = this.api.loggedInUser;
+
     this.defaultProfilePictureURL = "";
     this.profilePictureSelected = false;
     this.imageProfilePicture = "assets/imgs/logo.png";
+    this.emailUser = "";
 
     this.isArtist = false;
     this.defaultBackgroundProfileURL = "";
@@ -225,6 +228,7 @@ export class SettingPage {
       loadingUserData.dismiss();
 
       if(response.status == "OK"){
+        this.emailUser = response.result.EMail;
         this.formUserSettings.controls['displayName'].setValue(response.result.DisplayName);
         this.imageProfilePicture = 'https://artnest-umn.000webhostapp.com/assets/userdata/'+response.result.EMail+'/ProfilePicture.png?random+\=' + Math.random();
         this.isArtist = response.result.isArtist;
@@ -319,7 +323,14 @@ export class SettingPage {
         let alert = this.alertCtrl.create({
 					title: 'SUCCESS',
 					subTitle: 'Your user data updated!',
-					buttons: ['OK']
+					buttons: [{
+            text: 'OK',
+            role: 'OK',
+            handler: data=>{
+              let fotobaru = 'https://artnest-umn.000webhostapp.com/assets/userdata/'+this.emailUser+'/ProfilePicture.png?math='+Math.random();
+              this.events.publish('user:changeDisplayName', dataToAPI.NewDisplayName, this.emailUser, fotobaru);
+            }
+          }]
 				});
 				alert.present();
       }
